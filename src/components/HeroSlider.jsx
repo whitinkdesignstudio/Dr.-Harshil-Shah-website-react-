@@ -82,57 +82,45 @@ export default function HeroSlider() {
             </Link>
           </div>
         </div>
+      </div>
 
-        <div className="photo-hero-controls" aria-label="Hero banner controls">
-          <button
-            className="photo-hero-prev"
-            type="button"
-            aria-label="Previous banner"
-            onClick={handlePrev}
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="hero-arrow hero-arrow-left">
-              <path
-                d="M5 12h14M14 7l5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+      <div className="photo-hero-controls" aria-label="Hero banner controls">
+        <button
+          className="photo-hero-prev"
+          type="button"
+          aria-label="Previous banner"
+          onClick={handlePrev}
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </button>
 
-          <div className="photo-hero-dots">
-            {slides.map((s, idx) => (
-              <button
-                key={s.id}
-                type="button"
-                className={activeSlide === idx ? 'is-active' : ''}
-                aria-label={`Show banner ${idx + 1}`}
-                aria-current={activeSlide === idx ? 'true' : 'false'}
-                onClick={() => setActiveSlide(idx)}
-              >
-                <span></span>
-              </button>
-            ))}
-          </div>
-
-          <button
-            className="photo-hero-next"
-            type="button"
-            aria-label="Next banner"
-            onClick={handleNext}
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="hero-arrow">
-              <path
-                d="M5 12h14M14 7l5 5-5 5"
-                stroke="currentColor"
-                strokeWidth="1.8"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+        <div className="photo-hero-dots">
+          {slides.map((s, idx) => (
+            <button
+              key={s.id}
+              type="button"
+              className={`hero-dot-btn ${activeSlide === idx ? 'is-active' : ''}`}
+              aria-label={`Show banner ${idx + 1}`}
+              aria-current={activeSlide === idx ? 'true' : 'false'}
+              onClick={() => setActiveSlide(idx)}
+            >
+              <span className="hero-dot-pill" />
+            </button>
+          ))}
         </div>
+
+        <button
+          className="photo-hero-next"
+          type="button"
+          aria-label="Next banner"
+          onClick={handleNext}
+        >
+          <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
     </section>
   );

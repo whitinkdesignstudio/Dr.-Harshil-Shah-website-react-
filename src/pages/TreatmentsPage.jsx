@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Interactive3DViewer from '../components/Interactive3DViewer';
 
 export default function TreatmentsPage() {
+  const [activeJointTab, setActiveJointTab] = useState('knee');
+
   const scrollToSection = (id) => {
+    setActiveJointTab(id);
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
@@ -10,7 +14,7 @@ export default function TreatmentsPage() {
   };
 
   return (
-    <div>
+    <div className="treatments-page">
       {/* Hero */}
       <section className="inner-hero compact-hero treatment-hero">
         <div className="shell treatment-hero-grid">
@@ -29,6 +33,24 @@ export default function TreatmentsPage() {
             <img src="/knee-3d.png" alt="3D Knee" />
             <img src="/shoulder-3d.png" alt="3D Shoulder" />
           </div>
+        </div>
+      </section>
+
+      {/* Real 3D Interactive Joint Anatomy Explorer */}
+      <section className="treatment-3d-section" id="3d-explorer" aria-label="Interactive 3D Joint Anatomy">
+        <div className="shell">
+          <div className="treatment-3d-header">
+            <span className="treatment-3d-kicker">REAL 3D ANATOMY EXPLORER</span>
+            <h2 className="treatment-3d-title">Explore Joint Anatomy in 360° Real 3D</h2>
+            <p className="treatment-3d-subtitle">
+              Rotate, zoom, and inspect the Knee, Hip, and Shoulder joints in full 3D. Explore bones, cartilage, ligaments, and surgical treatment views.
+            </p>
+          </div>
+
+          <Interactive3DViewer
+            initialJoint={activeJointTab}
+            onSelectTreatment={(joint) => scrollToSection(joint)}
+          />
         </div>
       </section>
 

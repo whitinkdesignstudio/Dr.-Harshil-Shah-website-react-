@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
 import Recovery3DViewer from '../components/Recovery3DViewer';
+import ReviewsSlider from '../components/ReviewsSlider';
 
 export default function HomePage() {
   return (
@@ -171,6 +172,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="care-horizontal-visual">
+                  <div className="care-orbit-bg" />
                   <img src="/hip-precision-v2.png" alt="3D Hip Care Model" className="care-horizontal-img" />
                 </div>
               </div>
@@ -204,6 +206,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="care-horizontal-visual">
+                  <div className="care-orbit-bg" />
                   <img src="/shoulder-mobility-v2.png" alt="3D Shoulder Care Model" className="care-horizontal-img" />
                 </div>
               </div>
@@ -488,6 +491,9 @@ export default function HomePage() {
           </Link>
         </div>
       </section>
+
+      {/* Verified Patient Reviews Carousel */}
+      <ReviewsSlider />
 
       {/* CTA Section */}
       <section className="cta-section" aria-label="Book appointment callout">

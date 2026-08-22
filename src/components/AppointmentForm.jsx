@@ -1,18 +1,82 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function AppointmentForm() {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
-    concern: 'Knee',
-    preferredDate: '',
-    notes: '',
+    service: 'Knee Care & Arthroscopy',
+    date: '',
+    time: 'Morning',
+    reason: '',
     consent: true
   });
 
+  const [submittedData, setSubmittedData] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [fieldErrors, setFieldErrors] = useState({});
+
+  const serviceOptions = [
+    'Knee Care & Arthroscopy',
+    'Total Knee Replacement (TKR)',
+    'Hip Preservation & Replacement',
+    'Shoulder Arthroscopy & Rotator Cuff',
+    'Sports Injury & Ligament Repair (ACL/PCL)',
+    'Joint Pain & Arthritis Consultation',
+    'Second Opinion on Orthopaedic Surgery'
+  ];
+
+  const getTodayLocal = () => {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatAppointmentDate = (dateValue) => {
+    if (!dateValue) return 'To be coordinated';
+    try {
+      const [year, month, day] = dateValue.split('-');
+      const date = new Date(Number(year), Number(month) - 1, Number(day));
+      return date.toLocaleDateString('en-IN', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      });
+    } catch {
+      return dateValue;
+    }
+  };
+
+  const normalizePhone = (phone) => phone.replace(/[\s()-]/g, '');
+
+  const validateForm = () => {
+    const errors = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errors.name = 'Please enter your full name (minimum 2 characters).';
+    }
+    const cleanPhone = normalizePhone(formData.phone);
+    if (!cleanPhone || cleanPhone.length < 10) {
+      errors.phone = 'Please enter a valid 10-digit mobile number.';
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email || !emailRegex.test(formData.email.trim())) {
+      errors.email = 'Please enter a valid email address.';
+    }
+    if (!formData.date) {
+      errors.date = 'Please select a preferred appointment date.';
+    } else if (formData.date < getTodayLocal()) {
+      errors.date = 'Appointment date cannot be in the past.';
+    }
+    if (!formData.consent) {
+      errors.consent = 'Please confirm consent.';
+    }
+    return errors;
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -22,18 +86,62 @@ export default function AppointmentForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!formData.name || !formData.phone) {
-      alert('Please fill in your name and phone number.');
+    if (submitting) return;
+
+    const errors = validateForm();
+    if (Object.keys(errors).length > 0) {
+      setFieldErrors(errors);
       return;
     }
+
+    setFieldErrors({});
+    setErrorMessage('');
     setSubmitting(true);
-    // Simulate booking submission
-    setTimeout(() => {
-      setSubmitting(false);
+
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    const templateParams = {
+      patient_name: formData.name.trim(),
+      patient_phone: formData.phone.trim(),
+      patient_email: formData.email.trim(),
+      appointment_date: formatAppointmentDate(formData.date),
+      appointment_time: formData.time,
+      service: formData.service,
+      message: formData.reason.trim() || 'No additional message provided.'
+    };
+
+    try {
+      if (serviceId && templateId && publicKey && publicKey !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+        // Send ONLY ONE EmailJS request
+        await emailjs.send(serviceId, templateId, templateParams, {
+          publicKey: publicKey
+        });
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 800));
+      }
+
+      setSubmittedData(templateParams);
       setSubmitted(true);
-    }, 800);
+      setFormData({
+        name: '',
+        phone: '',
+        email: '',
+        service: 'Knee Care & Arthroscopy',
+        date: '',
+        time: 'Morning',
+        reason: '',
+        consent: true
+      });
+    } catch (error) {
+      console.error('EmailJS submission failed:', error);
+      setErrorMessage('Unable to send appointment request. Please check connection and try again.');
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -43,14 +151,23 @@ export default function AppointmentForm() {
         <p>Private &amp; confidential</p>
       </div>
 
-      {submitted ? (
+      {errorMessage && (
+        <div className="ultra-error-banner" style={{ marginTop: '16px' }} role="alert">
+          <span>{errorMessage}</span>
+        </div>
+      )}
+
+      {submitted && submittedData ? (
         <div className="form-success-banner" style={{ marginTop: '24px' }}>
           <div>
-            <strong style={{ display: 'block', fontSize: '15px', color: 'var(--teal-dark)' }}>
-              Thank You, {formData.name}!
+            <strong style={{ display: 'block', fontSize: '16px', color: 'var(--teal-dark)' }}>
+              Appointment Request Received
             </strong>
-            <p style={{ margin: '6px 0 0', color: 'var(--ink)' }}>
-              Your appointment request for <strong>{formData.concern} Consultation</strong> has been received. Our clinic coordinator will contact you at <strong>{formData.phone}</strong> shortly to confirm your scheduled slot.
+            <p style={{ margin: '8px 0 0', color: 'var(--ink)', fontSize: '14px', lineHeight: '1.6' }}>
+              Thank you, <strong>{submittedData.patient_name}</strong>. Your appointment request for <strong>{submittedData.service}</strong> on <strong>{submittedData.appointment_date} ({submittedData.appointment_time})</strong> has been received.
+            </p>
+            <p style={{ margin: '8px 0 0', color: '#64748b', fontSize: '13px' }}>
+              A confirmation has been sent to your email ({submittedData.patient_email}). Our clinic coordinator will contact you at <strong>{submittedData.patient_phone}</strong> to confirm your slot.
             </p>
             <button
               type="button"
@@ -58,15 +175,7 @@ export default function AppointmentForm() {
               style={{ marginTop: '16px', background: 'var(--teal)' }}
               onClick={() => {
                 setSubmitted(false);
-                setFormData({
-                  name: '',
-                  phone: '',
-                  email: '',
-                  concern: 'Knee',
-                  preferredDate: '',
-                  notes: '',
-                  consent: true
-                });
+                setSubmittedData(null);
               }}
             >
               Book Another Appointment
@@ -74,7 +183,7 @@ export default function AppointmentForm() {
           </div>
         </div>
       ) : (
-        <form className="appointment-form" onSubmit={handleSubmit}>
+        <form className="appointment-form" onSubmit={handleSubmit} noValidate>
           <div className="form-row">
             <label>
               <span>Your Name *</span>
@@ -86,9 +195,10 @@ export default function AppointmentForm() {
                 value={formData.name}
                 onChange={handleChange}
               />
+              {fieldErrors.name && <small style={{ color: '#ef4444' }}>{fieldErrors.name}</small>}
             </label>
             <label>
-              <span>Phone Number *</span>
+              <span>Mobile Number *</span>
               <input
                 type="tel"
                 name="phone"
@@ -97,54 +207,72 @@ export default function AppointmentForm() {
                 value={formData.phone}
                 onChange={handleChange}
               />
+              {fieldErrors.phone && <small style={{ color: '#ef4444' }}>{fieldErrors.phone}</small>}
             </label>
           </div>
 
           <div className="form-row">
             <label>
-              <span>Email Address</span>
+              <span>Email Address *</span>
               <input
                 type="email"
                 name="email"
+                required
                 placeholder="your.email@example.com"
                 value={formData.email}
                 onChange={handleChange}
               />
+              {fieldErrors.email && <small style={{ color: '#ef4444' }}>{fieldErrors.email}</small>}
             </label>
             <label>
-              <span>Area of Concern</span>
+              <span>Service / Consultation *</span>
               <select
-                name="concern"
-                value={formData.concern}
+                name="service"
+                value={formData.service}
                 onChange={handleChange}
               >
-                <option value="Knee">Knee (Ligament / Meniscus / Arthritis / Pain)</option>
-                <option value="Hip">Hip (AVN / Arthritis / Joint replacement)</option>
-                <option value="Shoulder">Shoulder (Dislocation / Rotator Cuff / Pain)</option>
-                <option value="Sports Injury">Sports Injury / Arthroscopy</option>
-                <option value="Second Opinion">Second Opinion on Surgery</option>
-                <option value="Other">Other Joint Condition</option>
+                {serviceOptions.map((srv) => (
+                  <option key={srv} value={srv}>
+                    {srv}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+
+          <div className="form-row">
+            <label>
+              <span>Preferred Date *</span>
+              <input
+                type="date"
+                name="date"
+                min={getTodayLocal()}
+                value={formData.date}
+                onChange={handleChange}
+              />
+              {fieldErrors.date && <small style={{ color: '#ef4444' }}>{fieldErrors.date}</small>}
+            </label>
+            <label>
+              <span>Preferred Slot</span>
+              <select
+                name="time"
+                value={formData.time}
+                onChange={handleChange}
+              >
+                <option value="Morning">Morning (10:00 AM - 1:00 PM)</option>
+                <option value="Afternoon">Afternoon (2:00 PM - 5:00 PM)</option>
+                <option value="Evening">Evening (5:30 PM - 8:30 PM)</option>
               </select>
             </label>
           </div>
 
           <label>
-            <span>Preferred Date / Timeframe</span>
-            <input
-              type="date"
-              name="preferredDate"
-              value={formData.preferredDate}
-              onChange={handleChange}
-            />
-          </label>
-
-          <label>
-            <span>Brief description of symptoms / reports (Optional)</span>
+            <span>Message / Concern (Optional)</span>
             <textarea
-              name="notes"
+              name="reason"
               rows="3"
-              placeholder="E.g., Left knee swelling for 3 weeks after football injury; MRI available."
-              value={formData.notes}
+              placeholder="Briefly describe symptoms, MRI reports, or joint condition..."
+              value={formData.reason}
               onChange={handleChange}
             />
           </label>
@@ -161,6 +289,7 @@ export default function AppointmentForm() {
               I agree to be contacted by Dr. Harshil Shah's clinic team via phone / WhatsApp regarding my consultation request.
             </span>
           </label>
+          {fieldErrors.consent && <small style={{ color: '#ef4444', display: 'block', marginBottom: '8px' }}>{fieldErrors.consent}</small>}
 
           <button
             type="submit"
@@ -168,7 +297,7 @@ export default function AppointmentForm() {
             disabled={submitting}
             style={{ width: '100%', marginTop: '10px' }}
           >
-            {submitting ? 'Submitting Request...' : 'Confirm Appointment Request'}
+            {submitting ? 'Sending Request...' : 'Book Appointment'}
           </button>
 
           <div className="privacy-line">

@@ -101,7 +101,7 @@ export default function GalleryPage() {
       tag: 'Events & Honors',
       title: 'Orthopaedic Association Milestone',
       subtitle: 'Recognition for contributions to joint surgery education',
-      size: 'row', // 2x1 wide
+      size: 'small', // 1x1
       anim: 'left-to-right',
       category: 'events'
     },
@@ -151,7 +151,7 @@ export default function GalleryPage() {
       tag: 'Professional Journey',
       title: 'Scientific Paper Presentation',
       subtitle: 'Outcomes in rapid-recovery joint pathways',
-      size: 'row', // 2x1 wide
+      size: 'small', // 1x1
       anim: 'right-to-left',
       category: 'events'
     },
@@ -251,7 +251,7 @@ export default function GalleryPage() {
       tag: 'Surgical Theatre',
       title: 'Knee Preservation & Realignment',
       subtitle: 'High tibial osteotomy and cartilage restoration',
-      size: 'column', // 1x2 tall
+      size: 'small', // 1x1
       anim: 'bottom-to-top',
       category: 'surgery'
     },

@@ -62,11 +62,7 @@ async function compressImage(filePath) {
     const stats = await stat(filePath);
     const sizeMB = (stats.size / 1024 / 1024).toFixed(2);
     
-    // Skip tiny files (already small enough)
-    if (stats.size < 100 * 1024) {
-      console.log(`  ⏭ SKIP (already small ${sizeMB}MB): ${name}`);
-      return;
-    }
+    // Ensure WebP version is always generated even if original is small
 
     // Determine target max dimension
     const isHero = HERO_IMAGES.includes(name);

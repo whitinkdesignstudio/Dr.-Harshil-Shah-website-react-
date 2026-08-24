@@ -26,4 +26,14 @@ dist-ssr
 *.sln
 *.sw?
 
+# Raw 3D scan source files (>50MB/100MB)
+public/hip-bone-3d-scan/source/*.zip
+public/hip-bone-3d-scan/source/*.obj
+public/hip-bone-3d-scan/source/*.mtl
+public/hip-bone-3d-scan/source/hip-bone.glb
+public/hip-bone-3d-scan/source/hip-bone-opt.glb
+public/hip-bone-3d-scan/source/hip-bone-fast.glb
+public/hip-bone-3d-scan/source/hip-bone-web.glb
+public/hip-bone-3d-scan/source/hip-bone-weld.glb
+
 .system_generated/

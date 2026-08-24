@@ -1,29 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isHeaderHidden, setIsHeaderHidden] = useState(false);
+  const [brochureDropdownOpen, setBrochureDropdownOpen] = useState(false);
+  const [galleryDropdownOpen, setGalleryDropdownOpen] = useState(false);
+  const [mobileGalleryOpen, setMobileGalleryOpen] = useState(false);
+  const [mobileBrochureOpen, setMobileBrochureOpen] = useState(false);
   const location = useLocation();
 
-  // Scroll listener for sticky header state
+  const brochureRef = useRef(null);
+  const galleryRef = useRef(null);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (brochureRef.current && !brochureRef.current.contains(e.target)) {
+        setBrochureDropdownOpen(false);
+      }
+      if (galleryRef.current && !galleryRef.current.contains(e.target)) {
+        setGalleryDropdownOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Multi-event scroll listener: Desktop fade out on scroll, Mobile stays frozen
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
+      if (typeof window !== 'undefined' && window.innerWidth > 1024) {
+        const scrollY = window.scrollY || document.documentElement.scrollTop || window.pageYOffset || 0;
+        if (scrollY > 30) {
+          setIsHeaderHidden(true);
+          setBrochureDropdownOpen(false);
+          setGalleryDropdownOpen(false);
+        } else {
+          setIsHeaderHidden(false);
+        }
       } else {
-        setIsScrolled(false);
+        // Keep header always visible / frozen on mobile
+        setIsHeaderHidden(false);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    document.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+      document.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile menu and dropdowns on route change
   useEffect(() => {
     setMobileMenuOpen(false);
+    setBrochureDropdownOpen(false);
+    setGalleryDropdownOpen(false);
+    setMobileGalleryOpen(false);
+    setMobileBrochureOpen(false);
+    setIsHeaderHidden(false);
   }, [location.pathname]);
 
   // Prevent background scroll when mobile menu is open
@@ -40,7 +81,10 @@ export default function Header() {
 
   return (
     <>
-      <header className={`site-header ${isScrolled ? 'is-scrolled' : ''}`} id="site-header">
+      <header
+        className={`site-header ${isHeaderHidden ? 'is-header-hidden' : ''}`}
+        id="site-header"
+      >
         <div className="shell nav-wrap">
           {/* Desktop Left Nav */}
           <nav className="desktop-nav desktop-nav-left" aria-label="Primary navigation">
@@ -69,6 +113,55 @@ export default function Header() {
             >
               Patient Guides
             </NavLink>
+
+            {/* Gallery with Click Dropdown */}
+            <div className="nav-dropdown-item nav-gallery-dropdown" ref={galleryRef}>
+              <button
+                type="button"
+                className={`nav-dropdown-trigger nav-gallery-btn ${galleryDropdownOpen ? 'active' : ''} ${location.pathname === '/gallery' ? 'active' : ''}`}
+                onClick={() => setGalleryDropdownOpen((prev) => !prev)}
+                aria-expanded={galleryDropdownOpen}
+              >
+                Gallery
+                <svg className={`nav-arrow-icon ${galleryDropdownOpen ? 'open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              <div className={`nav-dropdown-menu nav-gallery-menu ${galleryDropdownOpen ? 'is-visible' : ''}`}>
+                <div className="nav-dropdown-header">
+                  <span>Explore Gallery</span>
+                </div>
+                <Link to="/gallery" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
+                  <div className="dropdown-link-icon">📸</div>
+                  <div>
+                    <strong>All Moments</strong>
+                    <small>Moments from practice &amp; patient care</small>
+                  </div>
+                </Link>
+                <Link to="/gallery" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
+                  <div className="dropdown-link-icon">🏥</div>
+                  <div>
+                    <strong>Clinical Practice</strong>
+                    <small>Surgical theatre &amp; consultations</small>
+                  </div>
+                </Link>
+                <Link to="/treatments" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
+                  <div className="dropdown-link-icon">🦴</div>
+                  <div>
+                    <strong>3D Joint Models</strong>
+                    <small>Interactive anatomical visualizations</small>
+                  </div>
+                </Link>
+                <Link to="/about" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
+                  <div className="dropdown-link-icon">🎓</div>
+                  <div>
+                    <strong>Professional Journey</strong>
+                    <small>Workshops, research &amp; achievements</small>
+                  </div>
+                </Link>
+              </div>
+            </div>
           </nav>
 
           {/* Center Brand */}
@@ -87,12 +180,96 @@ export default function Header() {
           {/* Desktop Right Nav & CTA */}
           <div className="desktop-nav-zone">
             <nav className="desktop-nav desktop-nav-right" aria-label="Patient navigation">
-              <NavLink
-                to="/gallery"
-                className={({ isActive }) => (isActive ? 'active' : '')}
+              {/* Brochure with Hover / Cursor Move Dropdown */}
+              <div
+                className="nav-dropdown-item nav-brochure-dropdown"
+                ref={brochureRef}
+                onMouseEnter={() => setBrochureDropdownOpen(true)}
+                onMouseLeave={() => setBrochureDropdownOpen(false)}
               >
-                Gallery
-              </NavLink>
+                <button
+                  type="button"
+                  className={`nav-dropdown-trigger nav-brochure-btn ${brochureDropdownOpen ? 'active' : ''}`}
+                  onClick={() => setBrochureDropdownOpen((prev) => !prev)}
+                  aria-expanded={brochureDropdownOpen}
+                >
+                  Brochure
+                  <svg className={`nav-arrow-icon ${brochureDropdownOpen ? 'open' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+
+                <div className={`nav-dropdown-menu nav-brochure-menu ${brochureDropdownOpen ? 'is-visible' : ''}`}>
+                  <div className="nav-dropdown-header">
+                    <span>Patient Information &amp; Brochures</span>
+                  </div>
+                  <a
+                    href="#download-knee"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('Downloading Knee Replacement & Joint Preservation Brochure (PDF)...');
+                      setBrochureDropdownOpen(false);
+                    }}
+                    className="nav-dropdown-link"
+                  >
+                    <div className="dropdown-link-icon">📄</div>
+                    <div>
+                      <strong>Knee Care &amp; Robotic Surgery</strong>
+                      <small>Comprehensive Patient Guide</small>
+                    </div>
+                    <span className="dropdown-dl-tag">PDF</span>
+                  </a>
+                  <a
+                    href="#download-hip"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('Downloading Hip & Shoulder Specialist Care Booklet (PDF)...');
+                      setBrochureDropdownOpen(false);
+                    }}
+                    className="nav-dropdown-link"
+                  >
+                    <div className="dropdown-link-icon">📘</div>
+                    <div>
+                      <strong>Hip &amp; Shoulder Specialist Care</strong>
+                      <small>Surgical &amp; Non-Surgical Booklet</small>
+                    </div>
+                    <span className="dropdown-dl-tag">PDF</span>
+                  </a>
+                  <a
+                    href="#download-eras"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('Downloading ERAS Rapid Recovery Care Protocol (PDF)...');
+                      setBrochureDropdownOpen(false);
+                    }}
+                    className="nav-dropdown-link"
+                  >
+                    <div className="dropdown-link-icon">🏃</div>
+                    <div>
+                      <strong>ERAS Recovery Pathway Protocol</strong>
+                      <small>Milestone Checklist &amp; Prehab</small>
+                    </div>
+                    <span className="dropdown-dl-tag">PDF</span>
+                  </a>
+                  <a
+                    href="#download-clinic"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      alert('Downloading Dr. Harshil Shah Profile & Clinic Guide (PDF)...');
+                      setBrochureDropdownOpen(false);
+                    }}
+                    className="nav-dropdown-link"
+                  >
+                    <div className="dropdown-link-icon">🏥</div>
+                    <div>
+                      <strong>Clinic Profile &amp; Doctor Overview</strong>
+                      <small>Credentials &amp; Consultation Info</small>
+                    </div>
+                    <span className="dropdown-dl-tag">PDF</span>
+                  </a>
+                </div>
+              </div>
+
               <NavLink
                 to="/faq"
                 className={({ isActive }) => (isActive ? 'active' : '')}
@@ -194,9 +371,95 @@ export default function Header() {
           <NavLink to="/patient-guides" className={({ isActive }) => (isActive ? 'active' : '')}>
             Patient Guides <span>→</span>
           </NavLink>
-          <NavLink to="/gallery" className={({ isActive }) => (isActive ? 'active' : '')}>
-            Gallery <span>→</span>
-          </NavLink>
+
+          {/* Mobile Expandable Gallery Dropdown */}
+          <div className="mobile-nav-accordion">
+            <button
+              type="button"
+              className={`mobile-nav-accordion-trigger ${mobileGalleryOpen ? 'open' : ''} ${location.pathname === '/gallery' ? 'active' : ''}`}
+              onClick={() => setMobileGalleryOpen((prev) => !prev)}
+            >
+              <span>Gallery</span>
+              <svg className={`mobile-chevron ${mobileGalleryOpen ? 'rotated' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {mobileGalleryOpen && (
+              <div className="mobile-nav-sublinks">
+                <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>
+                  📸 All Moments
+                </Link>
+                <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>
+                  🏥 Clinical Practice
+                </Link>
+                <Link to="/treatments" onClick={() => setMobileMenuOpen(false)}>
+                  🦴 3D Joint Models
+                </Link>
+                <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
+                  🎓 Professional Journey
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Expandable Brochure Dropdown */}
+          <div className="mobile-nav-accordion">
+            <button
+              type="button"
+              className={`mobile-nav-accordion-trigger ${mobileBrochureOpen ? 'open' : ''}`}
+              onClick={() => setMobileBrochureOpen((prev) => !prev)}
+            >
+              <span>Brochures (PDF)</span>
+              <svg className={`mobile-chevron ${mobileBrochureOpen ? 'rotated' : ''}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            {mobileBrochureOpen && (
+              <div className="mobile-nav-sublinks">
+                <a
+                  href="#download-knee"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert('Downloading Knee Care & Robotic Surgery Guide (PDF)...');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  📄 Knee Care &amp; Robotics <span className="mobile-pdf-pill">PDF</span>
+                </a>
+                <a
+                  href="#download-hip"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert('Downloading Hip & Shoulder Specialist Care Booklet (PDF)...');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  📘 Hip &amp; Shoulder Care <span className="mobile-pdf-pill">PDF</span>
+                </a>
+                <a
+                  href="#download-eras"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert('Downloading ERAS Rapid Recovery Care Protocol (PDF)...');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  🏃 ERAS Recovery Protocol <span className="mobile-pdf-pill">PDF</span>
+                </a>
+                <a
+                  href="#download-clinic"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    alert('Downloading Dr. Harshil Shah Profile & Clinic Guide (PDF)...');
+                    setMobileMenuOpen(false);
+                  }}
+                >
+                  🏥 Clinic Profile &amp; Info <span className="mobile-pdf-pill">PDF</span>
+                </a>
+              </div>
+            )}
+          </div>
+
           <NavLink to="/faq" className={({ isActive }) => (isActive ? 'active' : '')}>
             FAQs <span>→</span>
           </NavLink>

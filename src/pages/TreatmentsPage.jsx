@@ -2,8 +2,42 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Interactive3DViewer from '../components/Interactive3DViewer';
 
+const TREATMENT_FAQS = [
+  {
+    id: 'treatment-faq-1',
+    question: 'How do I know if I need non-surgical care or joint replacement surgery?',
+    answer: 'Our priority is always joint preservation. We begin with non-surgical options—such as targeted physiotherapy, medications, lifestyle changes, and advanced biologic injections (e.g. PRP). Surgery is only recommended when conservative care no longer provides sufficient pain relief or when structural joint wear severely limits your daily mobility.'
+  },
+  {
+    id: 'treatment-faq-2',
+    question: 'What are the benefits of robotic-assisted joint replacement?',
+    answer: 'Robotic-assisted surgery combines patient-specific 3D CT planning with real-time intraoperative precision. This enables sub-millimeter accurate implant positioning, greater preservation of healthy bone and soft tissues, lower postoperative pain, and faster return to natural joint motion.'
+  },
+  {
+    id: 'treatment-faq-3',
+    question: 'What is the expected recovery timeline after knee, hip, or shoulder surgery?',
+    answer: 'Under our Enhanced Recovery After Surgery (ERAS) pathway, most patients begin supported walking on the same day or within 24 hours. Light household activities typically resume in 2 to 4 weeks, with driving and office work resumed by 4 to 6 weeks based on individual recovery milestones.'
+  },
+  {
+    id: 'treatment-faq-4',
+    question: 'Can sports injuries like ACL tears or Rotator Cuff tears be repaired keyhole?',
+    answer: 'Yes. Minimally invasive arthroscopic (keyhole) surgery is the gold standard for ACL reconstructions, meniscus repairs, and rotator cuff repairs. Small incisions minimize muscle trauma, reduce infection risks, and accelerate functional rehabilitation back to sports and active routines.'
+  },
+  {
+    id: 'treatment-faq-5',
+    question: 'What is the difference between partial and total knee replacement?',
+    answer: 'A partial (unicompartmental) knee replacement replaces only the damaged compartment (medial or lateral), preserving all healthy cartilage, bone, and your natural cruciate ligaments. Total knee replacement is advised when arthritis affects multiple compartments of the knee.'
+  },
+  {
+    id: 'treatment-faq-6',
+    question: 'How should I prepare at home before my scheduled surgery?',
+    answer: 'Preparation includes performing guided preoperative muscle strengthening exercises (prehab), maintaining proper nutrition and hydration, optimizing clinical parameters (such as blood sugar and blood pressure), and setting up a clear, obstacle-free recovery space at home.'
+  }
+];
+
 export default function TreatmentsPage() {
   const [activeJointTab, setActiveJointTab] = useState('knee');
+  const [openFaqId, setOpenFaqId] = useState('treatment-faq-1');
 
   const scrollToSection = (id) => {
     setActiveJointTab(id);
@@ -13,25 +47,47 @@ export default function TreatmentsPage() {
     }
   };
 
+  const toggleFaq = (id) => {
+    setOpenFaqId((prev) => (prev === id ? null : id));
+  };
+
   return (
     <div className="treatments-page">
       {/* Hero */}
-      <section className="inner-hero compact-hero treatment-hero">
-        <div className="shell treatment-hero-grid">
-          <div>
+      <section className="treatment-hero">
+        <div className="treatment-hero-bg-container" aria-hidden="true">
+          <img
+            src="/treatments-hero-banner.png"
+            alt=""
+            className="treatment-hero-bg-img"
+          />
+          <div className="treatment-hero-scrim"></div>
+        </div>
+        <div className="shell treatment-hero-inner">
+          <div className="treatment-hero-copy">
+            <div className="eyebrow">
+              <span></span> Specialist Orthopaedic Care
+            </div>
             <h1>
               Specialist care for
               <br />
               <em>better movement.</em>
             </h1>
             <p>
-              Every plan begins with the right diagnosis and a clear discussion of both non-surgical and surgical options.
+              Personalised knee, hip, and shoulder treatments to restore mobility and active life.
             </p>
-          </div>
-          <div className="treatment-hero-art" aria-hidden="true">
-            <img src="/hip-3d.png" alt="3D Hip" />
-            <img src="/knee-3d.png" alt="3D Knee" />
-            <img src="/shoulder-3d.png" alt="3D Shoulder" />
+            <div className="treatment-hero-actions">
+              <button
+                type="button"
+                className="button button-primary"
+                onClick={() => scrollToSection('3d-explorer')}
+              >
+                Read More{' '}
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon" style={{ width: '16px', height: '16px', marginLeft: '4px' }}>
+                  <path d="M19 9l-7 7-7-7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -55,38 +111,46 @@ export default function TreatmentsPage() {
       </section>
 
       {/* Directory Nav & Sections */}
-      <section className="treatment-directory">
-        <div className="shell treatment-tabs">
-          <span>Explore by joint</span>
-          <button
-            type="button"
-            className="treatment-tab-btn"
-            onClick={() => scrollToSection('knee')}
-          >
-            Knee
-          </button>
-          <button
-            type="button"
-            className="treatment-tab-btn"
-            onClick={() => scrollToSection('hip')}
-          >
-            Hip
-          </button>
-          <button
-            type="button"
-            className="treatment-tab-btn"
-            onClick={() => scrollToSection('shoulder')}
-          >
-            Shoulder
-          </button>
-          <button
-            type="button"
-            className="treatment-tab-btn"
-            onClick={() => scrollToSection('more')}
-          >
-            More care
-          </button>
+      <section className="treatment-directory" id="treatment-nav">
+        <div className="shell">
+          <div className="treatment-tabs-bar">
+            <div className="treatment-tabs-label">
+              <span className="tabs-live-dot"></span>
+              <span>Explore By Joint</span>
+            </div>
+            <div className="treatment-tabs-list">
+              <button
+                type="button"
+                className={`treatment-tab-pill ${activeJointTab === 'knee' ? 'active' : ''}`}
+                onClick={() => scrollToSection('knee')}
+              >
+                Knee Care
+              </button>
+              <button
+                type="button"
+                className={`treatment-tab-pill ${activeJointTab === 'hip' ? 'active' : ''}`}
+                onClick={() => scrollToSection('hip')}
+              >
+                Hip Care
+              </button>
+              <button
+                type="button"
+                className={`treatment-tab-pill ${activeJointTab === 'shoulder' ? 'active' : ''}`}
+                onClick={() => scrollToSection('shoulder')}
+              >
+                Shoulder Care
+              </button>
+              <button
+                type="button"
+                className={`treatment-tab-pill ${activeJointTab === 'more' ? 'active' : ''}`}
+                onClick={() => scrollToSection('more')}
+              >
+                More Care
+              </button>
+            </div>
+          </div>
         </div>
+      </section>
 
         {/* Knee Section */}
         <section className="treatment-row" id="knee">
@@ -282,13 +346,11 @@ export default function TreatmentsPage() {
             </div>
           </div>
         </section>
-      </section>
 
       {/* Recovery Guides Feature */}
       <section className="section treatment-guides-feature">
         <div className="shell treatment-guides-grid">
           <div className="treatment-guides-copy">
-            <span className="guide-kicker">Treatment continues after discharge</span>
             <h2>
               A recovery plan you can
               <br />
@@ -318,9 +380,11 @@ export default function TreatmentsPage() {
           <div className="treatment-recovery-3d" aria-hidden="true">
             <span className="treatment-recovery-ring treatment-recovery-ring-one"></span>
             <span className="treatment-recovery-ring treatment-recovery-ring-two"></span>
-            <img className="treatment-recovery-knee" src="/knee-3d.png" alt="" />
-            <img className="treatment-recovery-hip" src="/hip-3d.png" alt="" />
-            <img className="treatment-recovery-shoulder" src="/shoulder-3d.png" alt="" />
+            <img
+              className="treatment-recovery-composite"
+              src="/recovery-plan-3d.png"
+              alt="Comprehensive 3D Orthopedic Joint Recovery Anatomy"
+            />
           </div>
         </div>
       </section>
@@ -328,37 +392,107 @@ export default function TreatmentsPage() {
       {/* More Specialist Care */}
       <section className="section more-care" id="more">
         <div className="shell">
-          <div className="section-heading split-heading">
-            <div>
-              <div className="eyebrow">
-                <span></span> More specialist care
-              </div>
-              <h2>
-                One diagnosis.
-                <br />
-                <em>More than one option.</em>
-              </h2>
+          <div className="section-heading more-care-heading">
+            <div className="eyebrow">
+              <span></span> More specialist care
             </div>
+            <h2>
+              One diagnosis. <em>More than one option.</em>
+            </h2>
             <p>
               The first goal is to understand the source of symptoms. Treatment may include medicines, guided rehabilitation, injections or surgery when the expected benefit makes it appropriate.
             </p>
           </div>
           <div className="more-care-grid">
             <article>
-              <span>04</span>
               <h3>Sports injuries</h3>
               <p>Assessment and structured return-to-activity planning for ligament, cartilage and overuse injuries.</p>
             </article>
             <article>
-              <span>05</span>
               <h3>Non-surgical care</h3>
               <p>Stage-appropriate options to manage symptoms and improve function before considering surgery.</p>
             </article>
             <article>
-              <span>06</span>
               <h3>Rehabilitation guidance</h3>
               <p>The right physiotherapy at the right time, with progress milestones that are easy to understand.</p>
             </article>
+          </div>
+        </div>
+      </section>
+
+      {/* Treatments FAQ Section */}
+      <section className="section treatment-faq-section" id="treatment-faqs">
+        <div className="shell">
+          <div className="treatment-faq-header">
+            <div className="eyebrow">
+              <span></span> Treatment Guidance &amp; Insights
+            </div>
+            <h2>
+              Frequently Asked <em>Questions</em>
+            </h2>
+            <p>
+              Clear answers to common questions about orthopaedic diagnosis, non-surgical options, robotic surgery, and recovery.
+            </p>
+          </div>
+
+          <div className="treatment-faq-container">
+            <div className="treatment-faq-list">
+              {TREATMENT_FAQS.map((faq, index) => {
+                const isOpen = openFaqId === faq.id;
+                const panelId = `treatment-faq-panel-${faq.id}`;
+                const btnId = `treatment-faq-btn-${faq.id}`;
+                return (
+                  <div
+                    key={faq.id}
+                    className={`treatment-faq-card ${isOpen ? 'is-open' : ''}`}
+                  >
+                    <button
+                      type="button"
+                      id={btnId}
+                      className="treatment-faq-trigger"
+                      aria-expanded={isOpen}
+                      aria-controls={panelId}
+                      onClick={() => toggleFaq(faq.id)}
+                    >
+                      <div className="treatment-faq-num">
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+                      <span className="treatment-faq-q">{faq.question}</span>
+                      <div className="treatment-faq-icon-wrap" aria-hidden="true">
+                        <span className="faq-toggle-icon">
+                          {isOpen ? '−' : '+'}
+                        </span>
+                      </div>
+                    </button>
+                    {isOpen && (
+                      <div
+                        id={panelId}
+                        role="region"
+                        aria-labelledby={btnId}
+                        className="treatment-faq-body"
+                      >
+                        <p>{faq.answer}</p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="treatment-faq-footer-card">
+              <div className="treatment-faq-footer-info">
+                <h4>Have more questions about your condition?</h4>
+                <p>Explore our complete knowledge library or discuss your symptoms directly with our specialist team.</p>
+              </div>
+              <div className="treatment-faq-footer-actions">
+                <Link to="/faq" className="button button-outline">
+                  Full FAQ Library
+                </Link>
+                <Link to="/appointment" className="button button-primary">
+                  Book Consultation
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

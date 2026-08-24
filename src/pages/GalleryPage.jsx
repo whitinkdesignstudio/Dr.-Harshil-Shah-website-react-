@@ -17,7 +17,7 @@ export default function GalleryPage() {
   const galleryItems = [
     {
       id: 1,
-      src: `${DOCTOR_IMG_BASE}WS_DB.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB.JPG.webp`,
       tag: 'Clinical Practice',
       title: 'Dr. Harshil Shah — Specialist Consultation',
       subtitle: 'Patient-centric joint assessment and care planning',
@@ -27,7 +27,7 @@ export default function GalleryPage() {
     },
     {
       id: 2,
-      src: `${DOCTOR_IMG_BASE}WS_DB-2.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-2.JPG.webp`,
       tag: 'Surgical Theatre',
       title: 'Joint Replacement & Precision Surgery',
       subtitle: 'Advanced robotic techniques for knee and hip restoration',
@@ -37,7 +37,7 @@ export default function GalleryPage() {
     },
     {
       id: 3,
-      src: `${DOCTOR_IMG_BASE}WS_DB-3.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-3.JPG.webp`,
       tag: 'Academic Forum',
       title: 'Orthopaedic Conference Presentation',
       subtitle: 'Sharing clinical findings with national orthopaedic faculty',
@@ -47,7 +47,7 @@ export default function GalleryPage() {
     },
     {
       id: 4,
-      src: `${DOCTOR_IMG_BASE}WS_DB-4.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-4.JPG.webp`,
       tag: 'Surgical Excellence',
       title: 'Minimally Invasive Joint Procedures',
       subtitle: 'Fast-track recovery and tissue preservation',
@@ -57,7 +57,7 @@ export default function GalleryPage() {
     },
     {
       id: 5,
-      src: `${DOCTOR_IMG_BASE}WS_DB-5.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-5.JPG.webp`,
       tag: 'Professional Journey',
       title: 'Clinical Discussion & Diagnosis Review',
       subtitle: 'Evaluating imaging scans for accurate surgical planning',
@@ -67,7 +67,7 @@ export default function GalleryPage() {
     },
     {
       id: 6,
-      src: `${DOCTOR_IMG_BASE}WS_DB-7.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-7.JPG.webp`,
       tag: 'Workshops & Masterclasses',
       title: 'Hands-On Arthroplasty Workshop',
       subtitle: 'Demonstrating sub-millimeter component positioning',
@@ -77,7 +77,7 @@ export default function GalleryPage() {
     },
     {
       id: 7,
-      src: `${DOCTOR_IMG_BASE}WS_DB-8.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-8.JPG.webp`,
       tag: 'Medical Collaboration',
       title: 'Multidisciplinary Surgical Team in Action',
       subtitle: 'Collaborative care for complex joint reconstructions',
@@ -87,7 +87,7 @@ export default function GalleryPage() {
     },
     {
       id: 8,
-      src: `${DOCTOR_IMG_BASE}WS_DB-9.JPG.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WS_DB-9.JPG.webp`,
       tag: 'Patient Care',
       title: 'Post-Operative Progress Evaluation',
       subtitle: 'Guiding patients through tailored recovery milestones',
@@ -97,7 +97,7 @@ export default function GalleryPage() {
     },
     {
       id: 9,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.57 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.57 PM.webp`,
       tag: 'Events & Honors',
       title: 'Orthopaedic Association Milestone',
       subtitle: 'Recognition for contributions to joint surgery education',
@@ -107,7 +107,7 @@ export default function GalleryPage() {
     },
     {
       id: 10,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM.webp`,
       tag: 'Clinical Moments',
       title: 'Pre-Op Patient Consultation & Guidance',
       subtitle: 'Addressing queries with clarity and empathy',
@@ -117,7 +117,7 @@ export default function GalleryPage() {
     },
     {
       id: 11,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM (1).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM (1).webp`,
       tag: 'Surgical Theatre',
       title: 'High-Precision Robotic Joint Realignment',
       subtitle: 'Optimizing biomechanical balance and longevity',
@@ -127,7 +127,7 @@ export default function GalleryPage() {
     },
     {
       id: 12,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM (2).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.58 PM (2).webp`,
       tag: 'Workshops',
       title: 'Advanced Joint Cadaveric Lab Training',
       subtitle: 'Refining complex revision techniques',
@@ -137,7 +137,7 @@ export default function GalleryPage() {
     },
     {
       id: 13,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.59 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.47.59 PM.webp`,
       tag: 'Clinical Practice',
       title: 'Diagnostic Knee Assessment',
       subtitle: 'Ligament and cartilage evaluation',
@@ -147,7 +147,7 @@ export default function GalleryPage() {
     },
     {
       id: 14,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.00 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.00 PM.webp`,
       tag: 'Professional Journey',
       title: 'Scientific Paper Presentation',
       subtitle: 'Outcomes in rapid-recovery joint pathways',
@@ -157,7 +157,7 @@ export default function GalleryPage() {
     },
     {
       id: 15,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.01 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.01 PM.webp`,
       tag: 'Surgical Excellence',
       title: 'Sterile Operating Environment',
       subtitle: 'State-of-the-art laminar airflow surgical suite',
@@ -167,7 +167,7 @@ export default function GalleryPage() {
     },
     {
       id: 16,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.01 PM (1).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.01 PM (1).webp`,
       tag: 'Patient Care',
       title: 'Day-1 Mobility Restoration',
       subtitle: 'Assisting early ambulation under ERAS protocol',
@@ -177,7 +177,7 @@ export default function GalleryPage() {
     },
     {
       id: 17,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM.webp`,
       tag: 'Academic Exchange',
       title: 'International Faculty Interaction',
       subtitle: 'Exchanging clinical insights with global specialists',
@@ -187,7 +187,7 @@ export default function GalleryPage() {
     },
     {
       id: 18,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM (1).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM (1).webp`,
       tag: 'Surgical Precision',
       title: 'Shoulder Arthroscopy in Progress',
       subtitle: 'Keyhole repair of rotator cuff and labrum',
@@ -197,7 +197,7 @@ export default function GalleryPage() {
     },
     {
       id: 19,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM (2).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.02 PM (2).webp`,
       tag: 'Clinical Moments',
       title: 'Compassionate Patient Counseling',
       subtitle: 'Explaining surgical steps with 3D anatomical models',
@@ -207,7 +207,7 @@ export default function GalleryPage() {
     },
     {
       id: 20,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.03 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.03 PM.webp`,
       tag: 'Events & CME',
       title: 'Continuous Medical Education Seminar',
       subtitle: 'Educating general practitioners on joint preservation',
@@ -217,7 +217,7 @@ export default function GalleryPage() {
     },
     {
       id: 21,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.03 PM (1).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.03 PM (1).webp`,
       tag: 'Surgical Team',
       title: 'Team Briefing & Pre-Operative Check',
       subtitle: 'Ensuring utmost patient safety and surgical readiness',
@@ -227,7 +227,7 @@ export default function GalleryPage() {
     },
     {
       id: 22,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM.webp`,
       tag: 'Clinical Practice',
       title: 'Functional Joint Mobility Testing',
       subtitle: 'Assessing post-rehab range of motion',
@@ -237,7 +237,7 @@ export default function GalleryPage() {
     },
     {
       id: 23,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM (1).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM (1).webp`,
       tag: 'Fellowships',
       title: 'Specialized Arthroplasty Certification',
       subtitle: 'Dedication to advanced clinical mastery',
@@ -247,7 +247,7 @@ export default function GalleryPage() {
     },
     {
       id: 24,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM (2).jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.04 PM (2).webp`,
       tag: 'Surgical Theatre',
       title: 'Knee Preservation & Realignment',
       subtitle: 'High tibial osteotomy and cartilage restoration',
@@ -257,7 +257,7 @@ export default function GalleryPage() {
     },
     {
       id: 25,
-      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.05 PM.jpeg`,
+      src: `${DOCTOR_IMG_BASE}WhatsApp Image 2026-08-24 at 12.48.05 PM.webp`,
       tag: 'Practice Highlights',
       title: 'Dr. Harshil Shah — Dedicated Orthopaedic Care',
       subtitle: 'Committed to empowering pain-free movement across Gujarat',
@@ -302,15 +302,6 @@ export default function GalleryPage() {
         <div className="gallery-hero-bg-glow"></div>
         <div className="shell gallery-hero-grid">
           <div className="gallery-hero-content">
-            <div className="gallery-breadcrumb">
-              <Link to="/">Home</Link>
-              <span>/</span>
-              <span className="current">Gallery</span>
-            </div>
-            <div className="gallery-eyebrow">
-              <span className="eyebrow-pulse"></span>
-              INSIDE THE PRACTICE
-            </div>
             <h1 className="gallery-hero-title">
               Moments from a
               <br />
@@ -359,10 +350,10 @@ export default function GalleryPage() {
                 <span className="badge-dot"></span>
                 <span>Robotic Precision &amp; 3D Care</span>
               </div>
-              
+
               <div className="hero-3d-models-wrap">
-                <img className="hero-3d-img hero-3d-shoulder" src="/shoulder-3d.png" alt="3D Shoulder Joint" />
-                <img className="hero-3d-img hero-3d-knee" src="/knee-3d.png" alt="3D Knee Joint" />
+                <img className="hero-3d-img hero-3d-shoulder" src="/shoulder-3d.webp" alt="3D Shoulder Joint" />
+                <img className="hero-3d-img hero-3d-knee" src="/knee-3d.webp" alt="3D Knee Joint" />
               </div>
 
               <div className="hero-floating-badge badge-bottom">
@@ -396,7 +387,7 @@ export default function GalleryPage() {
                       className="gallery-card-img"
                       loading="lazy"
                     />
-                    
+
                     {/* Glassmorphic Overlay Gradient */}
                     <div className="gallery-card-gradient"></div>
 
@@ -470,21 +461,21 @@ export default function GalleryPage() {
           </div>
           <div className="education-gallery education-gallery-3d">
             <Link to="/patient-guides#eras">
-              <img src="/hip-3d.png" alt="3D hip joint visualization" />
+              <img src="/hip-3d.webp" alt="3D hip joint visualization" />
               <span>
                 <strong>Prepare before surgery</strong>
                 <i>Read guidance →</i>
               </span>
             </Link>
             <Link to="/patient-guides#quiet-knee">
-              <img src="/knee-3d.png" alt="3D knee joint visualization" />
+              <img src="/knee-3d.webp" alt="3D knee joint visualization" />
               <span>
                 <strong>Protect early recovery</strong>
                 <i>Read guidance →</i>
               </span>
             </Link>
             <Link to="/patient-guides#quiet-knee">
-              <img src="/shoulder-3d.png" alt="3D shoulder joint visualization" />
+              <img src="/shoulder-3d.webp" alt="3D shoulder joint visualization" />
               <span>
                 <strong>Progress with support</strong>
                 <i>Read guidance →</i>

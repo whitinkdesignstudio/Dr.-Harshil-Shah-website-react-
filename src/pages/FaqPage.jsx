@@ -326,9 +326,9 @@ export default function FaqPage() {
                 <div className="faq-hero-orbit faq-hero-orbit-1" />
                 <div className="faq-hero-orbit faq-hero-orbit-2" />
                 <div className="faq-hero-art-wrap">
-                  <img src="/knee-3d.png" alt="" className="faq-hero-joint faq-hero-joint-primary" />
-                  <img src="/shoulder-3d.png" alt="" className="faq-hero-joint faq-hero-joint-secondary" />
-                  <img src="/hip-3d.png" alt="" className="faq-hero-joint faq-hero-joint-tertiary" />
+                  <img src="/knee-3d.webp" alt="" className="faq-hero-joint faq-hero-joint-primary" />
+                  <img src="/shoulder-3d.webp" alt="" className="faq-hero-joint faq-hero-joint-secondary" />
+                  <img src="/hip-3d.webp" alt="" className="faq-hero-joint faq-hero-joint-tertiary" />
                 </div>
                 <div className="faq-hero-card faq-hero-card-1">
                   <span className="fhc-dot" />

@@ -252,7 +252,7 @@ export default function ContactPage() {
               {/* Joint 1: Hip */}
               <div className="contact-orbit-slot slot-hip">
                 <div className="contact-orbit-counter">
-                  <img src="/hip-3d.png" alt="3D Hip Anatomy" className="contact-3d-img" />
+                  <img src="/hip-3d.webp" alt="3D Hip Anatomy" className="contact-3d-img" />
                   <span className="contact-3d-label">Hip Preservation</span>
                 </div>
               </div>
@@ -260,7 +260,7 @@ export default function ContactPage() {
               {/* Joint 2: Knee */}
               <div className="contact-orbit-slot slot-knee">
                 <div className="contact-orbit-counter">
-                  <img src="/knee-3d.png" alt="3D Knee Anatomy" className="contact-3d-img" />
+                  <img src="/knee-3d.webp" alt="3D Knee Anatomy" className="contact-3d-img" />
                   <span className="contact-3d-label">Knee Care</span>
                 </div>
               </div>
@@ -268,7 +268,7 @@ export default function ContactPage() {
               {/* Joint 3: Shoulder */}
               <div className="contact-orbit-slot slot-shoulder">
                 <div className="contact-orbit-counter">
-                  <img src="/shoulder-3d.png" alt="3D Shoulder Anatomy" className="contact-3d-img" />
+                  <img src="/shoulder-3d.webp" alt="3D Shoulder Anatomy" className="contact-3d-img" />
                   <span className="contact-3d-label">Shoulder Mobility</span>
                 </div>
               </div>

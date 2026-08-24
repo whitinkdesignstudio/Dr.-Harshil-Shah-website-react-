@@ -57,7 +57,7 @@ export default function TreatmentsPage() {
       <section className="treatment-hero">
         <div className="treatment-hero-bg-container" aria-hidden="true">
           <img
-            src="/treatments-hero-banner.png"
+            src="/treatments-hero-banner.webp"
             alt=""
             className="treatment-hero-bg-img"
           />
@@ -156,7 +156,7 @@ export default function TreatmentsPage() {
         <section className="treatment-row" id="knee">
           <div className="shell treatment-row-grid">
             <div className="treatment-joint-visual">
-              <img src="/knee-3d.png" alt="3D Knee joint medical visualization" />
+              <img src="/knee-3d.webp" alt="3D Knee joint medical visualization" />
             </div>
             <div className="treatment-detail">
               <div className="eyebrow">
@@ -221,7 +221,7 @@ export default function TreatmentsPage() {
         <section className="treatment-row treatment-row-alt" id="hip">
           <div className="shell treatment-row-grid">
             <div className="treatment-joint-visual">
-              <img src="/hip-3d.png" alt="3D Hip joint medical visualization" />
+              <img src="/hip-3d.webp" alt="3D Hip joint medical visualization" />
             </div>
             <div className="treatment-detail">
               <div className="eyebrow">
@@ -286,7 +286,7 @@ export default function TreatmentsPage() {
         <section className="treatment-row" id="shoulder">
           <div className="shell treatment-row-grid">
             <div className="treatment-joint-visual">
-              <img src="/shoulder-3d.png" alt="3D Shoulder joint medical visualization" />
+              <img src="/shoulder-3d.webp" alt="3D Shoulder joint medical visualization" />
             </div>
             <div className="treatment-detail">
               <div className="eyebrow">
@@ -382,7 +382,7 @@ export default function TreatmentsPage() {
             <span className="treatment-recovery-ring treatment-recovery-ring-two"></span>
             <img
               className="treatment-recovery-composite"
-              src="/recovery-plan-3d.png"
+              src="/recovery-plan-3d.webp"
               alt="Comprehensive 3D Orthopedic Joint Recovery Anatomy"
             />
           </div>

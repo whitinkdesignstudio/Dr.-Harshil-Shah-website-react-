@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 
 export default function Header() {
@@ -27,11 +27,13 @@ export default function Header() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Multi-event scroll listener: Desktop fade out on scroll, Mobile stays frozen
+  // Single RAF-throttled scroll + resize listener (desktop fade / mobile frozen)
   useEffect(() => {
-    const handleScroll = () => {
-      if (typeof window !== 'undefined' && window.innerWidth > 1024) {
-        const scrollY = window.scrollY || document.documentElement.scrollTop || window.pageYOffset || 0;
+    let rafId = null;
+
+    const updateHeader = () => {
+      if (window.innerWidth > 1024) {
+        const scrollY = window.scrollY;
         if (scrollY > 30) {
           setIsHeaderHidden(true);
           setBrochureDropdownOpen(false);
@@ -40,20 +42,28 @@ export default function Header() {
           setIsHeaderHidden(false);
         }
       } else {
-        // Keep header always visible / frozen on mobile
+        // Always visible on mobile
         setIsHeaderHidden(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll, { passive: true });
-    document.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    const handleScrollOrResize = () => {
+      if (rafId) return; // already scheduled — skip
+      rafId = requestAnimationFrame(() => {
+        updateHeader();
+        rafId = null;
+      });
+    };
+
+    window.addEventListener('scroll', handleScrollOrResize, { passive: true });
+    window.addEventListener('resize', handleScrollOrResize, { passive: true });
+    // Run once on mount
+    updateHeader();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-      document.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', handleScrollOrResize);
+      window.removeEventListener('resize', handleScrollOrResize);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 

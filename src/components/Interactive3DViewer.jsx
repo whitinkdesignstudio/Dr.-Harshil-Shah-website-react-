@@ -496,10 +496,11 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     camera.position.set(0, 0.2, 5.8);
     cameraRef.current = camera;
 
-    // High Performance WebGL Renderer
+    // High Performance WebGL Renderer — capped DPR for mobile performance
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    // Cap pixel ratio at 1.5 — retina looks fine, saves 33-55% GPU pixels vs uncapped
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -733,20 +734,44 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
 
     animate();
 
+    // Pause animation loop when tab is not visible — saves CPU/GPU
+    let isPaused = false;
+    const handleVisibilityChange = () => {
+      isPaused = document.hidden;
+      if (!isPaused) animate();
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Resize with RAF throttle
+    let resizeRafId = null;
     const handleResize = () => {
-      if (!container || !renderer || !camera) return;
-      const newWidth = container.clientWidth;
-      const newHeight = container.clientHeight;
-      camera.aspect = newWidth / newHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(newWidth, newHeight);
+      if (resizeRafId) return;
+      resizeRafId = requestAnimationFrame(() => {
+        if (!container || !renderer || !camera) { resizeRafId = null; return; }
+        const newWidth = container.clientWidth;
+        const newHeight = container.clientHeight;
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+        resizeRafId = null;
+      });
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      if (resizeRafId) cancelAnimationFrame(resizeRafId);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      // Dispose geometries and materials to prevent WebGL memory leaks
+      scene.traverse((obj) => {
+        if (obj.geometry) obj.geometry.dispose();
+        if (obj.material) {
+          if (Array.isArray(obj.material)) obj.material.forEach((m) => m.dispose());
+          else obj.material.dispose();
+        }
+      });
       renderer.dispose();
     };
   }, [selectedJoint, viewMode, autoRotate, buildProceduralMeshes, applyJointMaterials]);

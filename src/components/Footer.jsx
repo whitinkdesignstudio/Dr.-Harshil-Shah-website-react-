@@ -24,7 +24,7 @@ export default function Footer() {
           <a
             href="https://share.google/MBpDzvqtecRuH4gf8"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="footer-location-badge"
             title="Open clinic location in Google Maps"
           >
@@ -40,7 +40,7 @@ export default function Footer() {
             <a
               href="https://wa.me/919316753985"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="WhatsApp"
               style={{ color: '#25d366', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(255,255,255,0.08)' }}
             >
@@ -51,7 +51,7 @@ export default function Footer() {
             <a
               href="https://www.instagram.com/drharshilshah_/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Instagram"
               style={{ color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%)' }}
             >
@@ -64,7 +64,7 @@ export default function Footer() {
             <a
               href="https://www.facebook.com/Knee.Hip.and.Shoulder.Surgeon/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               style={{ color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#1877f2' }}
             >
@@ -75,7 +75,7 @@ export default function Footer() {
             <a
               href="https://www.linkedin.com/in/harshil-shah-45b730321/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="LinkedIn"
               style={{ color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#0a66c2' }}
             >
@@ -86,7 +86,7 @@ export default function Footer() {
             <a
               href="https://www.youtube.com/@drharshilshahh"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="YouTube"
               style={{ color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '32px', height: '32px', borderRadius: '50%', background: '#ff0000' }}
             >

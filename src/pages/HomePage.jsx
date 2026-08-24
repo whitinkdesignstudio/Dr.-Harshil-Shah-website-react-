@@ -118,7 +118,7 @@ export default function HomePage() {
 
               <div className="care-knee-stage">
                 <div className="care-orbit-bg" />
-                <img src="/knee-motion-v2.png" alt="3D Knee Joint Visualization" className="care-knee-img" />
+                <img src="/knee-motion-v2.webp" alt="3D Knee Joint Visualization" className="care-knee-img" />
               </div>
 
               <div className="care-knee-bottom">
@@ -173,7 +173,7 @@ export default function HomePage() {
 
                 <div className="care-horizontal-visual">
                   <div className="care-orbit-bg" />
-                  <img src="/hip-precision-v2.png" alt="3D Hip Care Model" className="care-horizontal-img" />
+                  <img src="/hip-precision-v2.webp" alt="3D Hip Care Model" className="care-horizontal-img" />
                 </div>
               </div>
 
@@ -207,7 +207,7 @@ export default function HomePage() {
 
                 <div className="care-horizontal-visual">
                   <div className="care-orbit-bg" />
-                  <img src="/shoulder-mobility-v2.png" alt="3D Shoulder Care Model" className="care-horizontal-img" />
+                  <img src="/shoulder-mobility-v2.webp" alt="3D Shoulder Care Model" className="care-horizontal-img" />
                 </div>
               </div>
             </div>
@@ -463,28 +463,28 @@ export default function HomePage() {
         <div className="shell protocol-rail protocol-rail-text" aria-label="Quiet Knee Protocol highlights">
           <Link to="/patient-guides#quiet-knee">
             <span>01</span>
-            <img src="/knee-motion-v2.png" alt="Swelling control" />
+            <img src="/knee-motion-v2.webp" alt="Swelling control" />
             <strong>Control swelling</strong>
             <p>Use protected ice and elevation as instructed.</p>
             <i>READ GUIDANCE →</i>
           </Link>
           <Link to="/patient-guides#quiet-knee">
             <span>02</span>
-            <img src="/hip-precision-v2.png" alt="Protect extension" />
+            <img src="/hip-precision-v2.webp" alt="Protect extension" />
             <strong>Protect extension</strong>
             <p>Work on safe straightening before chasing bend.</p>
             <i>READ GUIDANCE →</i>
           </Link>
           <Link to="/patient-guides#quiet-knee">
             <span>03</span>
-            <img src="/shoulder-mobility-v2.png" alt="Walking aids" />
+            <img src="/shoulder-mobility-v2.webp" alt="Walking aids" />
             <strong>Keep walking short</strong>
             <p>Use your aid and follow your personal activity limit.</p>
             <i>READ GUIDANCE →</i>
           </Link>
           <Link to="/patient-guides#quiet-knee">
             <span>04</span>
-            <img src="/knee-3d.png" alt="Rest and pain management" />
+            <img src="/knee-3d.webp" alt="Rest and pain management" />
             <strong>Rest before pain rises</strong>
             <p>Short activity periods support a calmer early knee.</p>
             <i>READ GUIDANCE →</i>

@@ -162,7 +162,7 @@ export default function AboutPage() {
           <div className="about-hero-visual-col">
             <div className="about-portrait-card">
               <img
-                src="/profile2.jpg"
+                src="/profile2.webp"
                 alt="Dr. Harshil Shah - Orthopaedic Surgeon"
                 className="about-portrait-photo"
               />

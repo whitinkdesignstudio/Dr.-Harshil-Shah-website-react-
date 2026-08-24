@@ -16,7 +16,7 @@ export default function Recovery3DViewer() {
       <div className="recovery-showcase-model">
         <div className="knee-ambient-shadow" />
         <img
-          src="/knee-motion-v2.png"
+          src="/knee-motion-v2.webp"
           alt="3D Knee Joint Anatomy Visualization"
           className="knee-showcase-img"
         />

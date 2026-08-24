@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function WelcomeModal() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    // Show modal on first website visit
+    // Show modal on first website visit (once per session)
     const hasSeenModal = sessionStorage.getItem('hasSeenWelcomeModal');
     if (!hasSeenModal) {
       const timer = setTimeout(() => {
@@ -14,6 +15,30 @@ export default function WelcomeModal() {
       }, 800);
       return () => clearTimeout(timer);
     }
+  }, []);
+
+  // Auto-focus close button when modal opens (accessibility)
+  useEffect(() => {
+    if (isOpen && closeButtonRef.current) {
+      closeButtonRef.current.focus();
+    }
+  }, [isOpen]);
+
+  // Single keydown listener — stable, no recreation on isOpen change
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen((prev) => {
+          if (prev) {
+            sessionStorage.setItem('hasSeenWelcomeModal', 'true');
+            return false;
+          }
+          return prev;
+        });
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   const handleClose = () => {
@@ -31,28 +56,26 @@ export default function WelcomeModal() {
     navigate('/about');
   };
 
-  // Close on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        handleClose();
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
-
   if (!isOpen) return null;
 
   return (
-    <div className="welcome-modal-overlay" onClick={handleClose} role="dialog" aria-modal="true">
+    <div
+      className="welcome-modal-overlay"
+      onClick={handleClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Welcome — Dr. Harshil Shah Orthopaedic Surgeon"
+    >
       <div
         className="welcome-modal-card"
         onClick={(e) => e.stopPropagation()}
         aria-labelledby="welcome-modal-title"
+        aria-describedby="welcome-modal-desc"
+        tabIndex="-1"
       >
         {/* Close Button */}
         <button
+          ref={closeButtonRef}
           className="welcome-modal-close"
           onClick={handleClose}
           aria-label="Close welcome modal"
@@ -69,7 +92,7 @@ export default function WelcomeModal() {
           <picture>
             <source media="(max-width: 768px)" srcSet="/reponsive igm/ChatGPT Image Aug 22, 2026, 10_37_13 AM.png" />
             <img
-              src="/popup-doctor.jpg"
+              src="/popup-doctor.webp"
               alt="Dr. Harshil Shah - Orthopaedic Surgeon"
               className="welcome-modal-photo"
             />
@@ -88,7 +111,7 @@ export default function WelcomeModal() {
               Dr. Harshil Shah
             </h2>
             <div className="welcome-subtitle">ORTHOPAEDIC SURGEON</div>
-            <p className="welcome-desc">
+            <p id="welcome-modal-desc" className="welcome-desc">
               Focused orthopaedic care for knee, hip and shoulder conditions with clear guidance from diagnosis through recovery.
             </p>
           </div>

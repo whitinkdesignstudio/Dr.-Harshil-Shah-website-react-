@@ -142,7 +142,7 @@ export default function PatientGuidesPage() {
       <section className="guides-hero">
         <div className="guides-hero-bg-container" aria-hidden="true">
           <img
-            src="/guides-hero-banner.png"
+            src="/guides-hero-banner.webp"
             alt=""
             className="guides-hero-bg-img"
           />
@@ -229,7 +229,7 @@ export default function PatientGuidesPage() {
             <div className="eras-3d-stage" aria-hidden="true">
               <span></span>
               <img
-                src="/eras-journey-3d.png"
+                src="/eras-journey-3d.webp"
                 alt="Enhanced Recovery After Surgery Pathway 3D Joint Models"
                 className="eras-3d-composite"
               />
@@ -313,7 +313,7 @@ export default function PatientGuidesPage() {
           <div className="quiet-protocol-layout">
             <div className="quiet-3d-stage" aria-hidden="true">
               <span></span>
-              <img src="/knee-3d.png" alt="3D Knee joint visualization" />
+              <img src="/knee-3d.webp" alt="3D Knee joint visualization" />
             </div>
             <div className="quiet-step-grid">
               <article>

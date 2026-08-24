@@ -27,7 +27,7 @@ export default function FloatingSocialBar() {
       <a
         href="https://wa.me/919316753985"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="social-btn social-whatsapp"
         aria-label="Chat with Dr. Harshil Shah on WhatsApp"
       >
@@ -41,7 +41,7 @@ export default function FloatingSocialBar() {
       <a
         href="https://www.instagram.com/drharshilshah_/"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="social-btn social-instagram"
         aria-label="Dr. Harshil Shah on Instagram"
       >
@@ -57,7 +57,7 @@ export default function FloatingSocialBar() {
       <a
         href="https://www.facebook.com/Knee.Hip.and.Shoulder.Surgeon/"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="social-btn social-facebook"
         aria-label="Dr. Harshil Shah on Facebook"
       >
@@ -71,7 +71,7 @@ export default function FloatingSocialBar() {
       <a
         href="https://www.linkedin.com/in/harshil-shah-45b730321/"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="social-btn social-linkedin"
         aria-label="Dr. Harshil Shah on LinkedIn"
       >
@@ -85,7 +85,7 @@ export default function FloatingSocialBar() {
       <a
         href="https://www.youtube.com/@drharshilshahh"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
         className="social-btn social-youtube"
         aria-label="Dr. Harshil Shah on YouTube"
       >

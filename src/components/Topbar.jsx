@@ -27,7 +27,7 @@ export default function Topbar() {
           <a
             href="https://share.google/MBpDzvqtecRuH4gf8"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="topbar-location"
             title="View clinic on Google Maps"
           >
@@ -45,7 +45,7 @@ export default function Topbar() {
               className="topbar-social-instagram"
               href="https://www.instagram.com/drharshilshah_/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Dr Harshil Shah on Instagram"
             >
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -58,7 +58,7 @@ export default function Topbar() {
               className="topbar-social-facebook"
               href="https://www.facebook.com/Knee.Hip.and.Shoulder.Surgeon/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Dr Harshil Shah on Facebook"
             >
               <svg viewBox="0 0 24 24" width="13" height="13" fill="#ffffff">
@@ -69,7 +69,7 @@ export default function Topbar() {
               className="topbar-social-linkedin"
               href="https://www.linkedin.com/in/harshil-shah-45b730321/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Dr Harshil Shah on LinkedIn"
             >
               <svg viewBox="0 0 24 24" width="13" height="13" fill="#ffffff">
@@ -80,7 +80,7 @@ export default function Topbar() {
               className="topbar-social-youtube"
               href="https://www.youtube.com/@drharshilshahh"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               aria-label="Dr Harshil Shah on YouTube"
             >
               <svg viewBox="0 0 24 24" width="15" height="15" fill="#ffffff">

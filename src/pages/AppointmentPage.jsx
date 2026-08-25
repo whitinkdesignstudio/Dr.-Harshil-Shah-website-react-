@@ -38,6 +38,28 @@ export default function AppointmentPage() {
     'Post-Surgery Follow-up'
   ];
 
+  // 30-Minute Consultation Slots from 10:30 AM to 07:00 PM
+  const APPOINTMENT_SLOTS = [
+    { time: '10:30', label: '10:30 AM', period: 'Morning', hour: 10, minute: 30 },
+    { time: '11:00', label: '11:00 AM', period: 'Morning', hour: 11, minute: 0 },
+    { time: '11:30', label: '11:30 AM', period: 'Morning', hour: 11, minute: 30 },
+    { time: '12:00', label: '12:00 PM', period: 'Morning', hour: 12, minute: 0 },
+    { time: '12:30', label: '12:30 PM', period: 'Morning', hour: 12, minute: 30 },
+    { time: '13:00', label: '01:00 PM', period: 'Afternoon', hour: 13, minute: 0 },
+    { time: '13:30', label: '01:30 PM', period: 'Afternoon', hour: 13, minute: 30 },
+    { time: '14:00', label: '02:00 PM', period: 'Afternoon', hour: 14, minute: 0 },
+    { time: '14:30', label: '02:30 PM', period: 'Afternoon', hour: 14, minute: 30 },
+    { time: '15:00', label: '03:00 PM', period: 'Afternoon', hour: 15, minute: 0 },
+    { time: '15:30', label: '03:30 PM', period: 'Afternoon', hour: 15, minute: 30 },
+    { time: '16:00', label: '04:00 PM', period: 'Afternoon', hour: 16, minute: 0 },
+    { time: '16:30', label: '04:30 PM', period: 'Afternoon', hour: 16, minute: 30 },
+    { time: '17:00', label: '05:00 PM', period: 'Evening', hour: 17, minute: 0 },
+    { time: '17:30', label: '05:30 PM', period: 'Evening', hour: 17, minute: 30 },
+    { time: '18:00', label: '06:00 PM', period: 'Evening', hour: 18, minute: 0 },
+    { time: '18:30', label: '06:30 PM', period: 'Evening', hour: 18, minute: 30 },
+    { time: '19:00', label: '07:00 PM', period: 'Evening', hour: 19, minute: 0 }
+  ];
+
   // Timezone-safe local date for min date attribute
   const getTodayLocal = () => {
     const now = new Date();
@@ -45,6 +67,24 @@ export default function AppointmentPage() {
     const month = String(now.getMonth() + 1).padStart(2, '0');
     const day = String(now.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
+  };
+
+  // Check if a time slot has already passed for the given date
+  const isSlotDisabled = (slot, dateValue) => {
+    if (!dateValue) return false;
+    const today = getTodayLocal();
+    if (dateValue < today) return true;
+    if (dateValue > today) return false;
+
+    // Date is today: check if time has already finished/passed
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMin = now.getMinutes();
+
+    if (slot.hour < currentHour || (slot.hour === currentHour && slot.minute <= currentMin)) {
+      return true;
+    }
+    return false;
   };
 
   // Format date to readable string (e.g. 28 August 2026) for EmailJS
@@ -63,9 +103,11 @@ export default function AppointmentPage() {
     }
   };
 
-  // Format 24h time input (e.g. 11:30) to user-friendly 12h format (e.g. 11:30 AM)
+  // Format time value to user-friendly 12h format (e.g. 10:30 AM)
   const formatAppointmentTime = (timeValue) => {
     if (!timeValue) return 'Time to be coordinated';
+    const matchedSlot = APPOINTMENT_SLOTS.find((s) => s.time === timeValue || s.label === timeValue);
+    if (matchedSlot) return matchedSlot.label;
     if (timeValue.includes('AM') || timeValue.includes('PM')) return timeValue;
     try {
       const [hourStr, minuteStr] = timeValue.split(':');
@@ -108,7 +150,14 @@ export default function AppointmentPage() {
     }
 
     if (!formData.time) {
-      errors.time = 'Please select or enter your preferred time.';
+      errors.time = 'Please select a preferred consultation slot.';
+    } else {
+      const chosenSlot = APPOINTMENT_SLOTS.find(
+        (s) => s.time === formData.time || s.label === formData.time
+      );
+      if (chosenSlot && isSlotDisabled(chosenSlot, formData.date)) {
+        errors.time = 'The selected slot time has already passed for today. Please choose an upcoming slot.';
+      }
     }
 
     if (!formData.service) {
@@ -120,6 +169,51 @@ export default function AppointmentPage() {
     }
 
     return errors;
+  };
+
+  const handleDateChange = (e) => {
+    const newDate = e.target.value;
+    setFormData((prev) => {
+      let updatedTime = prev.time;
+      if (prev.time) {
+        const matchedSlot = APPOINTMENT_SLOTS.find(
+          (s) => s.time === prev.time || s.label === prev.time
+        );
+        if (matchedSlot && isSlotDisabled(matchedSlot, newDate)) {
+          updatedTime = '';
+        }
+      }
+      return {
+        ...prev,
+        date: newDate,
+        time: updatedTime
+      };
+    });
+
+    if (fieldErrors.date || fieldErrors.time) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next.date;
+        delete next.time;
+        return next;
+      });
+    }
+  };
+
+  const handleSlotSelect = (slot) => {
+    if (isSlotDisabled(slot, formData.date || getTodayLocal())) return;
+    setFormData((prev) => ({
+      ...prev,
+      time: slot.time
+    }));
+
+    if (fieldErrors.time) {
+      setFieldErrors((prev) => {
+        const next = { ...prev };
+        delete next.time;
+        return next;
+      });
+    }
   };
 
   const handleChange = (e) => {
@@ -553,55 +647,115 @@ export default function AppointmentPage() {
                     </div>
                   </div>
 
-                  {/* Row 3: Date & Time as Direct Clean Input Fields */}
-                  <div className="appt-grid-row">
-                    <div className="appt-form-field">
-                      <label htmlFor="patient_date" className="appt-field-label">
-                        Preferred Date <span className="appt-req-star">*</span>
+                  {/* Row 3: Date & 30-min Consultation Time Slots */}
+                  <div className="appt-form-field">
+                    <label htmlFor="patient_date" className="appt-field-label">
+                      Preferred Date <span className="appt-req-star">*</span>
+                    </label>
+                    <div className={`appt-input-container ${fieldErrors.date ? 'is-invalid' : ''}`}>
+                      <svg className="appt-field-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                      </svg>
+                      <input
+                        id="patient_date"
+                        type="date"
+                        name="date"
+                        min={getTodayLocal()}
+                        value={formData.date}
+                        onChange={handleDateChange}
+                        className="appt-text-input"
+                        aria-invalid={Boolean(fieldErrors.date)}
+                      />
+                    </div>
+                    {fieldErrors.date && <span className="appt-error-hint">{fieldErrors.date}</span>}
+                  </div>
+
+                  {/* Slot Selection Grid (10:30 AM to 7:00 PM · 30 min intervals) */}
+                  <div className="appt-form-field appt-slots-section-wrap">
+                    <div className="appt-slot-header-row">
+                      <label className="appt-field-label">
+                        Preferred Time Slot (30 Min) <span className="appt-req-star">*</span>
                       </label>
-                      <div className={`appt-input-container ${fieldErrors.date ? 'is-invalid' : ''}`}>
-                        <svg className="appt-field-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                          <line x1="16" y1="2" x2="16" y2="6" />
-                          <line x1="8" y1="2" x2="8" y2="6" />
-                          <line x1="3" y1="10" x2="21" y2="10" />
-                        </svg>
-                        <input
-                          id="patient_date"
-                          type="date"
-                          name="date"
-                          min={getTodayLocal()}
-                          value={formData.date}
-                          onChange={handleChange}
-                          className="appt-text-input"
-                          aria-invalid={Boolean(fieldErrors.date)}
-                        />
-                      </div>
-                      {fieldErrors.date && <span className="appt-error-hint">{fieldErrors.date}</span>}
                     </div>
 
-                    <div className="appt-form-field">
-                      <label htmlFor="patient_time" className="appt-field-label">
-                        Preferred Time <span className="appt-req-star">*</span>
-                      </label>
-                      <div className={`appt-input-container ${fieldErrors.time ? 'is-invalid' : ''}`}>
-                        <svg className="appt-field-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                          <circle cx="12" cy="12" r="10" />
-                          <polyline points="12 6 12 12 16 14" />
-                        </svg>
-                        <input
-                          id="patient_time"
-                          type="time"
-                          name="time"
-                          required
-                          value={formData.time}
-                          onChange={handleChange}
-                          className="appt-text-input"
-                          aria-invalid={Boolean(fieldErrors.time)}
-                        />
+                    {formData.date &&
+                      formData.date === getTodayLocal() &&
+                      APPOINTMENT_SLOTS.every((s) => isSlotDisabled(s, formData.date)) && (
+                        <div className="appt-slot-all-passed-alert" role="alert">
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="12" y1="8" x2="12" y2="12" />
+                            <line x1="12" y1="16" x2="12.01" y2="16" />
+                          </svg>
+                          <span>All consultation slots for today are finished. Please select tomorrow or a later date.</span>
+                        </div>
+                      )}
+
+                    {/* Ultra Pro Max Active Selection Preview Ribbon */}
+                    {formData.time && (
+                      <div className="appt-selected-slot-banner" role="status" aria-live="polite">
+                        <div className="appt-selected-slot-pulse-icon">
+                          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <polyline points="12 6 12 12 16 14" />
+                          </svg>
+                        </div>
+                        <div className="appt-selected-slot-info">
+                          <span className="appt-selected-slot-sub">Selected Slot</span>
+                          <strong className="appt-selected-slot-main">
+                            {formatAppointmentDate(formData.date || getTodayLocal())} · {formatAppointmentTime(formData.time)}
+                          </strong>
+                        </div>
+                        <div className="appt-selected-slot-badge">
+                          <span>RESERVED</span>
+                        </div>
                       </div>
-                      {fieldErrors.time && <span className="appt-error-hint">{fieldErrors.time}</span>}
+                    )}
+
+                    <div className={`appt-slots-container ${fieldErrors.time ? 'is-invalid' : ''}`}>
+                      {['Morning', 'Afternoon', 'Evening'].map((period) => {
+                        const periodSlots = APPOINTMENT_SLOTS.filter((s) => s.period === period);
+                        return (
+                          <div key={period} className="appt-slots-group">
+                            <div className="appt-slots-group-label">
+                              {period === 'Morning' && '🌅 Morning (10:30 AM – 12:30 PM)'}
+                              {period === 'Afternoon' && '☀️ Afternoon (01:00 PM – 04:30 PM)'}
+                              {period === 'Evening' && '🌙 Evening (05:00 PM – 07:00 PM)'}
+                            </div>
+                            <div className="appt-slots-grid">
+                              {periodSlots.map((slot, index) => {
+                                const disabled = isSlotDisabled(slot, formData.date || getTodayLocal());
+                                const isSelected = formData.time === slot.time;
+                                return (
+                                  <button
+                                    key={slot.time}
+                                    type="button"
+                                    disabled={disabled}
+                                    style={{ '--slot-delay': `${index * 0.03}s` }}
+                                    className={`appt-slot-btn ${isSelected ? 'is-selected' : ''} ${disabled ? 'is-disabled' : ''}`}
+                                    onClick={() => handleSlotSelect(slot)}
+                                    title={disabled ? 'This slot time has already passed for today' : `Select ${slot.label}`}
+                                    aria-pressed={isSelected}
+                                  >
+                                    <span className="appt-slot-btn-text">{slot.label}</span>
+                                    {isSelected && (
+                                      <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="appt-slot-check-icon">
+                                        <polyline points="20 6 9 17 4 12" />
+                                      </svg>
+                                    )}
+                                    {isSelected && <span className="appt-slot-shimmer-glow" aria-hidden="true" />}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
+                    {fieldErrors.time && <span className="appt-error-hint">{fieldErrors.time}</span>}
                   </div>
 
                   {/* Row 4: Medical Symptoms & Notes */}

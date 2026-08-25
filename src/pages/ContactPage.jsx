@@ -22,7 +22,6 @@ export default function ContactPage() {
               <span>/</span> Contact
             </div>
             <h1 className="contact-photo-hero-title">Get in Touch</h1>
-            <div className="contact-photo-hero-bar" />
             <p className="contact-photo-hero-desc">
               Have questions about treatment, surgery, or recovery?
               <br />

@@ -272,7 +272,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
   const isDraggingRef = useRef(false);
   const previousMousePositionRef = useRef({ x: 0, y: 0 });
   const rotationVelocityRef = useRef({ x: 0, y: 0.003 });
-  const targetRotationRef = useRef({ x: null, y: null, animating: false });
+  const targetRotationRef = useRef({ x: 0, y: 0, targetCamY: 0.2, targetCamZ: 5.8, animating: false });
 
   useEffect(() => {
     if (initialJoint && initialJoint !== selectedJoint) {
@@ -691,19 +691,32 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
       animationFrameId = requestAnimationFrame(animate);
 
       if (jointGroupRef.current && cameraRef.current) {
-        // Smooth camera focusing rotation animation when hotspot clicked
+        // Smooth camera focusing & zoom animation when hotspot clicked
         if (targetRotationRef.current.animating) {
-          const { x: tx, y: ty } = targetRotationRef.current;
-          jointGroupRef.current.rotation.y += (ty - jointGroupRef.current.rotation.y) * 0.08;
-          jointGroupRef.current.rotation.x += (tx - jointGroupRef.current.rotation.x) * 0.08;
+          const { x: tx, y: ty, targetCamY = 0.2, targetCamZ = 5.8 } = targetRotationRef.current;
+          if (ty !== null && ty !== undefined) {
+            jointGroupRef.current.rotation.y += (ty - jointGroupRef.current.rotation.y) * 0.08;
+          } else if (autoRotate && !isDraggingRef.current) {
+            jointGroupRef.current.rotation.y += 0.006;
+          }
 
-          if (
-            Math.abs(ty - jointGroupRef.current.rotation.y) < 0.005 &&
-            Math.abs(tx - jointGroupRef.current.rotation.x) < 0.005
-          ) {
+          if (tx !== null && tx !== undefined) {
+            jointGroupRef.current.rotation.x += (tx - jointGroupRef.current.rotation.x) * 0.08;
+          }
+          if (cameraRef.current) {
+            cameraRef.current.position.z += (targetCamZ - cameraRef.current.position.z) * 0.08;
+            cameraRef.current.position.y += (targetCamY - cameraRef.current.position.y) * 0.08;
+          }
+
+          const rotYDone = ty === null || ty === undefined || Math.abs(ty - jointGroupRef.current.rotation.y) < 0.005;
+          const rotXDone = tx === null || tx === undefined || Math.abs(tx - jointGroupRef.current.rotation.x) < 0.005;
+          const camZDone = cameraRef.current ? Math.abs(targetCamZ - cameraRef.current.position.z) < 0.01 : true;
+          const camYDone = cameraRef.current ? Math.abs(targetCamY - cameraRef.current.position.y) < 0.01 : true;
+
+          if (rotYDone && rotXDone && camZDone && camYDone) {
             targetRotationRef.current.animating = false;
           }
-        } else if (autoRotate && !isDraggingRef.current) {
+        } else if (autoRotate && !isDraggingRef.current && !activeHotspot) {
           jointGroupRef.current.rotation.y += 0.006;
         }
 
@@ -860,32 +873,54 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
 
   const handleZoom = (delta) => {
     if (!cameraRef.current) return;
-    cameraRef.current.position.z = Math.max(3.6, Math.min(8.5, cameraRef.current.position.z + delta));
+    cameraRef.current.position.z = Math.max(3.0, Math.min(8.5, cameraRef.current.position.z + delta));
+  };
+
+  const handleDeselectHotspot = () => {
+    setActiveHotspot(null);
+    setAutoRotate(true); // START 3D model movement on close
+    targetRotationRef.current = {
+      x: 0,
+      y: null, // Let 360 auto-movement continue immediately
+      targetCamY: 0.2,
+      targetCamZ: 5.8, // Zoom back out to full view
+      animating: true
+    };
   };
 
   const handleResetView = () => {
-    if (!jointGroupRef.current || !cameraRef.current) return;
-    targetRotationRef.current.animating = false;
-    jointGroupRef.current.rotation.set(0, 0, 0);
-    cameraRef.current.position.set(0, 0.2, 5.8);
     setActiveHotspot(null);
+    setAutoRotate(true); // START 3D model movement on reset
+    targetRotationRef.current = {
+      x: 0,
+      y: 0,
+      targetCamY: 0.2,
+      targetCamZ: 5.8,
+      animating: true
+    };
   };
 
-  // Smooth focus on hotspot
+  // Smooth focus & close-up zoom on selected anatomical hotspot
   const handleSelectHotspot = (spot) => {
     if (activeHotspot?.id === spot.id) {
-      setActiveHotspot(null);
+      handleDeselectHotspot();
       return;
     }
 
+    // STOP 3D model movement when number is clicked
+    setAutoRotate(false);
     setActiveHotspot(spot);
 
-    // Calculate angle to rotate landmark toward front
-    const [x, , z] = spot.pos;
+    // Calculate angle to rotate landmark directly toward front and zoom in close
+    const [x, y, z] = spot.pos;
     const targetY = -Math.atan2(x, z || 0.1);
+    const targetX = Math.max(-0.25, Math.min(0.25, -y * 0.12));
+
     targetRotationRef.current = {
-      x: 0.05,
+      x: targetX,
       y: targetY,
+      targetCamY: y * 0.45 + 0.1, // Center vertically on this part
+      targetCamZ: 3.65, // Close-up zoom on this part
       animating: true
     };
   };
@@ -901,21 +936,21 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
           <button
             type="button"
             className={`viewer-joint-pill ${selectedJoint === 'knee' ? 'active' : ''}`}
-            onClick={() => { setSelectedJoint('knee'); setActiveHotspot(null); }}
+            onClick={() => { setSelectedJoint('knee'); handleDeselectHotspot(); }}
           >
             🦿 Knee Anatomy (3D Model)
           </button>
           <button
             type="button"
             className={`viewer-joint-pill ${selectedJoint === 'shoulder' ? 'active' : ''}`}
-            onClick={() => { setSelectedJoint('shoulder'); setActiveHotspot(null); }}
+            onClick={() => { setSelectedJoint('shoulder'); handleDeselectHotspot(); }}
           >
             🦾 Shoulder Joint (3D Model)
           </button>
           <button
             type="button"
             className={`viewer-joint-pill ${selectedJoint === 'hip' ? 'active' : ''}`}
-            onClick={() => { setSelectedJoint('hip'); setActiveHotspot(null); }}
+            onClick={() => { setSelectedJoint('hip'); handleDeselectHotspot(); }}
           >
             🦴 Hip Joint (3D Model)
           </button>
@@ -1014,7 +1049,13 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
         {/* ───────────────────────────────────────────────────────────── */}
         {screenHotspots.map((spot) => {
           const isSelected = activeHotspot?.id === spot.id;
-          if (!spot.visible && !isSelected) return null;
+
+          // When a number pin is clicked, ONLY show this active pin and HIDE all other numbers
+          if (activeHotspot) {
+            if (!isSelected) return null;
+          } else {
+            if (!spot.visible) return null;
+          }
 
           return (
             <button
@@ -1024,7 +1065,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
               style={{
                 left: `${spot.screenX}px`,
                 top: `${spot.screenY}px`,
-                opacity: spot.visible ? 1 : 0.4
+                opacity: 1
               }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -1096,8 +1137,8 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
             <button
               type="button"
               className="popover-close-btn"
-              onClick={() => setActiveHotspot(null)}
-              aria-label="Close hotspot info"
+              onClick={handleDeselectHotspot}
+              aria-label="Close hotspot info and zoom out"
             >
               ✕
             </button>

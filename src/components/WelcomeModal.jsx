@@ -87,16 +87,14 @@ export default function WelcomeModal() {
           </svg>
         </button>
 
-        {/* Left Side: Doctor Photo (Exact Uploaded Graphic) */}
+        {/* Doctor Photo */}
         <div className="welcome-modal-visual">
-          <picture>
-            <source media="(max-width: 768px)" srcSet="/reponsive igm/ChatGPT Image Aug 22, 2026, 10_37_13 AM.png" />
-            <img
-              src="/popup-doctor.webp"
-              alt="Dr. Harshil Shah - Orthopaedic Surgeon"
-              className="welcome-modal-photo"
-            />
-          </picture>
+          <img
+            src="/popup-doctor.webp"
+            alt="Dr. Harshil Shah - Orthopaedic Surgeon"
+            className="welcome-modal-photo"
+            loading="eager"
+          />
         </div>
 
         {/* Right Side: Content & Action */}

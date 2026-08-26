@@ -24992,11 +24992,68 @@ button {
   z-index: 1;
 }
 
-.surgical-card-video {
+.stage-poster-img {
   width: 100%;
   height: 100%;
-  object-fit: contain !important;
+  object-fit: cover !important;
   display: block;
+}
+
+.surgical-card-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  display: block;
+  transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.surgical-grid-card:hover .surgical-card-poster {
+  transform: scale(1.04);
+}
+
+.surgical-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover !important;
+  display: block;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.surgical-card-video.is-playing {
+  opacity: 1;
+}
+
+.surgical-card-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(2, 132, 199, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.surgical-card-play-btn svg {
+  margin-left: 2px;
+}
+
+.surgical-grid-card:hover .surgical-card-play-btn {
+  transform: translate(-50%, -50%) scale(1.15);
+  background: #0284c7;
+  box-shadow: 0 6px 25px rgba(2, 132, 199, 0.6);
 }
 
 .surgical-card-overlay-badge {
@@ -25115,53 +25172,56 @@ button {
 .surgical-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(11, 47, 68, 0.82);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  z-index: 9999;
+  background: rgba(7, 24, 38, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100000;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
   animation: fadeInModal 0.2s ease;
+  overflow-y: auto;
 }
 
 .surgical-modal-content {
   background: #ffffff;
   border: 1px solid #cbd5e1;
   border-radius: 20px;
-  max-width: 900px;
+  max-width: 860px;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
   position: relative;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
+  margin: auto;
 }
 
 .surgical-modal-close-btn {
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
   color: #ffffff;
-  font-size: 15px;
+  font-size: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 10;
+  z-index: 30;
   transition: all 0.2s ease;
 }
 
 .surgical-modal-close-btn:hover {
   background: #ef4444;
   border-color: #ef4444;
+  transform: scale(1.08);
 }
 
 .surgical-modal-player-wrap {
@@ -25172,16 +25232,19 @@ button {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
+  border-radius: 19px 19px 0 0;
 }
 
 .surgical-modal-video {
   width: 100%;
   max-height: 480px;
   object-fit: contain;
+  display: block;
 }
 
 .surgical-modal-info {
-  padding: 26px 30px;
+  padding: 24px 28px;
 }
 
 .modal-header-line {
@@ -25232,7 +25295,6 @@ button {
 }
 
 @media (max-width: 1024px) {
-
   .stage-card-left,
   .stage-card-right {
     display: none;
@@ -25244,23 +25306,23 @@ button {
   }
 
   .surgical-video-bento-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .surgical-hero-section {
-    padding: 24px 0 50px;
+    padding: 20px 0 40px;
   }
 
   .center-video-container {
-    height: 260px;
+    height: 220px;
   }
 
   .center-info-panel {
     flex-direction: column;
     align-items: flex-start;
-    padding: 18px;
+    padding: 16px;
   }
 
   .center-action-row {
@@ -25275,9 +25337,66 @@ button {
 
   .surgical-video-bento-grid {
     grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* Responsive Modal on Mobile */
+  .surgical-modal-backdrop {
+    padding: 14px 10px;
+    align-items: center;
+  }
+
+  .surgical-modal-content {
+    border-radius: 16px;
+    max-height: 88vh;
+    width: 100%;
+  }
+
+  .surgical-modal-close-btn {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    background: rgba(15, 23, 42, 0.9);
+  }
+
+  .surgical-modal-player-wrap {
+    max-height: 230px;
+    border-radius: 15px 15px 0 0;
+  }
+
+  .surgical-modal-video {
+    max-height: 230px;
   }
 
   .surgical-modal-info {
-    padding: 18px;
+    padding: 16px 14px 18px;
+  }
+
+  .modal-title {
+    font-size: 17px !important;
+    line-height: 1.35;
+    margin-bottom: 6px;
+  }
+
+  .modal-desc {
+    font-size: 13px !important;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+
+  .modal-action-bar {
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .modal-action-bar .button {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 11px 14px;
+    font-size: 13px;
   }
 }

@@ -143,7 +143,12 @@ export default function Header() {
                   <span>Explore Gallery</span>
                 </div>
                 <Link to="/operation-theatre" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
-                  <div className="dropdown-link-icon">🎬</div>
+                  <div className="dropdown-link-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="4" width="20" height="16" rx="3" />
+                      <polygon points="10 8 16 12 10 16 10 8" fill="#0284c7" />
+                    </svg>
+                  </div>
                   <div>
                     <strong>Surgical &amp; OT Videos</strong>
                     <small>Live surgery recordings &amp; robotic procedures</small>
@@ -151,28 +156,48 @@ export default function Header() {
                   <span className="dropdown-dl-tag" style={{ background: '#0284c7', color: '#ffffff', fontWeight: 800 }}>VIDEOS</span>
                 </Link>
                 <Link to="/gallery" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
-                  <div className="dropdown-link-icon">📸</div>
+                  <div className="dropdown-link-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                      <circle cx="12" cy="13" r="4" />
+                    </svg>
+                  </div>
                   <div>
                     <strong>All Moments</strong>
                     <small>Moments from practice &amp; patient care</small>
                   </div>
                 </Link>
                 <Link to="/gallery" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
-                  <div className="dropdown-link-icon">🏥</div>
+                  <div className="dropdown-link-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                      <path d="M9 9h6M12 6v6" />
+                      <path d="M10 16h4" />
+                    </svg>
+                  </div>
                   <div>
                     <strong>Clinical Practice</strong>
                     <small>Surgical theatre &amp; consultations</small>
                   </div>
                 </Link>
                 <Link to="/treatments" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
-                  <div className="dropdown-link-icon">🦴</div>
+                  <div className="dropdown-link-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M18 4a2 2 0 0 0-2.8 0l-1.4 1.4-7-7a2 2 0 1 0-2.8 2.8l7 7-1.4 1.4a2 2 0 1 0 2.8 2.8l1.4-1.4 7 7a2 2 0 1 0 2.8-2.8l-7-7 1.4-1.4A2 2 0 0 0 18 4z" />
+                    </svg>
+                  </div>
                   <div>
                     <strong>3D Joint Models</strong>
                     <small>Interactive anatomical visualizations</small>
                   </div>
                 </Link>
                 <Link to="/about" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
-                  <div className="dropdown-link-icon">🎓</div>
+                  <div className="dropdown-link-icon">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                      <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                    </svg>
+                  </div>
                   <div>
                     <strong>Professional Journey</strong>
                     <small>Workshops, research &amp; achievements</small>
@@ -226,7 +251,15 @@ export default function Header() {
                     }}
                     className="nav-dropdown-link"
                   >
-                    <div className="dropdown-link-icon">📄</div>
+                    <div className="dropdown-link-icon">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </div>
                     <div>
                       <strong>Knee Care &amp; Robotic Surgery</strong>
                       <small>Comprehensive Patient Guide</small>
@@ -242,7 +275,12 @@ export default function Header() {
                     }}
                     className="nav-dropdown-link"
                   >
-                    <div className="dropdown-link-icon">📘</div>
+                    <div className="dropdown-link-icon">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                      </svg>
+                    </div>
                     <div>
                       <strong>Hip &amp; Shoulder Specialist Care</strong>
                       <small>Surgical &amp; Non-Surgical Booklet</small>
@@ -258,7 +296,11 @@ export default function Header() {
                     }}
                     className="nav-dropdown-link"
                   >
-                    <div className="dropdown-link-icon">🏃</div>
+                    <div className="dropdown-link-icon">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                      </svg>
+                    </div>
                     <div>
                       <strong>ERAS Recovery Pathway Protocol</strong>
                       <small>Milestone Checklist &amp; Prehab</small>
@@ -274,7 +316,13 @@ export default function Header() {
                     }}
                     className="nav-dropdown-link"
                   >
-                    <div className="dropdown-link-icon">🏥</div>
+                    <div className="dropdown-link-icon">
+                      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                        <path d="M9 9h6M12 6v6" />
+                        <path d="M10 16h4" />
+                      </svg>
+                    </div>
                     <div>
                       <strong>Clinic Profile &amp; Doctor Overview</strong>
                       <small>Credentials &amp; Consultation Info</small>
@@ -397,19 +445,38 @@ export default function Header() {
             {mobileGalleryOpen && (
               <div className="mobile-nav-sublinks">
                 <Link to="/operation-theatre" onClick={() => setMobileMenuOpen(false)}>
-                  🎬 Surgical &amp; OT Videos <span className="mobile-pdf-pill" style={{ background: '#0284c7', color: '#fff' }}>VIDEOS</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <rect x="2" y="4" width="20" height="16" rx="3" />
+                    <polygon points="10 8 16 12 10 16 10 8" fill="#0284c7" />
+                  </svg>
+                  Surgical &amp; OT Videos <span className="mobile-pdf-pill" style={{ background: '#0284c7', color: '#fff' }}>VIDEOS</span>
                 </Link>
                 <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>
-                  📸 All Moments
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
+                    <circle cx="12" cy="13" r="4" />
+                  </svg>
+                  All Moments
                 </Link>
                 <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>
-                  🏥 Clinical Practice
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                    <path d="M9 9h6M12 6v6" />
+                  </svg>
+                  Clinical Practice
                 </Link>
                 <Link to="/treatments" onClick={() => setMobileMenuOpen(false)}>
-                  🦴 3D Joint Models
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M18 4a2 2 0 0 0-2.8 0l-1.4 1.4-7-7a2 2 0 1 0-2.8 2.8l7 7-1.4 1.4a2 2 0 1 0 2.8 2.8l1.4-1.4 7 7a2 2 0 1 0 2.8-2.8l-7-7 1.4-1.4A2 2 0 0 0 18 4z" />
+                  </svg>
+                  3D Joint Models
                 </Link>
                 <Link to="/about" onClick={() => setMobileMenuOpen(false)}>
-                  🎓 Professional Journey
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                    <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                  </svg>
+                  Professional Journey
                 </Link>
               </div>
             )}
@@ -437,7 +504,11 @@ export default function Header() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  📄 Knee Care &amp; Robotics <span className="mobile-pdf-pill">PDF</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                  Knee Care &amp; Robotics <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
                   href="#download-hip"
@@ -447,7 +518,11 @@ export default function Header() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  📘 Hip &amp; Shoulder Care <span className="mobile-pdf-pill">PDF</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
+                  Hip &amp; Shoulder Care <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
                   href="#download-eras"
@@ -457,7 +532,10 @@ export default function Header() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  🏃 ERAS Recovery Protocol <span className="mobile-pdf-pill">PDF</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                  ERAS Recovery Protocol <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
                   href="#download-clinic"
@@ -467,7 +545,11 @@ export default function Header() {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  🏥 Clinic Profile &amp; Info <span className="mobile-pdf-pill">PDF</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
+                    <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
+                    <path d="M9 9h6M12 6v6" />
+                  </svg>
+                  Clinic Profile &amp; Info <span className="mobile-pdf-pill">PDF</span>
                 </a>
               </div>
             )}

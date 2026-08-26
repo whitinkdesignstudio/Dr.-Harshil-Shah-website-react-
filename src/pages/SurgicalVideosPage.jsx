@@ -6,8 +6,9 @@ const VIDEO_BASE = '/galleri/opreation/';
 export const surgicalVideos = [
   {
     id: 1,
-    file: 'IMG_3715.MOV',
-    src: `${VIDEO_BASE}IMG_3715.MOV`,
+    file: 'IMG_3715.MP4',
+    src: `${VIDEO_BASE}IMG_3715.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_3715.webp`,
     title: 'Knee Arthroplasty & Precision Alignment',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -19,6 +20,7 @@ export const surgicalVideos = [
     id: 2,
     file: 'IMG_3727.MP4',
     src: `${VIDEO_BASE}IMG_3727.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_3727.webp`,
     title: 'Ligament Reconstruction & Arthroscopic Inspection',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -28,8 +30,9 @@ export const surgicalVideos = [
   },
   {
     id: 3,
-    file: 'IMG_3815.MOV',
-    src: `${VIDEO_BASE}IMG_3815.MOV`,
+    file: 'IMG_3815.MP4',
+    src: `${VIDEO_BASE}IMG_3815.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_3815.webp`,
     title: 'Minimally Invasive Joint Preservation',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -39,8 +42,9 @@ export const surgicalVideos = [
   },
   {
     id: 4,
-    file: 'IMG_4033.MOV',
-    src: `${VIDEO_BASE}IMG_4033.MOV`,
+    file: 'IMG_4033.MP4',
+    src: `${VIDEO_BASE}IMG_4033.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4033.webp`,
     title: 'Hip Reconstruction & Acetabular Preparation',
     category: 'hip',
     categoryName: 'Hip & Reconstruction',
@@ -50,8 +54,9 @@ export const surgicalVideos = [
   },
   {
     id: 5,
-    file: 'IMG_4034.MOV',
-    src: `${VIDEO_BASE}IMG_4034.MOV`,
+    file: 'IMG_4034.MP4',
+    src: `${VIDEO_BASE}IMG_4034.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4034.webp`,
     title: 'Direct Anterior Muscle-Sparing Hip Approach',
     category: 'hip',
     categoryName: 'Hip & Reconstruction',
@@ -61,8 +66,9 @@ export const surgicalVideos = [
   },
   {
     id: 6,
-    file: 'IMG_4055.MOV',
-    src: `${VIDEO_BASE}IMG_4055.MOV`,
+    file: 'IMG_4055.MP4',
+    src: `${VIDEO_BASE}IMG_4055.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4055.webp`,
     title: 'Shoulder Arthroscopy & Rotator Cuff Repair',
     category: 'shoulder',
     categoryName: 'Shoulder & Sports Medicine',
@@ -72,8 +78,9 @@ export const surgicalVideos = [
   },
   {
     id: 7,
-    file: 'IMG_4455.MOV',
-    src: `${VIDEO_BASE}IMG_4455.MOV`,
+    file: 'IMG_4455.MP4',
+    src: `${VIDEO_BASE}IMG_4455.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4455.webp`,
     title: 'Glenohumeral Joint Stabilization',
     category: 'shoulder',
     categoryName: 'Shoulder & Sports Medicine',
@@ -83,8 +90,9 @@ export const surgicalVideos = [
   },
   {
     id: 8,
-    file: 'IMG_4459.MOV',
-    src: `${VIDEO_BASE}IMG_4459.MOV`,
+    file: 'IMG_4459.MP4',
+    src: `${VIDEO_BASE}IMG_4459.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4459.webp`,
     title: 'Robotic Arm Surgical Resurfacing',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -94,8 +102,9 @@ export const surgicalVideos = [
   },
   {
     id: 9,
-    file: 'IMG_4841.MOV',
-    src: `${VIDEO_BASE}IMG_4841.MOV`,
+    file: 'IMG_4841.MP4',
+    src: `${VIDEO_BASE}IMG_4841.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4841.webp`,
     title: 'Complex Revision Arthroplasty Procedure',
     category: 'hip',
     categoryName: 'Hip & Reconstruction',
@@ -105,8 +114,9 @@ export const surgicalVideos = [
   },
   {
     id: 10,
-    file: 'IMG_4846.MOV',
-    src: `${VIDEO_BASE}IMG_4846.MOV`,
+    file: 'IMG_4846.MP4',
+    src: `${VIDEO_BASE}IMG_4846.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4846.webp`,
     title: 'Surgical Theatre Workflow & Team Coordination',
     category: 'theatre',
     categoryName: 'Surgical Theatre & Techniques',
@@ -116,8 +126,9 @@ export const surgicalVideos = [
   },
   {
     id: 11,
-    file: 'IMG_4875.MOV',
-    src: `${VIDEO_BASE}IMG_4875.MOV`,
+    file: 'IMG_4875.MP4',
+    src: `${VIDEO_BASE}IMG_4875.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4875.webp`,
     title: 'Meniscal Repair & Biological Augmentation',
     category: 'shoulder',
     categoryName: 'Shoulder & Sports Medicine',
@@ -127,8 +138,9 @@ export const surgicalVideos = [
   },
   {
     id: 12,
-    file: 'IMG_4891.MOV',
-    src: `${VIDEO_BASE}IMG_4891.MOV`,
+    file: 'IMG_4891.MP4',
+    src: `${VIDEO_BASE}IMG_4891.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_4891.webp`,
     title: 'Subacromial Decompression & Bursectomy',
     category: 'shoulder',
     categoryName: 'Shoulder & Sports Medicine',
@@ -138,8 +150,9 @@ export const surgicalVideos = [
   },
   {
     id: 13,
-    file: 'IMG_5140.MOV',
-    src: `${VIDEO_BASE}IMG_5140.MOV`,
+    file: 'IMG_5140.MP4',
+    src: `${VIDEO_BASE}IMG_5140.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5140.webp`,
     title: 'Multi-Ligament Knee Reconstruction',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -151,6 +164,7 @@ export const surgicalVideos = [
     id: 14,
     file: 'IMG_5524.MP4',
     src: `${VIDEO_BASE}IMG_5524.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5524.webp`,
     title: 'Trial Component Kinematic Testing',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -162,6 +176,7 @@ export const surgicalVideos = [
     id: 15,
     file: 'IMG_5525.MP4',
     src: `${VIDEO_BASE}IMG_5525.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5525.webp`,
     title: 'Day-Care Joint Replacement Protocol',
     category: 'knee',
     categoryName: 'Knee & Robotic Surgery',
@@ -173,6 +188,7 @@ export const surgicalVideos = [
     id: 16,
     file: 'IMG_5527.MP4',
     src: `${VIDEO_BASE}IMG_5527.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5527.webp`,
     title: 'Femoral Component Impaction & Seating',
     category: 'hip',
     categoryName: 'Hip & Reconstruction',
@@ -184,6 +200,7 @@ export const surgicalVideos = [
     id: 17,
     file: 'IMG_5528.MP4',
     src: `${VIDEO_BASE}IMG_5528.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5528.webp`,
     title: 'Endoscopic Visualization & Joint Cleansing',
     category: 'theatre',
     categoryName: 'Surgical Theatre & Techniques',
@@ -195,6 +212,7 @@ export const surgicalVideos = [
     id: 18,
     file: 'IMG_5529.MP4',
     src: `${VIDEO_BASE}IMG_5529.MP4`,
+    poster: `${VIDEO_BASE}thumbnails/IMG_5529.webp`,
     title: 'Tissue-Preserving Wound Closure Technique',
     category: 'theatre',
     categoryName: 'Surgical Theatre & Techniques',
@@ -212,56 +230,42 @@ const categories = [
   { id: 'theatre', label: 'Surgical Theatre & Techniques', count: 3 }
 ];
 
-// High-performance lazy-loading video card using IntersectionObserver
+// High-performance video card: loads 30KB WebP poster instantly, previews video smoothly on hover
 function LazyVideoCard({ video, onSelect }) {
-  const containerRef = useRef(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
   const videoRef = useRef(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsLoaded(true);
-          setIsInView(true);
-        } else {
-          setIsInView(false);
-        }
-      },
-      {
-        rootMargin: '120px 0px',
-        threshold: 0.05
-      }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  // Manage playback based on viewport visibility
-  useEffect(() => {
-    if (!videoRef.current || !isLoaded) return;
-
-    if (isInView) {
+    if (isHovered && videoRef.current) {
       const p = videoRef.current.play();
       if (p !== undefined) p.catch(() => {});
-    } else {
+    } else if (!isHovered && videoRef.current) {
       videoRef.current.pause();
     }
-  }, [isInView, isLoaded]);
+  }, [isHovered]);
 
   return (
     <div
-      ref={containerRef}
       className="surgical-grid-card"
       onClick={() => onSelect(video)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => {
+        setIsHovered(false);
+        setVideoReady(false);
+      }}
     >
       <div className="surgical-card-media">
-        {isLoaded ? (
+        {/* Instant WebP Poster Image */}
+        <img
+          src={video.poster}
+          alt={video.title}
+          loading="lazy"
+          className="surgical-card-poster"
+        />
+
+        {/* Video stream mounted on hover only — zero network bloat on page load */}
+        {isHovered && (
           <video
             ref={videoRef}
             src={video.src}
@@ -269,14 +273,17 @@ function LazyVideoCard({ video, onSelect }) {
             loop
             playsInline
             preload="metadata"
-            className="surgical-card-video"
+            onCanPlay={() => setVideoReady(true)}
+            className={`surgical-card-video ${videoReady ? 'is-playing' : ''}`}
           />
-        ) : (
-          <div className="surgical-card-skeleton" aria-hidden="true">
-            <div className="skeleton-shimmer" />
-            <div className="skeleton-play-icon">▶</div>
-          </div>
         )}
+
+        {/* Center Play Indicator */}
+        <div className="surgical-card-play-btn" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <polygon points="6 4 20 12 6 20 6 4" />
+          </svg>
+        </div>
 
         <div className="surgical-card-overlay-badge">
           <span className="card-badge-num">{video.badge}</span>
@@ -289,7 +296,7 @@ function LazyVideoCard({ video, onSelect }) {
               <polyline points="15 3 21 3 21 9" />
               <polyline points="9 21 3 21 3 15" />
             </svg>
-            <span>View Full Video</span>
+            <span>Watch Full Procedure</span>
           </span>
         </div>
       </div>
@@ -378,14 +385,17 @@ export default function SurgicalVideosPage() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [modalVideo, handleNext, handlePrev]);
 
-  // Toggle audio in grid card
-  const toggleGridAudio = (id, e) => {
-    e.stopPropagation();
-    setGridMutedMap((prev) => ({
-      ...prev,
-      [id]: !prev[id]
-    }));
-  };
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (modalVideo) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [modalVideo]);
 
   const currentVideo = surgicalVideos[activeIndex];
 
@@ -428,13 +438,11 @@ export default function SurgicalVideosPage() {
                 title={`Previous: ${surgicalVideos[prevIdx].title}`}
               >
                 <div className="stage-card-video-box">
-                  <video
-                    src={surgicalVideos[prevIdx].src}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="stage-video-el"
+                  <img
+                    src={surgicalVideos[prevIdx].poster}
+                    alt={surgicalVideos[prevIdx].title}
+                    className="stage-video-el stage-poster-img"
+                    loading="eager"
                   />
                   <div className="stage-card-glass-overlay">
                     <span className="stage-arrow-btn">‹</span>
@@ -451,9 +459,11 @@ export default function SurgicalVideosPage() {
                       ref={heroVideoRef}
                       key={currentVideo.id}
                       src={currentVideo.src}
+                      poster={currentVideo.poster}
                       muted={isHeroMuted}
                       autoPlay
                       playsInline
+                      preload="auto"
                       onEnded={handleHeroVideoEnded}
                       onTimeUpdate={handleHeroTimeUpdate}
                       className="center-video-el"
@@ -520,13 +530,11 @@ export default function SurgicalVideosPage() {
                 title={`Next: ${surgicalVideos[nextIdx].title}`}
               >
                 <div className="stage-card-video-box">
-                  <video
-                    src={surgicalVideos[nextIdx].src}
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    className="stage-video-el"
+                  <img
+                    src={surgicalVideos[nextIdx].poster}
+                    alt={surgicalVideos[nextIdx].title}
+                    className="stage-video-el stage-poster-img"
+                    loading="eager"
                   />
                   <div className="stage-card-glass-overlay">
                     <span className="stage-card-mini-title">{surgicalVideos[nextIdx].title}</span>
@@ -627,10 +635,12 @@ export default function SurgicalVideosPage() {
               <video
                 ref={modalVideoRef}
                 src={modalVideo.src}
+                poster={modalVideo.poster}
                 controls
                 muted
                 autoPlay
                 playsInline
+                preload="auto"
                 className="surgical-modal-video"
               />
             </div>

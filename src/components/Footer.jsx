@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="shell footer-grid">
@@ -132,6 +139,18 @@ export default function Footer() {
 
       <div className="shell footer-bottom">
         <span>© {new Date().getFullYear()} Dr. Harshil Shah. All rights reserved.</span>
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="footer-back-to-top-btn"
+          aria-label="Scroll back to top"
+          title="Scroll back to top"
+        >
+          <span>Back to top</span>
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M18 15l-6-6-6 6" />
+          </svg>
+        </button>
         <span>Medical information is for general education, not a diagnosis.</span>
       </div>
     </footer>

@@ -256,55 +256,6 @@ export default function HomePage() {
                 </Link>
               </div>
             </div>
-
-            {/* Bottom Glassmorphic Stats Cards */}
-            <div className="rehab-stats-grid">
-              {/* Card 1: 98% Patient Satisfaction */}
-              <div className="rehab-stat-card rehab-stat-simple">
-                <div className="rehab-stat-val">
-                  98<span className="rehab-stat-percent">%</span>
-                </div>
-                <div className="rehab-stat-label">Patient Satisfaction</div>
-              </div>
-
-              {/* Card 2: 85% Treatment Progress with Chart */}
-              <div className="rehab-stat-card rehab-chart-card">
-                <div className="rehab-chart-header">
-                  <div className="rehab-stat-val">
-                    85<span className="rehab-stat-percent">%</span>
-                  </div>
-                  <div className="rehab-chart-legend">
-                    <span className="legend-item legend-strength">● Strength Gain</span>
-                    <span className="legend-item legend-pain">● Pain Reduction</span>
-                  </div>
-                </div>
-
-                <div className="rehab-chart-body">
-                  <div className="rehab-growth-pill">
-                    <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M23 6l-9.5 9.5-5-5L1 18" />
-                      <path d="M17 6h6v6" />
-                    </svg>
-                  </div>
-                  <svg viewBox="0 0 160 52" className="rehab-chart-svg" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="rehabBlueGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.9" />
-                        <stop offset="100%" stopColor="#1e40af" stopOpacity="0.65" />
-                      </linearGradient>
-                      <linearGradient id="rehabLightGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#cbd5e1" stopOpacity="0.6" />
-                        <stop offset="100%" stopColor="#f1f5f9" stopOpacity="0.15" />
-                      </linearGradient>
-                    </defs>
-                    <polygon points="0,52 0,38 25,24 55,42 85,12 115,34 135,18 160,30 160,52" fill="url(#rehabBlueGrad)" />
-                    <polygon points="0,52 0,44 30,48 65,40 100,50 135,43 160,46 160,52" fill="url(#rehabLightGrad)" />
-                    <line x1="85" y1="0" x2="85" y2="52" stroke="#475569" strokeWidth="1" strokeDasharray="2 2" />
-                  </svg>
-                </div>
-                <div className="rehab-stat-label">Treatment Progress</div>
-              </div>
-            </div>
           </div>
         </div>
       </section>

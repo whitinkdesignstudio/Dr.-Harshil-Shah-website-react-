@@ -281,7 +281,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
   }, [initialJoint]);
 
   // -------------------------------------------------------------
-  // PROCEDURAL MESH BUILDER (Instant fallback & surgical implant)
+  // PROCEDURAL 3D MESH BUILDER (Instant fallback & guaranteed 3D on all devices)
   // -------------------------------------------------------------
   const buildProceduralMeshes = useCallback((jointType, mode) => {
     const group = new THREE.Group();
@@ -289,7 +289,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     const isSurgical = mode === 'surgical';
 
     const boneMat = new THREE.MeshStandardMaterial({
-      color: isXray ? 0x0284c7 : 0xf8fafc,
+      color: isXray ? 0x0284c7 : 0xf1f5f9,
       roughness: isXray ? 0.2 : 0.45,
       metalness: isXray ? 0.8 : 0.1,
       wireframe: isXray,
@@ -319,7 +319,127 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
       roughness: 0.15
     });
 
-    if (jointType === 'hip') {
+    if (jointType === 'knee') {
+      // Femur Shaft
+      const femurGeo = new THREE.CylinderGeometry(0.55, 0.72, 2.2, 32);
+      const femur = new THREE.Mesh(femurGeo, boneMat);
+      femur.position.set(0, 1.4, 0);
+      group.add(femur);
+
+      // Medial & Lateral Condyles
+      const condyleMat = isSurgical ? implantMat : cartilageMat;
+      const condyleMedGeo = new THREE.SphereGeometry(0.58, 24, 24);
+      condyleMedGeo.scale(0.8, 1.1, 1.3);
+      const condyleMed = new THREE.Mesh(condyleMedGeo, condyleMat);
+      condyleMed.position.set(0.52, 0.25, 0);
+      group.add(condyleMed);
+
+      const condyleLatGeo = new THREE.SphereGeometry(0.55, 24, 24);
+      condyleLatGeo.scale(0.8, 1.1, 1.3);
+      const condyleLat = new THREE.Mesh(condyleLatGeo, condyleMat);
+      condyleLat.position.set(-0.52, 0.25, 0);
+      group.add(condyleLat);
+
+      // Meniscus Rings (Cartilage)
+      const menMedGeo = new THREE.TorusGeometry(0.48, 0.1, 16, 24, Math.PI * 1.6);
+      const menMed = new THREE.Mesh(menMedGeo, cartilageMat);
+      menMed.rotation.x = Math.PI / 2;
+      menMed.position.set(0.52, -0.15, 0);
+      group.add(menMed);
+
+      const menLatGeo = new THREE.TorusGeometry(0.45, 0.1, 16, 24, Math.PI * 1.6);
+      const menLat = new THREE.Mesh(menLatGeo, cartilageMat);
+      menLat.rotation.x = Math.PI / 2;
+      menLat.rotation.z = Math.PI;
+      menLat.position.set(-0.52, -0.15, 0);
+      group.add(menLat);
+
+      // Tibia Plateau & Shaft
+      const tibiaPlatGeo = new THREE.CylinderGeometry(0.95, 0.75, 0.5, 32);
+      const tibiaPlat = new THREE.Mesh(tibiaPlatGeo, boneMat);
+      tibiaPlat.position.set(0, -0.4, 0);
+      group.add(tibiaPlat);
+
+      const tibiaShaftGeo = new THREE.CylinderGeometry(0.68, 0.48, 2.2, 32);
+      const tibiaShaft = new THREE.Mesh(tibiaShaftGeo, boneMat);
+      tibiaShaft.position.set(0, -1.65, 0);
+      group.add(tibiaShaft);
+
+      // Fibula
+      const fibulaGeo = new THREE.CylinderGeometry(0.22, 0.16, 2.4, 20);
+      const fibula = new THREE.Mesh(fibulaGeo, boneMat);
+      fibula.position.set(-0.88, -1.55, -0.1);
+      group.add(fibula);
+
+      // Patella (Kneecap)
+      const patellaGeo = new THREE.SphereGeometry(0.45, 24, 24);
+      patellaGeo.scale(0.85, 1.15, 0.5);
+      const patella = new THREE.Mesh(patellaGeo, isSurgical ? implantMat : boneMat);
+      patella.position.set(0, 0.65, 0.85);
+      group.add(patella);
+
+      // Cruciate Ligaments (ACL & PCL)
+      const aclCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.15, 0.35, -0.1),
+        new THREE.Vector3(0.0, 0.05, 0.05),
+        new THREE.Vector3(0.18, -0.22, 0.22)
+      ]);
+      const acl = new THREE.Mesh(new THREE.TubeGeometry(aclCurve, 16, 0.08, 12, false), ligamentMat);
+      group.add(acl);
+
+      // Collateral Ligaments (MCL & LCL)
+      const mclGeo = new THREE.CylinderGeometry(0.08, 0.08, 1.6, 12);
+      const mcl = new THREE.Mesh(mclGeo, ligamentMat);
+      mcl.position.set(0.88, 0.1, 0.1);
+      group.add(mcl);
+
+      const lclGeo = new THREE.CylinderGeometry(0.07, 0.07, 1.6, 12);
+      const lcl = new THREE.Mesh(lclGeo, ligamentMat);
+      lcl.position.set(-0.88, 0.1, 0.1);
+      group.add(lcl);
+    } else if (jointType === 'shoulder') {
+      // Scapula / Glenoid Cup
+      const glenoidGeo = new THREE.SphereGeometry(0.8, 24, 24, 0, Math.PI * 2, 0, Math.PI * 0.5);
+      const glenoid = new THREE.Mesh(glenoidGeo, boneMat);
+      glenoid.position.set(-0.55, 0.35, 0);
+      glenoid.rotation.y = Math.PI / 2;
+      group.add(glenoid);
+
+      // Humeral Head (Ball)
+      const headGeo = new THREE.SphereGeometry(0.85, 32, 32);
+      const head = new THREE.Mesh(headGeo, isSurgical ? implantMat : cartilageMat);
+      head.position.set(0.2, 0.35, 0.05);
+      group.add(head);
+
+      // Humerus Shaft
+      const humShaftGeo = new THREE.CylinderGeometry(0.55, 0.45, 2.5, 32);
+      const humShaft = new THREE.Mesh(humShaftGeo, boneMat);
+      humShaft.position.set(0.42, -1.2, 0);
+      humShaft.rotation.z = -0.12;
+      group.add(humShaft);
+
+      // Clavicle Strut
+      const clavGeo = new THREE.CylinderGeometry(0.22, 0.22, 2.0, 20);
+      const clav = new THREE.Mesh(clavGeo, boneMat);
+      clav.position.set(-0.7, 1.45, 0.2);
+      clav.rotation.z = Math.PI / 3;
+      group.add(clav);
+
+      // Acromion Arch
+      const acromionGeo = new THREE.BoxGeometry(0.7, 0.22, 0.9);
+      const acromion = new THREE.Mesh(acromionGeo, boneMat);
+      acromion.position.set(-0.25, 1.35, -0.1);
+      group.add(acromion);
+
+      // Rotator Cuff Tendon
+      const cuffCurve = new THREE.CatmullRomCurve3([
+        new THREE.Vector3(-0.35, 1.25, 0),
+        new THREE.Vector3(0.0, 1.15, 0.15),
+        new THREE.Vector3(0.35, 0.75, 0.2)
+      ]);
+      const cuff = new THREE.Mesh(new THREE.TubeGeometry(cuffCurve, 16, 0.12, 12, false), ligamentMat);
+      group.add(cuff);
+    } else if (jointType === 'hip') {
       const pelvisGeo = new THREE.CylinderGeometry(1.4, 1.1, 0.9, 32);
       pelvisGeo.scale(1.2, 0.8, 1.1);
       const pelvis = new THREE.Mesh(pelvisGeo, boneMat);
@@ -598,7 +718,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
       if (selectedJoint === 'knee') {
         const fbxLoader = new FBXLoader();
         fbxLoader.load(
-          '/knee-anatomy/source/Knee Anatomy.fbx',
+          '/knee-anatomy/source/knee-anatomy.fbx',
           (fbx) => {
             const box = new THREE.Box3().setFromObject(fbx);
             const size = box.getSize(new THREE.Vector3());
@@ -625,7 +745,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
       } else if (selectedJoint === 'shoulder') {
         const fbxLoader = new FBXLoader();
         fbxLoader.load(
-          '/shoulder-joint/source/Glenohumeral Joint.fbx',
+          '/shoulder-joint/source/glenohumeral-joint.fbx',
           (fbx) => {
             const box = new THREE.Box3().setFromObject(fbx);
             const size = box.getSize(new THREE.Vector3());

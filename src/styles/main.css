@@ -20871,10 +20871,34 @@ button {
 /* ── FAQ Item (Accordion) ─────────────────────────────────────────────────── */
 .faq-item {
   border-bottom: 1px solid #dceaf2;
+  scroll-margin-top: 100px;
+  transition: background-color 0.3s ease;
 }
 
 .faq-item:first-child {
   border-top: 1px solid #dceaf2;
+}
+
+@keyframes faqHighlightPulse {
+  0% {
+    background-color: rgba(12, 123, 121, 0.14);
+    box-shadow: 0 0 0 4px rgba(12, 123, 121, 0.25);
+  }
+  60% {
+    background-color: rgba(12, 123, 121, 0.08);
+    box-shadow: 0 0 0 2px rgba(12, 123, 121, 0.15);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: none;
+  }
+}
+
+.faq-item--highlighted {
+  animation: faqHighlightPulse 2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  border-radius: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .faq-item-trigger {

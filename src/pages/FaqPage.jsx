@@ -207,20 +207,44 @@ export default function FaqPage() {
     setSelectedCategory('All Questions');
     setSearchQuery('');
     setOpenFaqId(id);
+    setActiveSection(item.category);
+
     setTimeout(() => {
+      const isDesktop = window.matchMedia('(min-width: 961px)').matches;
+      const explorerSection = document.querySelector('.faq-explorer');
       const container = scrollContainerRef.current;
-      const sectionEl = sectionRefs.current[item.category];
-      if (container && sectionEl) {
-        // Scroll position = section top relative to container viewport + current scroll
-        const containerRect = container.getBoundingClientRect();
-        const sectionRect = sectionEl.getBoundingClientRect();
-        const scrollTop = container.scrollTop + (sectionRect.top - containerRect.top) - 24;
-        container.scrollTo({ top: Math.max(0, scrollTop), behavior: 'smooth' });
-      } else {
-        const el = document.getElementById(`faq-${id}`);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const targetFaq = document.getElementById(`faq-${id}`);
+
+      // Scroll the main browser window down so the FAQ explorer section is visible
+      if (explorerSection) {
+        const explorerRect = explorerSection.getBoundingClientRect();
+        const windowScrollTop = window.pageYOffset + explorerRect.top - 80;
+        window.scrollTo({ top: Math.max(0, windowScrollTop), behavior: 'smooth' });
       }
-    }, 80);
+
+      // On desktop, also scroll the inner scrollable container directly to this question
+      if (isDesktop && container && targetFaq) {
+        const containerRect = container.getBoundingClientRect();
+        const targetRect = targetFaq.getBoundingClientRect();
+        const scrollTop = container.scrollTop + (targetRect.top - containerRect.top) - 16;
+        container.scrollTo({ top: Math.max(0, scrollTop), behavior: 'smooth' });
+      } else if (targetFaq) {
+        // On mobile or when no inner container, scroll directly to target question
+        const y = targetFaq.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
+      }
+
+      // Highlight the targeted FAQ item briefly
+      if (targetFaq) {
+        targetFaq.classList.remove('faq-item--highlighted');
+        // Trigger reflow to restart animation
+        void targetFaq.offsetWidth;
+        targetFaq.classList.add('faq-item--highlighted');
+        setTimeout(() => {
+          targetFaq.classList.remove('faq-item--highlighted');
+        }, 2200);
+      }
+    }, 60);
   }, []);
 
   // ── IntersectionObserver — scoped to right scroll container on desktop ────

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Interactive3DViewer from '../components/Interactive3DViewer';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 const TREATMENT_FAQS = [
   {
@@ -103,10 +104,39 @@ export default function TreatmentsPage() {
             </p>
           </div>
 
-          <Interactive3DViewer
-            initialJoint={activeJointTab}
-            onSelectTreatment={(joint) => scrollToSection(joint)}
-          />
+          <ErrorBoundary
+            fallback={
+              <div style={{
+                textAlign: 'center',
+                padding: '40px 20px',
+                background: 'rgba(15, 23, 42, 0.6)',
+                borderRadius: '16px',
+                color: '#e2e8f0'
+              }}>
+                <img
+                  src={`/${activeJointTab === 'more' ? 'knee' : activeJointTab}-3d.webp`}
+                  alt="Joint Anatomy"
+                  style={{ maxHeight: '220px', objectFit: 'contain', margin: '0 auto 16px' }}
+                />
+                <h4 style={{ color: '#38bdf8', marginBottom: '8px' }}>Specialist Orthopaedic Anatomy</h4>
+                <p style={{ color: '#94a3b8', fontSize: '0.9rem', maxWidth: '400px', margin: '0 auto 16px' }}>
+                  Explore specific knee, hip, and shoulder conditions and surgical treatments in the sections below.
+                </p>
+                <button
+                  type="button"
+                  className="button button-outline"
+                  onClick={() => scrollToSection(activeJointTab === 'more' ? 'knee' : activeJointTab)}
+                >
+                  View Treatment Options ↓
+                </button>
+              </div>
+            }
+          >
+            <Interactive3DViewer
+              initialJoint={activeJointTab}
+              onSelectTreatment={(joint) => scrollToSection(joint)}
+            />
+          </ErrorBoundary>
         </div>
       </section>
 

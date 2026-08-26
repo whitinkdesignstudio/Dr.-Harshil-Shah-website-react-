@@ -262,6 +262,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
   const [autoRotate, setAutoRotate] = useState(true);
   const [activeHotspot, setActiveHotspot] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [hasWebGLError, setHasWebGLError] = useState(false);
   const [screenHotspots, setScreenHotspots] = useState([]);
 
   const sceneRef = useRef(null);
@@ -496,16 +497,28 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     camera.position.set(0, 0.2, 5.8);
     cameraRef.current = camera;
 
-    // High Performance WebGL Renderer — capped DPR for mobile performance
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
-    renderer.setSize(width, height);
-    // Cap pixel ratio at 1.5 — retina looks fine, saves 33-55% GPU pixels vs uncapped
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
-    rendererRef.current = renderer;
+    // Safe WebGL initialization
+    let renderer;
+    try {
+      const testCanvas = document.createElement('canvas');
+      const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
+      if (!gl) {
+        setHasWebGLError(true);
+        return;
+      }
+      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer.setSize(width, height);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 1.2;
+      rendererRef.current = renderer;
+    } catch (err) {
+      console.warn('WebGL initialization failed:', err);
+      setHasWebGLError(true);
+      return;
+    }
 
     container.innerHTML = '';
     container.appendChild(renderer.domElement);
@@ -760,19 +773,27 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     window.addEventListener('resize', handleResize, { passive: true });
 
     return () => {
-      cancelAnimationFrame(animationFrameId);
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
       if (resizeRafId) cancelAnimationFrame(resizeRafId);
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       // Dispose geometries and materials to prevent WebGL memory leaks
-      scene.traverse((obj) => {
-        if (obj.geometry) obj.geometry.dispose();
-        if (obj.material) {
-          if (Array.isArray(obj.material)) obj.material.forEach((m) => m.dispose());
-          else obj.material.dispose();
+      if (scene) {
+        scene.traverse((obj) => {
+          if (obj.geometry) obj.geometry.dispose();
+          if (obj.material) {
+            if (Array.isArray(obj.material)) obj.material.forEach((m) => m.dispose());
+            else obj.material.dispose();
+          }
+        });
+      }
+      if (renderer) {
+        try {
+          renderer.dispose();
+        } catch (e) {
+          // ignore
         }
-      });
-      renderer.dispose();
+      }
     };
   }, [selectedJoint, viewMode, autoRotate, buildProceduralMeshes, applyJointMaterials]);
 
@@ -940,7 +961,33 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <div ref={mountRef} className="three-canvas-container" />
+        {hasWebGLError ? (
+          <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '380px',
+            padding: '24px',
+            textAlign: 'center',
+            background: 'radial-gradient(circle at center, rgba(14, 116, 144, 0.15) 0%, rgba(15, 23, 42, 0.8) 100%)',
+            borderRadius: '16px'
+          }}>
+            <img
+              src={`/${selectedJoint}-3d.webp`}
+              alt={`${selectedJoint} Anatomy`}
+              style={{ maxHeight: '240px', objectFit: 'contain', marginBottom: '16px', filter: 'drop-shadow(0 10px 24px rgba(0,0,0,0.3))' }}
+            />
+            <p style={{ color: '#38bdf8', fontWeight: 600, fontSize: '0.95rem', marginBottom: '4px' }}>
+              {selectedJoint.toUpperCase()} Anatomy Overview
+            </p>
+            <p style={{ color: '#94a3b8', fontSize: '0.85rem', maxWidth: '380px' }}>
+              Select any anatomical structure below to inspect condition details and treatment options.
+            </p>
+          </div>
+        ) : (
+          <div ref={mountRef} className="three-canvas-container" />
+        )}
 
         {/* Loading Spinner */}
         {isLoading && (

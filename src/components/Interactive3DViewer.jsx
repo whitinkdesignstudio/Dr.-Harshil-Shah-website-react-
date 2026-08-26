@@ -806,25 +806,26 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     // ANIMATION & 3D-TO-2D SCREEN PROJECTION LOOP
     // -------------------------------------------------------------
     let animationFrameId;
+    let frameCount = 0;
     const animate = () => {
       animationFrameId = requestAnimationFrame(animate);
 
       if (jointGroupRef.current && cameraRef.current) {
-        // Smooth camera focusing & zoom animation when hotspot clicked
+        // Fast & smooth camera focusing & zoom animation when hotspot clicked
         if (targetRotationRef.current.animating) {
           const { x: tx, y: ty, targetCamY = 0.2, targetCamZ = 5.8 } = targetRotationRef.current;
           if (ty !== null && ty !== undefined) {
-            jointGroupRef.current.rotation.y += (ty - jointGroupRef.current.rotation.y) * 0.08;
+            jointGroupRef.current.rotation.y += (ty - jointGroupRef.current.rotation.y) * 0.16;
           } else if (autoRotate && !isDraggingRef.current) {
-            jointGroupRef.current.rotation.y += 0.006;
+            jointGroupRef.current.rotation.y += 0.014;
           }
 
           if (tx !== null && tx !== undefined) {
-            jointGroupRef.current.rotation.x += (tx - jointGroupRef.current.rotation.x) * 0.08;
+            jointGroupRef.current.rotation.x += (tx - jointGroupRef.current.rotation.x) * 0.16;
           }
           if (cameraRef.current) {
-            cameraRef.current.position.z += (targetCamZ - cameraRef.current.position.z) * 0.08;
-            cameraRef.current.position.y += (targetCamY - cameraRef.current.position.y) * 0.08;
+            cameraRef.current.position.z += (targetCamZ - cameraRef.current.position.z) * 0.16;
+            cameraRef.current.position.y += (targetCamY - cameraRef.current.position.y) * 0.16;
           }
 
           const rotYDone = ty === null || ty === undefined || Math.abs(ty - jointGroupRef.current.rotation.y) < 0.005;
@@ -836,7 +837,7 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
             targetRotationRef.current.animating = false;
           }
         } else if (autoRotate && !isDraggingRef.current && !activeHotspot) {
-          jointGroupRef.current.rotation.y += 0.006;
+          jointGroupRef.current.rotation.y += 0.014; // Fast, smooth 360 auto-rotation
         }
 
         if (isDraggingRef.current) {
@@ -845,32 +846,35 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
           jointGroupRef.current.rotation.x = Math.max(-0.65, Math.min(0.65, jointGroupRef.current.rotation.x));
         }
 
-        // Calculate 2D Screen Coordinates for all 3D Numbered Pins
-        const spots = JOINT_HOTSPOTS[selectedJoint] || [];
-        const cont = mountRef.current;
-        if (cont) {
-          const cW = cont.clientWidth;
-          const cH = cont.clientHeight;
+        // Fast & optimized 2D Screen Coordinates projection for 3D Numbered Pins
+        frameCount++;
+        if (frameCount % 2 === 0) {
+          const spots = JOINT_HOTSPOTS[selectedJoint] || [];
+          const cont = mountRef.current;
+          if (cont) {
+            const cW = cont.clientWidth;
+            const cH = cont.clientHeight;
 
-          const projected = spots.map((spot) => {
-            const v = new THREE.Vector3(...spot.pos);
-            v.applyMatrix4(jointGroupRef.current.matrixWorld);
-            const isFacingCamera = v.z > -0.4;
-            v.project(cameraRef.current);
+            const projected = spots.map((spot) => {
+              const v = new THREE.Vector3(...spot.pos);
+              v.applyMatrix4(jointGroupRef.current.matrixWorld);
+              const isFacingCamera = v.z > -0.4;
+              v.project(cameraRef.current);
 
-            const screenX = ((v.x + 1) / 2) * cW;
-            const screenY = ((-v.y + 1) / 2) * cH;
+              const screenX = ((v.x + 1) / 2) * cW;
+              const screenY = ((-v.y + 1) / 2) * cH;
 
-            return {
-              ...spot,
-              screenX,
-              screenY,
-              visible: v.z < 1.0 && isFacingCamera,
-              depth: v.z
-            };
-          });
+              return {
+                ...spot,
+                screenX,
+                screenY,
+                visible: v.z < 1.0 && isFacingCamera,
+                depth: v.z
+              };
+            });
 
-          setScreenHotspots(projected);
+            setScreenHotspots(projected);
+          }
         }
       }
 
@@ -949,12 +953,12 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     const deltaY = e.clientY - previousMousePositionRef.current.y;
 
     rotationVelocityRef.current = {
-      x: deltaY * 0.005,
-      y: deltaX * 0.005
+      x: deltaY * 0.008,
+      y: deltaX * 0.008
     };
 
-    jointGroupRef.current.rotation.y += deltaX * 0.008;
-    jointGroupRef.current.rotation.x += deltaY * 0.008;
+    jointGroupRef.current.rotation.y += deltaX * 0.014;
+    jointGroupRef.current.rotation.x += deltaY * 0.014;
     jointGroupRef.current.rotation.x = Math.max(-0.65, Math.min(0.65, jointGroupRef.current.rotation.x));
 
     previousMousePositionRef.current = { x: e.clientX, y: e.clientY };
@@ -979,8 +983,8 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     const deltaX = e.touches[0].clientX - previousMousePositionRef.current.x;
     const deltaY = e.touches[0].clientY - previousMousePositionRef.current.y;
 
-    jointGroupRef.current.rotation.y += deltaX * 0.008;
-    jointGroupRef.current.rotation.x += deltaY * 0.008;
+    jointGroupRef.current.rotation.y += deltaX * 0.014;
+    jointGroupRef.current.rotation.x += deltaY * 0.014;
     jointGroupRef.current.rotation.x = Math.max(-0.65, Math.min(0.65, jointGroupRef.current.rotation.x));
 
     previousMousePositionRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };

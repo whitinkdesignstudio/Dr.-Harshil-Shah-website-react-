@@ -56,28 +56,43 @@ const ERAS_TIMELINE_STEPS = [
 const GUIDE_FAQS = [
   {
     id: 'guide-faq-1',
-    question: 'When can I begin walking after surgery?',
-    answer: 'Guided walking begins within 24 hours under our ERAS protocol. Patients use a walker for 1–3 weeks, progressing to unassisted walking by weeks 3–6.'
+    question: 'What information is included in the patient guides?',
+    answer: 'Our patient guides offer structured, evidence-based guidance across all stages of orthopaedic care. This includes pre-operative medical clearances and prehab exercises, hospital stay expectations and same-day mobilization protocols (ERAS), step-by-step home recovery guidelines (including the Quiet Knee protocol), wound care instructions, milestone roadmaps, and clear red-flag alert signs.'
   },
   {
     id: 'guide-faq-2',
-    question: 'How do I manage swelling and pain at home?',
-    answer: 'Apply ice for 15–20 minutes every 2–3 hours, elevate the ankle above heart level, take prescribed medications on schedule, and do hourly ankle pumps.'
+    question: 'How should I prepare before an orthopaedic consultation or surgery?',
+    answer: 'For a consultation, write down your symptom history, previous treatments, and specific questions. For surgery, complete recommended pre-operative health assessments (blood tests, ECG, chest X-ray, physician/anaesthesia clearances), practice guided prehab exercises to strengthen surrounding muscles, optimise blood sugar (HbA1c < 7.5%) and blood pressure, and arrange family caregiver support for discharge.'
   },
   {
     id: 'guide-faq-3',
-    question: 'When can I shower after surgery?',
-    answer: 'Our waterproof surgical dressings allow quick showers within 48 hours. Avoid baths or swimming until wound healing is confirmed at your 2-week check.'
+    question: 'What should I bring with me to my hospital or clinic visit?',
+    answer: 'Bring all previous diagnostic imaging (X-rays, MRI scans, CT scans) on films or discs, recent blood reports, a complete list of current prescription medicines and supplements, government-issued photo ID, insurance/TPA documentation, and comfortable, loose-fitting clothing with non-skid flat walking footwear.'
   },
   {
     id: 'guide-faq-4',
-    question: 'When can I drive and return to work?',
-    answer: 'Desk work can resume in 2–3 weeks. Driving is safe once off prescription painkillers with full emergency braking reflex, typically at 4–6 weeks.'
+    question: 'How can I prepare my home for recovery after joint surgery?',
+    answer: 'Set up a safe, single-level living area before surgery. Remove loose throw rugs, electrical cords, and tripping hazards. Ensure pathways to the bathroom and kitchen are clear and wide enough for a walker. Place a firm chair with sturdy armrests in your sitting area, install non-slip mats and grab bars in the bathroom, and keep ice packs, medications, and phone chargers within easy reach.'
   },
   {
     id: 'guide-faq-5',
-    question: 'What symptoms require immediate attention?',
-    answer: 'Call the clinic immediately if you notice a fever > 101°F (38.3°C), severe calf pain/swelling, spreading wound redness, or sudden shortness of breath.'
+    question: 'What should I know about medicines, fasting and pre-operative instructions?',
+    answer: 'Follow fasting rules strictly: no solid food for 6 to 8 hours before surgery, with clear liquids permitted only up to the time specified by your anaesthetist. Review all current medications with Dr. Shah—certain blood thinners (like aspirin, clopidogrel, or apixaban) must be paused under clinical guidance several days before surgery, while essential morning medications for blood pressure or thyroid may be taken with a tiny sip of water.'
+  },
+  {
+    id: 'guide-faq-6',
+    question: 'What can I expect during the early recovery period after surgery?',
+    answer: 'Under modern Enhanced Recovery After Surgery (ERAS) protocols, you will receive targeted multimodal pain relief (nerve blocks and scheduled oral medications) to keep you comfortable without heavy sedation. Guided walking with walker support begins on the same day or within 24 hours. Temporary swelling, bruising, and tightness are normal and managed through regular ice application, leg elevation, and hourly ankle pumps.'
+  },
+  {
+    id: 'guide-faq-7',
+    question: 'When can I return to walking, driving, work and normal daily activities?',
+    answer: 'Supported walking with a walker begins immediately; most patients transition to a cane within 2 to 3 weeks and walk independently by 4 to 6 weeks. Light desk work can resume in 2 to 3 weeks, while driving is generally cleared at 4 to 6 weeks once emergency reflex braking is safe and you are off narcotic medications. Low-impact activities (swimming, stationary cycling, walking) resume by 6 to 12 weeks.'
+  },
+  {
+    id: 'guide-faq-8',
+    question: 'When should I contact the clinic if I have concerns during recovery?',
+    answer: 'Contact Dr. Harshil Shah’s team promptly if you experience red-flag symptoms: fever above 101°F (38.3°C), sudden or worsening calf pain and swelling (signs of possible DVT), spreading redness or persistent discharge from the surgical wound, sudden severe pain unrelieved by prescribed medication, or unexpected chest discomfort or shortness of breath.'
   }
 ];
 

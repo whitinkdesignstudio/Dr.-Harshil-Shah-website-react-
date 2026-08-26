@@ -112,24 +112,36 @@ const jointsData = [
 
 const aboutFaqs = [
   {
-    question: "What are Dr. Harshil Shah's primary areas of surgical expertise?",
-    answer: "Dr. Harshil Shah is a Consultant Orthopaedic Surgeon specializing in Knee, Hip, and Shoulder care. His clinical practice encompasses keyhole arthroscopy, ligament reconstruction (ACL/PCL/meniscus), joint preservation therapies, total & partial joint replacement, and complex trauma management in Ahmedabad."
+    question: "What are Dr. Harshil Shah’s qualifications and areas of expertise?",
+    answer: "Dr. Harshil Shah is a Consultant Orthopaedic Surgeon holding MBBS, M.S. (Orthopaedics), FIJR (Fellowship in Joint Replacement), and FIAS (Fellowship in Arthroscopy & Sports Surgery). His core areas of expertise include robotic joint replacement, partial and total knee replacement, total hip arthroplasty, keyhole arthroscopic ligament reconstruction (ACL/PCL/meniscus), rotator cuff repair, and complex revision surgeries."
   },
   {
-    question: "Where did Dr. Harshil Shah receive his advanced orthopaedic training?",
-    answer: "Dr. Harshil Shah completed four years of comprehensive orthopaedic and trauma surgery at LT Hospital, followed by advanced fellowships in joint replacement and arthroscopy at P.D. Hinduja Hospital, Mumbai under Dr. Sanjay Agarwala and Dr. Abhay Narvekar. He also completed specialized shoulder surgery training under Dr. Ashish Babulkar, and gained international clinical exposure at Massachusetts General Hospital and the Hospital for Special Surgery in the United States."
+    question: "What specialised training has Dr. Harshil Shah completed in India and abroad?",
+    answer: "Dr. Shah completed his orthopaedic residency in Ahmedabad (L.G. Hospital / V.S. Hospital), followed by prestigious fellowships in Mumbai (Joint Replacement at P.D. Hinduja Hospital under Dr. Sanjay Agarwala, and Arthroscopy under Dr. Abhay Narvekar) and Pune (Shoulder Surgery at DMH under Dr. Ashish Babulkar). He further undertook advanced international fellowships in the United States in Robotic & Revision Joint Replacement at Hospital for Special Surgery (HSS), New York (under Dr. Peter Sculco) and Shoulder Surgery at Massachusetts General Hospital (MGH), Harvard Medical School affiliate, Boston (under Dr. Bassem Elhassan)."
   },
   {
-    question: "Does Dr. Harshil Shah recommend surgery for all joint pain cases?",
-    answer: "No. Dr. Shah strongly advocates a patient-first, conservative-first philosophy. Non-surgical options—including targeted physiotherapy, specialized joint preservation protocols, posture correction, and medication—are explored first whenever viable. Surgery is considered only when necessary to restore function, relieve pain, and improve your quality of life."
+    question: "Which orthopaedic conditions does Dr. Harshil Shah primarily treat?",
+    answer: "Dr. Shah specializes in disorders of the knee, hip, and shoulder. This includes osteoarthritis, meniscus tears, cruciate ligament injuries (ACL/PCL), cartilage degeneration, avascular necrosis (AVN) of the hip, hip arthritis, rotator cuff tears, shoulder dislocations and instability, frozen shoulder, subacromial impingement, sports injuries, and complex orthopaedic trauma."
   },
   {
-    question: "Can I consult Dr. Harshil Shah for an objective second opinion?",
-    answer: "Yes. Many patients consult Dr. Shah to confirm a diagnosis, evaluate the necessity of a proposed surgical procedure, or explore alternative minimally invasive options. Please bring all previous X-rays, MRI scans, and medical reports to your consultation."
+    question: "What is Dr. Harshil Shah’s approach to patient care and treatment planning?",
+    answer: "Dr. Shah follows a patient-centric, evidence-based philosophy: 'Care begins with a good conversation.' Rather than relying solely on scan reports or age, every treatment plan is tailored to the individual’s daily routine, pain severity, functional demands, and personal recovery goals. Recommendations are explained in simple, transparent terms so patients and their families feel confident and supported."
   },
   {
-    question: "How can I prepare for my first consultation with Dr. Harshil Shah?",
-    answer: "Please bring any previous X-rays, MRI scans, blood test reports, and a list of current medications. It is also helpful to note down when your symptoms began and any specific activities that cause discomfort so Dr. Shah can conduct a thorough, tailored evaluation."
+    question: "Does Dr. Harshil Shah consider non-surgical treatment before recommending surgery?",
+    answer: "Yes, absolutely. Dr. Shah strongly advocates a conservative-first approach. Non-surgical measures—including targeted physiotherapy, muscle strengthening, joint preservation therapies, lifestyle modifications, and medication—are always prioritised whenever clinically appropriate. Surgery is discussed only when non-operative care no longer provides adequate relief or when structural restoration is necessary."
+  },
+  {
+    question: "What types of joint replacement and arthroscopic procedures does Dr. Harshil Shah perform?",
+    answer: "Dr. Shah performs modern primary, partial, and robotic-assisted total knee replacements; muscle-sparing total hip replacements; and complex revision hip/knee surgeries. In arthroscopy, he performs keyhole ACL/PCL reconstructions, multi-ligament repairs, meniscal preservation, shoulder rotator cuff repairs, Bankart labral stabilizations, and anatomic/reverse total shoulder replacements."
+  },
+  {
+    question: "Can patients consult Dr. Harshil Shah for a second opinion before orthopaedic surgery?",
+    answer: "Yes. Dr. Shah regularly provides objective second opinions for patients evaluating whether surgery is truly necessary or if alternative non-surgical or joint-preserving options exist. Patients are encouraged to bring all previous X-rays, MRI scans, and medical records for a comprehensive and unbiased clinical assessment."
+  },
+  {
+    question: "Why should patients choose Dr. Harshil Shah for knee, hip or shoulder care?",
+    answer: "Patients benefit from a rare combination of world-class international fellowship training (HSS New York and Harvard-affiliated MGH Boston), advanced surgical precision, and a warm, patient-first ethos. Dr. Shah prioritises tissue preservation, rapid recovery protocols (ERAS), and honest guidance, ensuring every patient receives personalised, high-standard orthopaedic care."
   }
 ];
 

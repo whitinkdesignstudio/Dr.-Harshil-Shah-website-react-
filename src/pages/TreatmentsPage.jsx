@@ -6,33 +6,43 @@ import ErrorBoundary from '../components/ErrorBoundary';
 const TREATMENT_FAQS = [
   {
     id: 'treatment-faq-1',
-    question: 'How do I know if I need non-surgical care or joint replacement surgery?',
-    answer: 'Our priority is always joint preservation. We begin with non-surgical options—such as targeted physiotherapy, medications, lifestyle changes, and advanced biologic injections (e.g. PRP). Surgery is only recommended when conservative care no longer provides sufficient pain relief or when structural joint wear severely limits your daily mobility.'
+    question: 'What orthopaedic treatments does Dr. Harshil Shah offer?',
+    answer: 'Dr. Harshil Shah provides comprehensive surgical and non-surgical treatments for knee, hip, and shoulder conditions. His expertise includes robotic-assisted total and partial knee replacements, muscle-sparing total hip replacements, keyhole arthroscopic surgery (ACL/PCL reconstruction, meniscal repair, rotator cuff repair, labral stabilization), revision joint reconstructions, complex trauma management, and structured non-surgical joint preservation protocols.'
   },
   {
     id: 'treatment-faq-2',
-    question: 'What are the benefits of robotic-assisted joint replacement?',
-    answer: 'Robotic-assisted surgery combines patient-specific 3D CT planning with real-time intraoperative precision. This enables sub-millimeter accurate implant positioning, greater preservation of healthy bone and soft tissues, lower postoperative pain, and faster return to natural joint motion.'
+    question: 'Which knee conditions can be treated without surgery?',
+    answer: 'Many knee conditions—including early to moderate osteoarthritis, mild degenerative meniscal fraying, minor ligament sprains (Grade 1/2 MCL or LCL), patellofemoral pain syndrome, tendonitis, and bursitis—frequently improve with non-surgical care. Conservative treatment plans combine structured physiotherapy, muscle strengthening, weight optimisation, activity modification, anti-inflammatory medications, and targeted joint injections.'
   },
   {
     id: 'treatment-faq-3',
-    question: 'What is the expected recovery timeline after knee, hip, or shoulder surgery?',
-    answer: 'Under our Enhanced Recovery After Surgery (ERAS) pathway, most patients begin supported walking on the same day or within 24 hours. Light household activities typically resume in 2 to 4 weeks, with driving and office work resumed by 4 to 6 weeks based on individual recovery milestones.'
+    question: 'What treatment options are available for hip pain and arthritis?',
+    answer: 'For early-stage hip pain, bursitis, muscle strain, or early arthritis, initial treatment focuses on physiotherapy, gait training, anti-inflammatory medication, and lifestyle adjustments. For advanced arthritis or avascular necrosis (AVN) with significant joint collapse and persistent pain, total hip replacement (THR)—utilising modern muscle-sparing techniques and durable ceramic implants—provides excellent long-term pain relief and restores natural mobility.'
   },
   {
     id: 'treatment-faq-4',
-    question: 'Can sports injuries like ACL tears or Rotator Cuff tears be repaired keyhole?',
-    answer: 'Yes. Minimally invasive arthroscopic (keyhole) surgery is the gold standard for ACL reconstructions, meniscus repairs, and rotator cuff repairs. Small incisions minimize muscle trauma, reduce infection risks, and accelerate functional rehabilitation back to sports and active routines.'
+    question: 'How are shoulder pain, rotator cuff problems and instability treated?',
+    answer: 'Treatment depends on the underlying diagnosis. Frozen shoulder, impingement syndrome, and mild tendinopathy often respond well to focused physiotherapy, posture correction, and targeted anti-inflammatory injections. For structural issues like significant rotator cuff tears, recurrent dislocations, labral (Bankart) tears, or advanced shoulder arthritis, minimally invasive arthroscopic repair or shoulder replacement (anatomic or reverse) is recommended to restore stability and overhead function.'
   },
   {
     id: 'treatment-faq-5',
-    question: 'What is the difference between partial and total knee replacement?',
-    answer: 'A partial (unicompartmental) knee replacement replaces only the damaged compartment (medial or lateral), preserving all healthy cartilage, bone, and your natural cruciate ligaments. Total knee replacement is advised when arthritis affects multiple compartments of the knee.'
+    question: 'When is arthroscopic surgery recommended?',
+    answer: 'Arthroscopy (keyhole surgery) is recommended when internal joint structures—such as torn cruciate ligaments (ACL/PCL), damaged meniscal cartilage, loose bodies, or torn shoulder rotator cuffs and labrums—require repair or reconstruction that cannot heal through non-surgical means alone. It uses miniature instruments and high-definition cameras through tiny incisions, minimising tissue trauma and accelerating recovery.'
   },
   {
     id: 'treatment-faq-6',
-    question: 'How should I prepare at home before my scheduled surgery?',
-    answer: 'Preparation includes performing guided preoperative muscle strengthening exercises (prehab), maintaining proper nutrition and hydration, optimizing clinical parameters (such as blood sugar and blood pressure), and setting up a clear, obstacle-free recovery space at home.'
+    question: 'When is joint replacement considered for knee, hip or shoulder problems?',
+    answer: 'Joint replacement is considered when advanced joint damage (severe osteoarthritis, avascular necrosis, or joint destruction) causes persistent pain, stiffness, and loss of daily function that no longer responds adequately to conservative treatments like physiotherapy and medications. The decision is made collaboratively based on pain severity, functional impairment, and radiographic findings—not age alone.'
+  },
+  {
+    id: 'treatment-faq-7',
+    question: 'How are sports injuries such as ACL, meniscus and ligament injuries treated?',
+    answer: 'Treatment is tailored to the specific injury grade, patient activity goals, and joint stability. Minor sprains and stable partial meniscal tears may be managed with rehabilitation and bracing. Complete ACL tears, unstable multi-ligament injuries, and repairable meniscus tears in active individuals are typically treated with advanced keyhole arthroscopic reconstruction and meniscal repair to restore joint stability and protect long-term cartilage health.'
+  },
+  {
+    id: 'treatment-faq-8',
+    question: 'How does Dr. Harshil Shah decide which treatment is right for each patient?',
+    answer: 'Dr. Shah uses a comprehensive, individualised assessment that combines a thorough clinical examination, detailed review of X-rays and MRI scans, and an in-depth conversation about your daily activities, occupational demands, and personal goals. Non-surgical options are always prioritised first when viable, and surgical options are recommended only when they offer a predictable, meaningful improvement in your mobility and quality of life.'
   }
 ];
 

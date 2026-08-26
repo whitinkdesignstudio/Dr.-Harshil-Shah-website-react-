@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 const ERAS_TIMELINE_STEPS = [
   {
     key: 'before',
+    targetId: 'before-surgery',
     phase: 'Before Surgery',
     stageTag: 'PHASE 01',
     title: 'Optimise & Prepare',
-    desc: 'Review medicines, health conditions, exercise prehab, nutrition and arrange your home support team before admission.',
+    desc: 'Medical clearances, prehab exercises, home safety, and fasting.',
     icon: (
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="step-svg">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
@@ -20,10 +21,11 @@ const ERAS_TIMELINE_STEPS = [
   },
   {
     key: 'hospital',
+    targetId: 'hospital-stay',
     phase: 'Hospital Stay',
     stageTag: 'PHASE 02',
     title: 'Move With Support',
-    desc: 'Follow the clinical team’s multimodal pain control protocol, guided safe mobility within 24 hours, and discharge readiness checks.',
+    desc: 'Multimodal pain relief, 24h assisted walking, and safe discharge.',
     icon: (
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="step-svg">
         <path d="M2 4v16" />
@@ -37,10 +39,11 @@ const ERAS_TIMELINE_STEPS = [
   },
   {
     key: 'home',
+    targetId: 'home-recovery',
     phase: 'Home Recovery',
     stageTag: 'PHASE 03',
     title: 'Progress Steadily',
-    desc: 'Continue prescribed physiotherapy walking routines, daily exercise milestones, wound protection, and follow-up reviews.',
+    desc: 'Quiet Knee protocol, milestone targets, swelling control, and activity.',
     icon: (
       <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="step-svg">
         <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
@@ -53,33 +56,28 @@ const ERAS_TIMELINE_STEPS = [
 const GUIDE_FAQS = [
   {
     id: 'guide-faq-1',
-    question: 'When can I begin walking independently after joint replacement surgery?',
-    answer: 'Most patients start guided walking on the day of surgery or within 24 hours under our ERAS protocol. You will typically use a walker or crutches for the first 1 to 3 weeks until your quadriceps strength and balance are fully restored, progressing to unassisted walking around weeks 3 to 6.'
+    question: 'When can I begin walking after surgery?',
+    answer: 'Guided walking begins within 24 hours under our ERAS protocol. Patients use a walker for 1–3 weeks, progressing to unassisted walking by weeks 3–6.'
   },
   {
     id: 'guide-faq-2',
-    question: 'How can I effectively manage postoperative pain and swelling at home?',
-    answer: 'Follow your scheduled multimodal pain medication plan consistently rather than waiting for severe pain. Regularly apply protected ice packs for 15-20 minutes, elevate the operated leg above heart level, perform gentle ankle pumps every hour, and avoid prolonged sitting or standing without leg support.'
+    question: 'How do I manage swelling and pain at home?',
+    answer: 'Apply ice for 15–20 minutes every 2–3 hours, elevate the ankle above heart level, take prescribed medications on schedule, and do hourly ankle pumps.'
   },
   {
     id: 'guide-faq-3',
-    question: 'When is it safe to take a shower and how do I protect my surgical dressing?',
-    answer: 'Our modern waterproof dressings allow you to shower immediately or within 48 hours without soaking the incision. Avoid submerging the wound in bathtubs or swimming pools until your surgeon confirms complete skin healing at your 2 to 3 week follow-up appointment.'
+    question: 'When can I shower after surgery?',
+    answer: 'Our waterproof surgical dressings allow quick showers within 48 hours. Avoid baths or swimming until wound healing is confirmed at your 2-week check.'
   },
   {
     id: 'guide-faq-4',
-    question: 'What exercises should I prioritize during the first two weeks of recovery?',
-    answer: 'Focus on gentle thigh tightening (quad sets), ankle pumps, heel props for full extension (straightening the knee), and passive heel slides within your comfortable range. Avoid aggressive forced bending or heavy resistance until cleared by your physiotherapist.'
+    question: 'When can I drive and return to work?',
+    answer: 'Desk work can resume in 2–3 weeks. Driving is safe once off prescription painkillers with full emergency braking reflex, typically at 4–6 weeks.'
   },
   {
     id: 'guide-faq-5',
-    question: 'When will I be able to resume driving and return to work?',
-    answer: 'For desk-based work, many patients resume light duties remotely within 2 to 3 weeks, and in-person by 4 to 6 weeks. Driving is generally safe once you are completely off prescription pain medications, have fast emergency braking reaction time, and clear your 4-6 week clinical review.'
-  },
-  {
-    id: 'guide-faq-6',
-    question: 'What warning signs require calling the clinic immediately?',
-    answer: 'Contact our clinical team immediately if you develop a fever over 101°F (38.3°C), sudden calf pain or severe calf swelling (potential DVT), excessive wound redness, spreading warmth, continuous wound drainage, or sudden shortness of breath.'
+    question: 'What symptoms require immediate attention?',
+    answer: 'Call the clinic immediately if you notice a fever > 101°F (38.3°C), severe calf pain/swelling, spreading wound redness, or sudden shortness of breath.'
   }
 ];
 
@@ -121,23 +119,27 @@ export default function PatientGuidesPage() {
     return () => clearInterval(heroTimer);
   }, []);
 
-  useEffect(() => {
-    if (isPaused) return;
-    const interval = setInterval(() => {
-      setActiveErasStep((prev) => (prev + 1) % ERAS_TIMELINE_STEPS.length);
-    }, 3200);
-    return () => clearInterval(interval);
-  }, [isPaused]);
-
   const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 85;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
+  const handleStepClick = (idx, targetId) => {
+    setActiveErasStep(idx);
+    setIsPaused(true);
+    scrollToSection(targetId);
+  };
+
   return (
-    <div>
+    <div className="patient-guides-page-wrapper">
       {/* Guides Hero */}
       <section className="guides-hero">
         <div className="guides-hero-bg-container" aria-hidden="true">
@@ -159,7 +161,7 @@ export default function PatientGuidesPage() {
               <em>clearly.</em>
             </h1>
             <p>
-              Practical guidance for the questions that often come before and after surgery—what to prepare, what to expect and when to ask for help.
+              Evidence-based orthopaedic guidance for before and after joint replacement surgery.
             </p>
             <div className="guides-hero-actions">
               <button
@@ -213,15 +215,18 @@ export default function PatientGuidesPage() {
         </div>
       </section>
 
-      {/* ERAS Section */}
+      {/* ERAS Overview Section */}
       <section className="section eras-section" id="eras">
         <div className="shell">
           <div className="eras-heading">
+            <div className="eyebrow">
+              <span></span> Enhanced Recovery After Surgery (ERAS)
+            </div>
             <h2>
               Prepare well. <em>Recover with direction.</em>
             </h2>
             <p className="eras-lead">
-              Enhanced Recovery After Surgery brings preparation, pain planning, early movement, nutrition and home recovery into one coordinated pathway.
+              Enhanced Recovery After Surgery integrates prehab, multimodal pain planning, early walking, and structured home rehabilitation.
             </p>
           </div>
 
@@ -237,79 +242,311 @@ export default function PatientGuidesPage() {
             <div className="eras-copy">
               <div className="eras-readiness">
                 <article>
-                  <strong>Medical optimisation</strong>
-                  <p>Review diabetes, blood pressure, anaemia, smoking, alcohol and current medicines with your treating team.</p>
+                  <strong>Medical Optimisation</strong>
+                  <p>Diabetes, blood pressure, and medication review.</p>
                 </article>
                 <article>
-                  <strong>Exercise and prehab</strong>
-                  <p>Practise the strengthening, breathing and walking-aid skills recommended before surgery.</p>
+                  <strong>Exercise &amp; Prehab</strong>
+                  <p>Strengthening exercises and walking-aid practice.</p>
                 </article>
                 <article>
-                  <strong>Nutrition and hydration</strong>
-                  <p>Choose balanced protein-rich meals and maintain suitable hydration unless your doctor has restricted fluids.</p>
+                  <strong>Nutrition Plan</strong>
+                  <p>High-protein meals and proper hydration.</p>
                 </article>
                 <article>
-                  <strong>Education and planning</strong>
-                  <p>Understand the procedure, pain plan, home support, transport and follow-up arrangements.</p>
+                  <strong>Home Planning</strong>
+                  <p>Safe home layout and caregiver arrangements.</p>
                 </article>
               </div>
-              <div
-                className="eras-animated-timeline"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
-              >
-                <div className="eras-timeline-header">
-                  <span className="eras-timeline-badge">Interactive Recovery Pathway</span>
-                </div>
 
-                <div className="eras-steps-track">
+              {/* Interactive Recovery Pathway Buttons */}
+              <div className="eras-animated-timeline">
+                <div className="eras-steps-track" role="tablist" aria-label="Recovery Pathway Phases">
                   {ERAS_TIMELINE_STEPS.map((step, idx) => {
                     const isActive = activeErasStep === idx;
                     return (
-                      <div
+                      <button
                         key={step.key}
+                        type="button"
+                        role="tab"
+                        aria-selected={isActive}
                         className={`eras-step-node ${isActive ? 'is-active' : ''}`}
-                        onClick={() => setActiveErasStep(idx)}
+                        onClick={() => handleStepClick(idx, step.targetId)}
                       >
                         <div className="eras-step-badge">
                           <span className="step-icon-wrap">{step.icon}</span>
-                          <span className="step-tag">{step.phase}</span>
+                          <div className="step-tag-group">
+                            <span className="step-phase-kicker">{step.stageTag}</span>
+                            <span className="step-tag">{step.phase}</span>
+                          </div>
                         </div>
                         <div className="eras-step-content">
                           <strong className="eras-step-title">{step.title}</strong>
                           <p className="eras-step-desc">{step.desc}</p>
                         </div>
+                        <div className="step-action-cta">
+                          <span className="step-cta-label">View Guide</span>
+                          <span className="step-arrow-icon">
+                            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M7 13l5 5 5-5M12 6v12" />
+                            </svg>
+                          </span>
+                        </div>
                         <div className="step-active-indicator" />
-                      </div>
+                      </button>
                     );
                   })}
                 </div>
               </div>
-              <Link className="button button-outline" to="/appointment">
-                Discuss your recovery plan{' '}
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
-                  <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+
+              <div className="eras-action-row">
+                <Link className="button button-outline" to="/appointment">
+                  Discuss your recovery plan{' '}
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
+                    <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quiet Knee Section */}
-      <section className="section quiet-section" id="quiet-knee">
+      {/* ========================================================================= */}
+      {/* PHASE 01: BEFORE SURGERY CONTENT SECTION */}
+      {/* ========================================================================= */}
+      <section className="section phase-detail-section before-surgery-section" id="before-surgery">
         <div className="shell">
-          <div className="quiet-heading">
-            <div className="eyebrow">
-              <span></span> After Total Knee Replacement
-            </div>
+          <div className="phase-detail-header">
             <h2>
-              The Quiet Knee <em>Protocol.</em>
+              Before Surgery: <em>Optimise &amp; Prepare</em>
             </h2>
-            <p>
-              Six clear priorities for the first two weeks. Read them in order and follow the personal instructions given by your surgeon and physiotherapist.
+            <p className="phase-lead">
+              Essential preparation to ensure surgical safety, muscle strength, and a smooth return home.
             </p>
           </div>
+
+          <div className="phase-cards-grid">
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">01</span>
+              </div>
+              <h3>Medical Clearances</h3>
+              <p>Optimize vital health markers.</p>
+              <ul className="phase-card-list">
+                <li><strong>HbA1c &lt; 7.5%:</strong> Ensures fast wound healing.</li>
+                <li><strong>Blood Thinners:</strong> Pause strictly per doctor advice.</li>
+                <li><strong>Infection Screen:</strong> Dental and urine testing.</li>
+                <li><strong>Anaesthetic Check:</strong> ECG and chest X-ray.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 6v6l4 2" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">02</span>
+              </div>
+              <h3>Prehab Exercises</h3>
+              <p>Strengthen muscles before surgery.</p>
+              <ul className="phase-card-list">
+                <li><strong>Quad Sets:</strong> 10s holds for knee extension power.</li>
+                <li><strong>Ankle Pumps:</strong> Boost lower leg blood flow.</li>
+                <li><strong>Arm Strength:</strong> Prepare for walker/crutch support.</li>
+                <li><strong>Deep Breathing:</strong> Diaphragmatic lung expansion.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                    <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">03</span>
+              </div>
+              <h3>Home Safety Setup</h3>
+              <p>Prepare an obstacle-free living space.</p>
+              <ul className="phase-card-list">
+                <li><strong>Clear Routes:</strong> Remove rugs, cables, and clutter.</li>
+                <li><strong>Firm Chair:</strong> High seat with armrests.</li>
+                <li><strong>Bathroom Safety:</strong> Non-slip mats and grab bars.</li>
+                <li><strong>Recovery Hub:</strong> Ice packs and medicines within reach.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">04</span>
+              </div>
+              <h3>Day of Admission</h3>
+              <p>Fasting and hospital bag preparation.</p>
+              <ul className="phase-card-list">
+                <li><strong>Fasting:</strong> Nil by mouth 6–8 hours prior.</li>
+                <li><strong>Antiseptic Wash:</strong> Shower with antibacterial soap.</li>
+                <li><strong>Clothing:</strong> Loose clothing &amp; non-skid flat shoes.</li>
+                <li><strong>Paperwork:</strong> ID, previous X-rays/MRI, and reports.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="phase-tip-banner">
+            <div className="phase-tip-icon" aria-hidden="true">💡</div>
+            <div className="phase-tip-text">
+              <strong>Clinical Tip:</strong> Having a family caregiver attend your pre-op consultation ensures smooth coordination of medicines, walking aids, and discharge arrangements.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 02: HOSPITAL STAY CONTENT SECTION */}
+      {/* ========================================================================= */}
+      <section className="section phase-detail-section hospital-stay-section" id="hospital-stay">
+        <div className="shell">
+          <div className="phase-detail-header">
+            <h2>
+              Hospital Stay: <em>Move With Support</em>
+            </h2>
+            <p className="phase-lead">
+              Multimodal pain control, safe mobilization within 24 hours, and structured discharge criteria.
+            </p>
+          </div>
+
+          <div className="phase-cards-grid">
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">01</span>
+              </div>
+              <h3>Pain Management</h3>
+              <p>Targeted pain relief without sedation.</p>
+              <ul className="phase-card-list">
+                <li><strong>Local Block:</strong> Targeted periarticular infiltration.</li>
+                <li><strong>Scheduled Oral Drugs:</strong> Prevents pain before physio.</li>
+                <li><strong>Low Opioids:</strong> Prevents nausea and brain fog.</li>
+                <li><strong>Proactive Dosing:</strong> Timed before physical exercise.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M13 4v16M7 8l6-4 6 4M7 16l6 4 6-4" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">02</span>
+              </div>
+              <h3>24h Mobilisation</h3>
+              <p>Early guided walking restores joint motion.</p>
+              <ul className="phase-card-list">
+                <li><strong>Day 0 First Stand:</strong> Assisted bed-to-chair transfer.</li>
+                <li><strong>Day 1 Corridor Walk:</strong> 15–30m walking with walker.</li>
+                <li><strong>Knee Extension:</strong> Immediate 0° straight-leg check.</li>
+                <li><strong>Balance Training:</strong> Safe weight-bearing mechanics.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="9" />
+                    <path d="M12 3v18" />
+                    <path d="M3 12h18" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">03</span>
+              </div>
+              <h3>Anti-Clot Protection</h3>
+              <p>Circulation and DVT prevention.</p>
+              <ul className="phase-card-list">
+                <li><strong>TED Stockings:</strong> Compression prevents fluid pooling.</li>
+                <li><strong>Calf Pumps:</strong> Automated pneumatic pressure cuffs.</li>
+                <li><strong>Hourly Pumps:</strong> 20–30 ankle pumps every hour.</li>
+                <li><strong>Anticoagulants:</strong> Preventive blood thinners.</li>
+              </ul>
+            </article>
+
+            <article className="phase-card">
+              <div className="phase-card-header">
+                <div className="phase-card-icon">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+                <span className="phase-card-step">04</span>
+              </div>
+              <h3>Discharge Readiness</h3>
+              <p>Safe functional home independence.</p>
+              <ul className="phase-card-list">
+                <li><strong>Safe Transfers:</strong> Independent bed, chair, and toilet.</li>
+                <li><strong>Stair Training:</strong> Safe step climbing technique.</li>
+                <li><strong>Stable Vitals:</strong> Normal diet &amp; oral pain control.</li>
+                <li><strong>Written Summary:</strong> Clear medication schedule.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="phase-milestone-bar">
+            <div className="milestone-step">
+              <span className="milestone-badge">Day 0</span>
+              <strong>Surgery &amp; First Sit</strong>
+              <p>Pain control, bed-to-chair transfer with walker.</p>
+            </div>
+            <div className="milestone-divider">→</div>
+            <div className="milestone-step">
+              <span className="milestone-badge">Day 1</span>
+              <strong>Corridor Walking &amp; Range</strong>
+              <p>Physiotherapy walking sessions and knee extension.</p>
+            </div>
+            <div className="milestone-divider">→</div>
+            <div className="milestone-step">
+              <span className="milestone-badge">Day 2</span>
+              <strong>Stair Mastery &amp; Discharge</strong>
+              <p>Stair assessment, medication briefing, safe discharge.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* PHASE 03: HOME RECOVERY CONTENT SECTION (QUIET KNEE PROTOCOL) */}
+      {/* ========================================================================= */}
+      <section className="section phase-detail-section home-recovery-section quiet-section" id="home-recovery">
+        <div className="shell">
+          <div className="phase-detail-header">
+            <h2>
+              Home Recovery: <em>Progress Steadily</em>
+            </h2>
+            <p className="phase-lead">
+              Follow our <strong>Quiet Knee Protocol</strong> and milestone roadmap for a steady, complications-free recovery.
+            </p>
+          </div>
+
+          {/* Quiet Knee Protocol Cards Layout */}
           <div className="quiet-protocol-layout">
             <div className="quiet-3d-stage" aria-hidden="true">
               <span></span>
@@ -320,44 +557,84 @@ export default function PatientGuidesPage() {
                 <span>01</span>
                 <h3>Control swelling</h3>
                 <p>
-                  Use a protected ice pack for the duration advised by your team. Elevate the leg so the ankle is supported above heart level, keep the dressing dry and check the skin regularly.
+                  Ice for 15–20 minutes every 2–3 hours. Elevate the ankle above heart level and keep the dressing dry.
                 </p>
               </article>
               <article>
                 <span>02</span>
                 <h3>Protect straightening</h3>
                 <p>
-                  Early extension matters. Use the heel-prop, ankle-pump and thigh-tightening exercises prescribed by your physiotherapist; keep support away from directly behind the knee.
+                  Full 0° extension is critical. Do heel props and quad sets; never place pillows directly beneath your knee bend.
                 </p>
               </article>
               <article>
                 <span>03</span>
                 <h3>Do not force bending</h3>
                 <p>
-                  Only perform the range-of-motion work you have been shown. Aggressive pushing, pulling or bending can increase pain and swelling in the early phase.
+                  Gentle heel slides only. Forcing aggressive bending increases inflammation and joint swelling.
                 </p>
               </article>
               <article>
                 <span>04</span>
                 <h3>Keep walking short</h3>
                 <p>
-                  Use your walker or other aid correctly. Keep early walks purposeful and brief, and follow the individual step target given by your clinical team.
+                  Walk with your walker for 5–10 minutes at a time. Prioritize proper gait over long distances.
                 </p>
               </article>
               <article>
                 <span>05</span>
                 <h3>Limit time on your feet</h3>
                 <p>
-                  Alternate short activity with seated rest and elevation. Sit down before pain or swelling builds instead of waiting until the knee feels overworked.
+                  Alternate short activity with seated leg elevation. Rest before fatigue or swelling builds up.
                 </p>
               </article>
               <article>
                 <span>06</span>
                 <h3>Know the stop signs</h3>
                 <p>
-                  Do not push through rising pain, marked swelling or a change that concerns you. Contact the clinical team for guidance instead of trying to progress on your own.
+                  Contact clinic immediately for fever &gt; 101°F, sudden calf pain/swelling, or spreading wound redness.
                 </p>
               </article>
+            </div>
+          </div>
+
+          {/* Weekly Recovery Milestone Roadmap */}
+          <div className="home-milestones-card">
+            <div className="home-milestones-header">
+              <h3>Recovery Milestone Roadmap</h3>
+              <p>Key progress benchmarks from acute healing to full active living.</p>
+            </div>
+            <div className="home-milestones-grid">
+              <div className="milestone-block">
+                <div className="milestone-tag">Weeks 1 – 2</div>
+                <h4>Acute Healing</h4>
+                <ul className="milestone-items">
+                  <li>0° extension &amp; 90° flexion range.</li>
+                  <li>Indoor walking with walker support.</li>
+                  <li>Incision inspection &amp; suture review at Day 12–14.</li>
+                  <li>Strict elevation and ice pack routine.</li>
+                </ul>
+              </div>
+              <div className="milestone-block">
+                <div className="milestone-tag">Weeks 3 – 6</div>
+                <h4>Restoring Independence</h4>
+                <ul className="milestone-items">
+                  <li>Transition to single stick or unassisted walking.</li>
+                  <li>Achieve 105° to 115° knee flexion.</li>
+                  <li>Resume light desk work and daily chores.</li>
+                  <li>Driving clearance assessment.</li>
+                </ul>
+              </div>
+              <div className="milestone-block">
+                <div className="milestone-tag">Weeks 7 – 12+</div>
+                <h4>Active Living &amp; Strength</h4>
+                <ul className="milestone-items">
+                  <li>Normal walking without limp; unassisted stairs.</li>
+                  <li>Achieve 120°+ flexion and muscle stamina.</li>
+                  <li>Resume swimming, cycling, and travel.</li>
+                  <li>Long-term joint preservation exercises.</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -374,7 +651,7 @@ export default function PatientGuidesPage() {
               Frequently Asked <em>Questions</em>
             </h2>
             <p>
-              Clear, practical answers about preparing for surgery, early mobilization, home care, and milestone timelines.
+              Clear, practical answers about surgery preparation, hospital stay, and milestone timelines.
             </p>
           </div>
 

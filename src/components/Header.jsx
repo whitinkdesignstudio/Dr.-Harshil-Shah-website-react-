@@ -142,6 +142,14 @@ export default function Header() {
                 <div className="nav-dropdown-header">
                   <span>Explore Gallery</span>
                 </div>
+                <Link to="/operation-theatre" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
+                  <div className="dropdown-link-icon">🎬</div>
+                  <div>
+                    <strong>Surgical &amp; OT Videos</strong>
+                    <small>Live surgery recordings &amp; robotic procedures</small>
+                  </div>
+                  <span className="dropdown-dl-tag" style={{ background: '#0284c7', color: '#ffffff', fontWeight: 800 }}>VIDEOS</span>
+                </Link>
                 <Link to="/gallery" className="nav-dropdown-link" onClick={() => setGalleryDropdownOpen(false)}>
                   <div className="dropdown-link-icon">📸</div>
                   <div>
@@ -175,16 +183,12 @@ export default function Header() {
           </nav>
 
           {/* Center Brand */}
-          <Link to="/" className="brand" aria-label="Dr Harshil Shah home">
-            <svg aria-hidden="true" viewBox="0 0 40 40" className="brand-mark">
-              <rect x="15" y="3" width="10" height="34" rx="3" fill="currentColor" />
-              <rect x="3" y="15" width="34" height="10" rx="3" fill="currentColor" />
-              <circle cx="20" cy="20" r="5" fill="#fff" />
-            </svg>
-            <span className="brand-copy">
-              <strong>Dr. Harshil Shah</strong>
-              <small>Orthopaedic Surgeon</small>
-            </span>
+          <Link to="/" className="brand" aria-label="Dr. Harshil Shah - Home">
+            <img
+              src="/logo.png"
+              alt="Dr. Harshil Shah - M.S Orthopaedic, FIJR, FIAS"
+              className="brand-logo-img"
+            />
           </Link>
 
           {/* Desktop Right Nav & CTA */}
@@ -356,16 +360,12 @@ export default function Header() {
           ✕
         </button>
 
-        <div style={{ marginBottom: '20px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <svg aria-hidden="true" viewBox="0 0 40 40" style={{ width: '28px', height: '28px', color: 'var(--teal)' }}>
-            <rect x="15" y="3" width="10" height="34" rx="3" fill="currentColor" />
-            <rect x="3" y="15" width="34" height="10" rx="3" fill="currentColor" />
-            <circle cx="20" cy="20" r="5" fill="#fff" />
-          </svg>
-          <div>
-            <strong style={{ display: 'block', fontSize: '15px', fontFamily: 'var(--serif)' }}>Dr. Harshil Shah</strong>
-            <small style={{ color: 'var(--ink-soft)', textTransform: 'uppercase', fontSize: '8px', letterSpacing: '0.15em' }}>Orthopaedic Surgeon</small>
-          </div>
+        <div style={{ marginBottom: '24px', display: 'flex', alignItems: 'center', justifyContent: 'flex-start' }}>
+          <img
+            src="/logo.png"
+            alt="Dr. Harshil Shah"
+            className="brand-logo-img brand-logo-drawer"
+          />
         </div>
 
         <nav className="mobile-nav-links">
@@ -396,6 +396,9 @@ export default function Header() {
             </button>
             {mobileGalleryOpen && (
               <div className="mobile-nav-sublinks">
+                <Link to="/operation-theatre" onClick={() => setMobileMenuOpen(false)}>
+                  🎬 Surgical &amp; OT Videos <span className="mobile-pdf-pill" style={{ background: '#0284c7', color: '#fff' }}>VIDEOS</span>
+                </Link>
                 <Link to="/gallery" onClick={() => setMobileMenuOpen(false)}>
                   📸 All Moments
                 </Link>
@@ -484,3 +487,4 @@ export default function Header() {
     </>
   );
 }
+

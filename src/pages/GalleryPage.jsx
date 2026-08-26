@@ -341,6 +341,13 @@ export default function GalleryPage() {
               >
                 🎓 Conferences &amp; Fellowships ({galleryItems.filter(i => i.category === 'events').length})
               </button>
+              <Link
+                to="/operation-theatre"
+                className="gallery-filter-pill"
+                style={{ background: 'linear-gradient(135deg, #0284c7, #0369a1)', color: '#ffffff', borderColor: '#38bdf8', fontWeight: 800 }}
+              >
+                🎬 Surgical &amp; OT Videos (19) →
+              </Link>
             </div>
           </div>
 

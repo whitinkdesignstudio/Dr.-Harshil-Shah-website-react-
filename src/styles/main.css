@@ -21,7 +21,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -31,7 +36,8 @@ a {
   text-decoration: inherit;
 }
 
-b, strong {
+b,
+strong {
   font-weight: bolder;
 }
 
@@ -39,16 +45,26 @@ small {
   font-size: 80%;
 }
 
-img, svg, video, canvas, iframe, embed, object {
+img,
+svg,
+video,
+canvas,
+iframe,
+embed,
+object {
   display: block;
 }
 
-img, video {
+img,
+video {
   max-width: 100%;
   height: auto;
 }
 
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font: inherit;
   color: inherit;
   background-color: transparent;
@@ -59,7 +75,9 @@ textarea {
   resize: vertical;
 }
 
-ol, ul, menu {
+ol,
+ul,
+menu {
   list-style: none;
 }
 
@@ -67,7 +85,8 @@ table {
   border-collapse: collapse;
 }
 
-button, input:where([type=button], [type=reset], [type=submit]) {
+button,
+input:where([type=button], [type=reset], [type=submit]) {
   appearance: button;
 }
 
@@ -5736,19 +5755,39 @@ body {
 /* Timeline Card */
 .about-timeline-card {
   background: #ffffff;
-  border: 1.5px solid rgba(56, 189, 248, 0.4);
-  border-radius: 14px;
-  padding: 22px 26px;
+  border: 1.5px solid rgba(56, 189, 248, 0.35);
+  border-radius: 16px;
+  padding: 24px 28px;
   box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.08);
   width: 100%;
-  max-width: 420px;
+  max-width: 440px;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-timeline-card:hover {
   transform: translateY(-3px);
   border-color: #0284c7;
-  box-shadow: 0 14px 32px -4px rgba(2, 132, 199, 0.16);
+  box-shadow: 0 16px 36px -4px rgba(2, 132, 199, 0.16);
+}
+
+.about-timeline-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.about-timeline-location {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #64748b;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 3px 8px;
+  border-radius: 6px;
 }
 
 /* Badges */
@@ -5757,15 +5796,14 @@ body {
   font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
   font-size: 10.5px;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 3px 10px;
+  padding: 3.5px 10px;
   border-radius: 6px;
-  margin-bottom: 10px;
 }
 
-.badge-experience {
-  color: #0284c7;
+.badge-education {
+  color: #0369a1;
   background: #f0f9ff;
   border: 1.5px solid #bae6fd;
 }
@@ -5776,26 +5814,65 @@ body {
   border: 1.5px solid #99f6e4;
 }
 
-/* Card Heading & Desc */
+.badge-sports {
+  color: #d97706;
+  background: #fffbeb;
+  border: 1.5px solid #fde68a;
+}
+
+.badge-shoulder {
+  color: #7c3aed;
+  background: #f5f3ff;
+  border: 1.5px solid #ddd6fe;
+}
+
+.badge-usa {
+  color: #be123c;
+  background: #fff1f2;
+  border: 1.5px solid #fecdd3;
+}
+
+.badge-harvard {
+  color: #991b1b;
+  background: #fef2f2;
+  border: 1.5px solid #fecaca;
+}
+
+/* Card Heading, Institution & Body */
 .about-timeline-heading {
   font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
-  font-size: 17.5px;
+  font-size: 18px;
   font-weight: 800;
   color: #0f172a;
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   line-height: 1.3;
+}
+
+.about-timeline-institution {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #0284c7;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.about-timeline-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .about-timeline-desc {
   font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
   font-size: 13.5px;
-  line-height: 1.6;
+  line-height: 1.62;
   color: #475569;
   margin: 0;
   font-weight: 450;
 }
 
-/* Responsive Mobile Layout */
+/* Responsive Mobile Layout for Timeline */
 @media (max-width: 768px) {
 
   .about-timeline-line-bg,
@@ -5825,6 +5902,236 @@ body {
     display: none;
   }
 }
+
+/* ==========================================================================
+   A WELL-ROUNDED ORTHOPAEDIC JOURNEY SECTION
+   ========================================================================== */
+.about-journey-section {
+  padding: 40px 0 90px;
+  background: #ffffff;
+}
+
+.about-journey-box {
+  background: linear-gradient(135deg, #0b2f44 0%, #0f4c6e 50%, #15628d 100%);
+  border-radius: 28px;
+  padding: 56px 48px;
+  color: #ffffff;
+  box-shadow: 0 24px 60px rgba(11, 47, 68, 0.22);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-journey-box::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.about-journey-header {
+  max-width: 800px;
+  margin-bottom: 40px;
+}
+
+.about-journey-header .eyebrow {
+  color: #38bdf8;
+  margin-bottom: 12px;
+}
+
+.about-journey-header .eyebrow span {
+  background: #38bdf8;
+}
+
+.about-journey-title {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: clamp(26px, 3.2vw, 38px) !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  line-height: 1.25 !important;
+  margin: 0 0 16px !important;
+  letter-spacing: -0.02em !important;
+}
+
+.about-journey-box p {
+  color: #e0f2fe !important;
+}
+
+.about-journey-lead {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 17px !important;
+  line-height: 1.7 !important;
+  color: #e0f2fe !important;
+  margin: 0 !important;
+}
+
+.about-journey-lead strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.about-journey-specialties-wrap {
+  margin-bottom: 36px;
+}
+
+.about-journey-list-title {
+  display: block;
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #38bdf8 !important;
+  margin-bottom: 18px !important;
+}
+
+.about-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.about-journey-item {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.16) !important;
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s ease;
+}
+
+.about-journey-item:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: #38bdf8 !important;
+  transform: translateY(-2px);
+}
+
+.about-journey-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #38bdf8 !important;
+  color: #0b2f44 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-journey-item-text {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  line-height: 1.35 !important;
+}
+
+.about-journey-philosophy-card {
+  background: rgba(0, 0, 0, 0.3) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 18px;
+  padding: 32px 36px;
+  position: relative;
+}
+
+.about-journey-quote-icon {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 64px;
+  line-height: 1;
+  color: #38bdf8;
+  position: absolute;
+  top: 12px;
+  left: 24px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.about-journey-philosophy-text {
+  font-family: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif !important;
+  font-size: 16.5px !important;
+  line-height: 1.75 !important;
+  color: #f0f9ff !important;
+  margin: 0 0 24px !important;
+  position: relative;
+  z-index: 1;
+}
+
+.about-journey-philosophy-text strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.about-journey-cta-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.button-white {
+  background: #ffffff !important;
+  color: #0b2f44 !important;
+  font-weight: 700 !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.button-white:hover {
+  background: #f0f9ff !important;
+  color: #0284c7 !important;
+  transform: translateY(-2px);
+}
+
+.button-outline-white {
+  background: transparent !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.4) !important;
+  font-weight: 700 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.button-outline-white:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .about-journey-box {
+    padding: 36px 24px;
+    border-radius: 20px;
+  }
+
+  .about-journey-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .about-journey-philosophy-card {
+    padding: 24px 20px;
+  }
+
+  .about-journey-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .about-journey-cta-row .button {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
 
 /* ==========================================================================
    ABOUT PAGE — FREQUENTLY ASKED QUESTIONS SECTION
@@ -17334,7 +17641,7 @@ button {
   border: 1.5px solid #e0f2fe !important;
   border-radius: 26px !important;
   box-shadow: 0 14px 40px rgba(15, 60, 95, 0.12) !important;
-  height: 74px !important;
+  height: 80px !important;
   padding: 0 28px !important;
   margin: 0 auto !important;
   width: min(1400px, 100% - 32px) !important;
@@ -17347,7 +17654,7 @@ button {
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
   border-radius: 22px !important;
-  height: 68px !important;
+  height: 70px !important;
   width: min(1280px, 100% - 32px) !important;
   box-shadow: 0 16px 45px rgba(15, 60, 95, 0.15) !important;
   border: 1.5px solid #e0f2fe !important;
@@ -18457,6 +18764,7 @@ button {
 .appt-hero-accent {
   background: linear-gradient(135deg, #38bdf8 0%, #bae6fd 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
 }
@@ -18936,10 +19244,12 @@ button {
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
     transform: scale(0.95);
   }
+
   70% {
     box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
     transform: scale(1.15);
   }
+
   100% {
     box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
     transform: scale(0.95);
@@ -18980,6 +19290,7 @@ button {
     opacity: 0;
     transform: translateY(-8px) scale(0.97);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -18987,8 +19298,14 @@ button {
 }
 
 @keyframes apptBannerShine {
-  0% { left: -100%; }
-  40%, 100% { left: 180%; }
+  0% {
+    left: -100%;
+  }
+
+  40%,
+  100% {
+    left: 180%;
+  }
 }
 
 .appt-selected-slot-pulse-icon {
@@ -19006,8 +19323,13 @@ button {
 }
 
 @keyframes apptIconBounce {
-  0% { transform: scale(0.4) rotate(-20deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0% {
+    transform: scale(0.4) rotate(-20deg);
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
 }
 
 .appt-selected-slot-info {
@@ -19048,8 +19370,15 @@ button {
 }
 
 @keyframes apptBadgePop {
-  0% { transform: scale(0.6); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .appt-slot-all-passed-alert {
@@ -19129,10 +19458,10 @@ button {
   position: relative;
   overflow: hidden;
   transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
-              box-shadow 0.22s ease,
-              background-color 0.2s ease,
-              border-color 0.2s ease,
-              color 0.2s ease;
+    box-shadow 0.22s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
   user-select: none;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
@@ -19162,9 +19491,17 @@ button {
 }
 
 @keyframes apptSlotPop {
-  0% { transform: scale(0.92); }
-  60% { transform: scale(1.08); }
-  100% { transform: scale(1.04); }
+  0% {
+    transform: scale(0.92);
+  }
+
+  60% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1.04);
+  }
 }
 
 .appt-slot-check-icon {
@@ -19173,8 +19510,15 @@ button {
 }
 
 @keyframes apptCheckPop {
-  0% { transform: scale(0) rotate(-45deg); opacity: 0; }
-  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  0% {
+    transform: scale(0) rotate(-45deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 .appt-slot-shimmer-glow {
@@ -19189,8 +19533,14 @@ button {
 }
 
 @keyframes apptSlotShine {
-  0% { left: -100%; }
-  50%, 100% { left: 200%; }
+  0% {
+    left: -100%;
+  }
+
+  50%,
+  100% {
+    left: 200%;
+  }
 }
 
 .appt-slot-btn:disabled,
@@ -19210,6 +19560,7 @@ button {
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
   }
+
   .appt-slot-btn {
     padding: 8px 4px;
     font-size: 11.5px;
@@ -20289,10 +20640,6 @@ button {
 }
 
 /* Right scroll container */
-.faq-content-scroll {
-  /* Default */
-}
-
 .faq-content-scroll--active {
   height: calc(100vh - 160px);
   min-height: 520px;
@@ -22417,6 +22764,7 @@ button {
 }
 
 @media (min-width: 1025px) {
+
   .mobile-nav-backdrop,
   .mobile-menu-drawer {
     display: none !important;
@@ -22440,8 +22788,8 @@ button {
     transform: translateY(0) !important;
     pointer-events: auto !important;
     transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
   header.site-header.is-header-hidden {
@@ -22575,8 +22923,17 @@ button {
 }
 
 @keyframes pulseDot {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.4); opacity: 0.5; }
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.5;
+  }
 }
 
 .gallery-hero-title {
@@ -22591,6 +22948,7 @@ button {
 .gallery-hero-title .hero-accent-text {
   background: linear-gradient(90deg, #38bdf8, #7dd3fc, #bae6fd);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   font-style: italic;
   font-family: var(--serif, Georgia, serif);
@@ -22729,13 +23087,23 @@ button {
 }
 
 @keyframes heroFloatShoulder {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-10px) rotate(2deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(-10px) rotate(2deg);
+  }
 }
 
 @keyframes heroFloatKnee {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(8px) rotate(-2deg); }
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  100% {
+    transform: translateY(8px) rotate(-2deg);
+  }
 }
 
 @media (max-width: 1024px) {
@@ -22743,17 +23111,21 @@ button {
     grid-template-columns: 1fr;
     gap: 36px;
   }
+
   .gallery-hero-showcase-card {
     max-width: 380px;
     height: 320px;
   }
+
   .hero-3d-models-wrap {
     height: 180px;
   }
+
   .hero-3d-shoulder {
     width: 150px;
     height: 150px;
   }
+
   .hero-3d-knee {
     width: 110px;
     height: 140px;
@@ -22782,8 +23154,8 @@ button {
   border: 1px solid rgba(2, 132, 199, 0.18);
   box-shadow: 0 12px 35px -10px rgba(15, 23, 42, 0.12);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.3s ease;
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s ease;
 }
 
 /* Big Hero Card: 2 columns x 2 rows (562px tall) */
@@ -22909,7 +23281,7 @@ button {
   opacity: 0;
   transform: translateY(22px);
   transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
   pointer-events: none;
 }
 
@@ -22947,14 +23319,17 @@ button {
 }
 
 /* On Touch/Mobile screens without hover cursor, keep text visible */
-@media (hover: none), (max-width: 768px) {
+@media (hover: none),
+(max-width: 768px) {
   .gallery-card-gradient {
     opacity: 1 !important;
   }
+
   .gallery-card-info {
     opacity: 1 !important;
     transform: translateY(0) !important;
   }
+
   .gallery-zoom-badge {
     opacity: 1 !important;
     transform: scale(1) rotate(0deg) !important;
@@ -22969,6 +23344,7 @@ button {
     opacity: 0;
     transform: translateX(-120px) scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -22980,6 +23356,7 @@ button {
     opacity: 0;
     transform: translateX(120px) scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -22991,6 +23368,7 @@ button {
     opacity: 0;
     transform: translateY(-100px) scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -23002,6 +23380,7 @@ button {
     opacity: 0;
     transform: translateY(100px) scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -23013,9 +23392,11 @@ button {
   0% {
     transform: translateX(-6px);
   }
+
   50% {
     transform: translateX(6px);
   }
+
   100% {
     transform: translateX(-6px);
   }
@@ -23025,9 +23406,11 @@ button {
   0% {
     transform: translateX(6px);
   }
+
   50% {
     transform: translateX(-6px);
   }
+
   100% {
     transform: translateX(6px);
   }
@@ -23037,9 +23420,11 @@ button {
   0% {
     transform: translateY(-6px);
   }
+
   50% {
     transform: translateY(6px);
   }
+
   100% {
     transform: translateY(-6px);
   }
@@ -23049,9 +23434,11 @@ button {
   0% {
     transform: translateY(6px);
   }
+
   50% {
     transform: translateY(-6px);
   }
+
   100% {
     transform: translateY(6px);
   }
@@ -23081,22 +23468,22 @@ button {
 /* In-View Animation: Plays immediately as the user scrolls down to this card */
 .gallery-bento-card.anim-left-to-right.is-in-view {
   animation: slideInFromLeft 0.85s cubic-bezier(0.16, 1, 0.3, 1) both,
-             floatLeftRightContinuous 4.5s ease-in-out infinite 0.9s;
+    floatLeftRightContinuous 4.5s ease-in-out infinite 0.9s;
 }
 
 .gallery-bento-card.anim-right-to-left.is-in-view {
   animation: slideInFromRight 0.85s cubic-bezier(0.16, 1, 0.3, 1) both,
-             floatRightLeftContinuous 4.8s ease-in-out infinite 0.9s;
+    floatRightLeftContinuous 4.8s ease-in-out infinite 0.9s;
 }
 
 .gallery-bento-card.anim-top-to-bottom.is-in-view {
   animation: slideInFromTop 0.85s cubic-bezier(0.16, 1, 0.3, 1) both,
-             floatTopBottomContinuous 5.2s ease-in-out infinite 0.9s;
+    floatTopBottomContinuous 5.2s ease-in-out infinite 0.9s;
 }
 
 .gallery-bento-card.anim-bottom-to-top.is-in-view {
   animation: slideInFromBottom 0.85s cubic-bezier(0.16, 1, 0.3, 1) both,
-             floatBottomTopContinuous 5.0s ease-in-out infinite 0.9s;
+    floatBottomTopContinuous 5.0s ease-in-out infinite 0.9s;
 }
 
 /* ==========================================================================
@@ -23290,6 +23677,7 @@ button {
    who have enabled "Reduce Motion" in their OS settings.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -23348,4 +23736,974 @@ button {
 /* Remove will-change after animation completes to free GPU memory */
 .photo-hero-slide:not(.is-active) {
   will-change: auto;
+}
+
+/* ============================================================
+   Brand Logo Image Styling (High Visibility & Scaled)
+   ============================================================ */
+.brand-logo-img {
+  height: 52px;
+  max-height: 56px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease, height 0.25s ease;
+}
+
+.brand:hover .brand-logo-img {
+  transform: scale(1.02);
+}
+
+.site-header.is-scrolled .brand-logo-img {
+  height: 44px;
+  max-height: 46px;
+}
+
+.footer-brand .brand-footer .footer-logo-img {
+  height: 60px;
+  max-height: 66px;
+  width: auto;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.brand-logo-drawer {
+  height: 50px;
+  max-height: 54px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .brand-logo-img {
+    height: 46px;
+    max-height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header .nav-wrap {
+    height: 66px !important;
+  }
+
+  .brand-logo-img {
+    height: 40px;
+    max-height: 44px;
+  }
+
+  .footer-brand .brand-footer .footer-logo-img {
+    height: 52px;
+    max-height: 56px;
+  }
+}
+
+/* ==========================================================================
+   SURGICAL THEATRE & OPERATION VIDEOS PAGE (AUTHENTIC CLINICAL WHITE THEME)
+   ========================================================================== */
+.surgical-page {
+  background: #f8fafc;
+  color: #0f172a;
+  min-height: 100vh;
+  position: relative;
+}
+
+.surgical-hero-section {
+  position: relative;
+  padding: 48px 0 70px;
+  background: linear-gradient(180deg, #f0f7fb 0%, #ffffff 100%);
+  border-bottom: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.surgical-hero-mesh {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    radial-gradient(#0284c7 0.75px, transparent 0.75px),
+    radial-gradient(#94a3b8 0.75px, transparent 0.75px);
+  background-size: 28px 28px;
+  background-position: 0 0, 14px 14px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.surgical-hero-container {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.surgical-hero-container .breadcrumb {
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.surgical-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #e0f2fe;
+  border: 1px solid #bae6fd;
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #0369a1;
+  margin-bottom: 18px;
+}
+
+.live-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #0284c7;
+  box-shadow: 0 0 0 rgba(2, 132, 199, 0.4);
+  animation: pulseLiveDot 2s infinite;
+}
+
+@keyframes pulseLiveDot {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0.6);
+  }
+
+  70% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 6px rgba(2, 132, 199, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(2, 132, 199, 0);
+  }
+}
+
+.surgical-hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 800;
+  color: #0b2f44;
+  line-height: 1.2;
+  margin: 0 0 14px;
+  letter-spacing: -0.025em;
+}
+
+.text-gradient-cyan {
+  color: #0284c7;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.surgical-hero-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #475569;
+  max-width: 720px;
+  margin: 0 auto 44px;
+}
+
+/* 3D Cinema Stage */
+.surgical-cinema-stage-wrap {
+  position: relative;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.surgical-stage-lights {
+  display: none;
+}
+
+.surgical-3d-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  min-height: 480px;
+}
+
+.surgical-stage-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.stage-card-left,
+.stage-card-right {
+  flex: 0 0 250px;
+  opacity: 0.65;
+  transform: scale(0.88);
+}
+
+.stage-card-left:hover,
+.stage-card-right:hover {
+  opacity: 0.95;
+  transform: scale(0.92);
+}
+
+
+
+.stage-card-video-box {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #020617;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 10px 25px rgba(11, 47, 68, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  display: block;
+}
+
+.stage-card-glass-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  color: #ffffff;
+}
+
+.stage-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+.stage-card-mini-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.35;
+}
+
+/* Center Spotlight Card */
+.stage-card-center {
+  flex: 0 0 680px;
+  max-width: 680px;
+  opacity: 1;
+  transform: scale(1);
+  z-index: 5;
+  cursor: default;
+}
+
+.center-card-frame {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 45px rgba(11, 47, 68, 0.12),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.center-video-container {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: #020617;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  display: block;
+}
+
+.center-top-bar {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+}
+
+.center-category-badge {
+  background: rgba(11, 47, 68, 0.85);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.center-counter-pill {
+  background: rgba(255, 255, 255, 0.9);
+  color: #0b2f44;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 999px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.center-floating-controls {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  gap: 8px;
+  z-index: 4;
+}
+
+.center-ctrl-btn {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(203, 213, 225, 0.8);
+  backdrop-filter: blur(8px);
+  color: #0f172a;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition: all 0.2s ease;
+}
+
+.center-ctrl-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.center-progress-track {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  z-index: 3;
+}
+
+.center-progress-bar {
+  height: 100%;
+  background: #0284c7;
+  transition: width 0.1s linear;
+}
+
+.center-info-panel {
+  padding: 22px 26px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.center-info-text {
+  flex: 1;
+  text-align: left;
+}
+
+.center-info-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.center-tag-chip {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0369a1;
+  background: #e0f2fe;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.center-file-tag {
+  font-size: 11.5px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.center-video-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 17.5px;
+  font-weight: 800;
+  color: #0b2f44;
+  margin: 0 0 6px;
+  line-height: 1.3;
+}
+
+.center-video-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0;
+}
+
+.center-action-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.center-nav-arrow-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.center-nav-arrow-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.center-play-main-btn {
+  background: #0284c7;
+  border: 1px solid #0284c7;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13.5px;
+  font-weight: 700;
+  padding: 9px 16px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
+}
+
+.center-play-main-btn:hover {
+  background: #0369a1;
+  border-color: #0369a1;
+}
+
+.surgical-stage-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+}
+
+.stage-dot-btn {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #cbd5e1;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.stage-dot-btn.dot-active {
+  width: 22px;
+  background: #0284c7;
+}
+
+/* Categories & Grid Section */
+.surgical-grid-section {
+  padding: 60px 0 90px;
+  background: #ffffff;
+  border-top: 1px solid #f1f5f9;
+}
+
+.surgical-section-heading {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 44px;
+}
+
+.surgical-section-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: clamp(26px, 3.2vw, 36px);
+  font-weight: 800;
+  color: #0b2f44;
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+
+.surgical-section-subtitle {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 15.5px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 32px;
+}
+
+.surgical-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.surgical-filter-tab {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 999px;
+  padding: 8px 16px;
+  color: #334155;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.surgical-filter-tab:hover {
+  background: #f8fafc;
+  border-color: #0284c7;
+  color: #0284c7;
+}
+
+.surgical-filter-tab.is-active {
+  background: #0284c7;
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.filter-tab-count {
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.08);
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.surgical-filter-tab.is-active .filter-tab-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.surgical-video-bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.surgical-grid-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(11, 47, 68, 0.05);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  content-visibility: auto;
+  contain-intrinsic-size: 380px;
+  transform: translateZ(0);
+}
+
+.surgical-grid-card:hover {
+  transform: translateY(-4px) translateZ(0);
+  border-color: #0284c7;
+  box-shadow: 0 14px 30px rgba(11, 47, 68, 0.1);
+}
+
+.surgical-card-media {
+  position: relative;
+  width: 100%;
+  height: 230px;
+  background: #020617;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surgical-card-skeleton {
+  width: 100%;
+  height: 100%;
+  background: #091a28;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
+  animation: skeletonShimmer 1.8s infinite;
+}
+
+@keyframes skeletonShimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-play-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding-left: 3px;
+  z-index: 1;
+}
+
+.surgical-card-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain !important;
+  display: block;
+}
+
+.surgical-card-overlay-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.card-badge-num {
+  background: rgba(11, 47, 68, 0.85);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+
+.card-badge-cat {
+  background: rgba(2, 132, 199, 0.9);
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 7px;
+  border-radius: 4px;
+}
+
+.surgical-card-hover-actions {
+  position: absolute;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.card-audio-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-audio-pill:hover {
+  background: #0284c7;
+  color: #ffffff;
+  border-color: #0284c7;
+}
+
+.card-expand-pill {
+  background: #0284c7;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.surgical-card-info {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.surgical-card-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 16px;
+  font-weight: 800;
+  color: #0b2f44;
+  margin: 0 0 6px;
+  line-height: 1.35;
+}
+
+.surgical-card-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px;
+  line-height: 1.55;
+  color: #64748b;
+  margin: 0 0 14px;
+  flex: 1;
+}
+
+.surgical-card-footer {
+  border-top: 1px solid #f1f5f9;
+  padding-top: 12px;
+}
+
+.surgical-card-action-text {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 13px;
+  font-weight: 700;
+  color: #0284c7;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Cinema Modal */
+.surgical-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 47, 68, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeInModal 0.2s ease;
+}
+
+.surgical-modal-content {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+}
+
+.surgical-modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.surgical-modal-close-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+.surgical-modal-player-wrap {
+  width: 100%;
+  background: #020617;
+  max-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.surgical-modal-video {
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+}
+
+.surgical-modal-info {
+  padding: 26px 30px;
+}
+
+.modal-header-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.modal-cat-tag {
+  background: #e0f2fe;
+  color: #0369a1;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.modal-file-id {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.modal-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 22px;
+  font-weight: 800;
+  color: #0b2f44;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.modal-desc {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #475569;
+  margin: 0 0 24px;
+}
+
+.modal-action-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+
+  .stage-card-left,
+  .stage-card-right {
+    display: none;
+  }
+
+  .stage-card-center {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .surgical-video-bento-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .surgical-hero-section {
+    padding: 24px 0 50px;
+  }
+
+  .center-video-container {
+    height: 260px;
+  }
+
+  .center-info-panel {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px;
+  }
+
+  .center-action-row {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .center-play-main-btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .surgical-video-bento-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .surgical-modal-info {
+    padding: 18px;
+  }
 }

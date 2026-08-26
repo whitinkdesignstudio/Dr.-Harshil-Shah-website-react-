@@ -3,40 +3,87 @@ import { Link } from 'react-router-dom';
 
 const timelineData = [
   {
-    type: 'EXPERIENCE',
-    badgeClass: 'badge-experience',
-    title: 'LT Hospital',
-    desc: 'Four years of comprehensive orthopaedic and trauma surgical experience.',
+    type: 'MEDICAL EDUCATION',
+    badgeClass: 'badge-education',
+    location: 'Ahmedabad',
+    title: 'Medical Education & Orthopaedic Residency',
+    institution: 'Smt. NHL Municipal Medical College • V.S. Hospital • L.G. Hospital',
+    paragraphs: [
+      'He completed his MBBS from Smt. NHL Municipal Medical College, Ahmedabad, followed by his clinical internship at V.S. Hospital, Ahmedabad.',
+      'With a growing interest in bone and joint care, he went on to pursue his M.S. in Orthopaedics at L.G. Hospital, Ahmedabad, where he gained extensive experience in trauma, fracture care and a wide range of orthopaedic conditions.'
+    ],
     side: 'left'
   },
   {
-    type: 'EXPERIENCE',
-    badgeClass: 'badge-experience',
-    title: 'Hinduja Hospital',
-    desc: 'One year of advanced orthopaedic practice and specialised clinical care.',
+    type: 'FELLOWSHIP',
+    badgeClass: 'badge-training',
+    location: 'Mumbai',
+    title: 'Joint Replacement Training',
+    institution: 'P. D. Hinduja Hospital • Dr. Sanjay Agarwala',
+    paragraphs: [
+      'To further develop his skills in joint reconstruction, Dr. Shah completed a Fellowship in Joint Replacement Surgery at P. D. Hinduja Hospital, Mumbai, under the guidance of Dr. Sanjay Agarwala.',
+      'This training gave him focused exposure to hip and knee replacement surgery and helped build a strong foundation in modern joint replacement techniques.'
+    ],
     side: 'right'
   },
   {
-    type: 'TRAINING',
-    badgeClass: 'badge-training',
-    title: 'Dr. Sanjay Agarwala',
-    desc: 'Prestigious fellowship in complex joint replacement and reconstruction.',
+    type: 'SPECIALIZED TRAINING',
+    badgeClass: 'badge-sports',
+    location: 'Mumbai',
+    title: 'Sports Injury & Arthroscopy',
+    institution: 'Dr. Abhay Narvekar',
+    paragraphs: [
+      'He later trained under Dr. Abhay Narvekar in Sports Injury and Arthroscopy, gaining experience in the diagnosis and minimally invasive treatment of sports-related and ligament injuries.'
+    ],
     side: 'left'
   },
   {
-    type: 'TRAINING',
-    badgeClass: 'badge-training',
-    title: 'Dr. Aditya Manek',
-    desc: 'Six months of intensive specialized training in advanced joint care.',
+    type: 'SHOULDER FELLOWSHIP',
+    badgeClass: 'badge-shoulder',
+    location: 'Pune',
+    title: 'Shoulder Surgery & Sports Injuries',
+    institution: 'DMH Hospital, Pune • Dr. Ashish Babulkar',
+    paragraphs: [
+      'Dr. Shah continued his specialist training in Pune under Dr. Ashish Babulkar at DMH Hospital, with a focus on shoulder replacement, shoulder disorders and sports injuries.',
+      'This experience further developed his interest in treating complex shoulder problems and restoring function in active patients.'
+    ],
     side: 'right'
   },
   {
-    type: 'TRAINING',
-    badgeClass: 'badge-training',
-    title: 'Dr. Viral Shah • Breach Candy Hospital',
-    desc: 'Specialised knee and hip replacement training, including Total Knee Replacement (TKR).',
+    type: 'INTERNATIONAL FELLOWSHIP — USA',
+    badgeClass: 'badge-usa',
+    location: 'New York, USA',
+    title: 'Robotic & Revision Joint Replacement — USA',
+    institution: 'Hospital for Special Surgery (HSS), New York • Dr. Peter Sculco',
+    paragraphs: [
+      'As part of his advanced international training, Dr. Shah completed a fellowship in Robotic Joint Replacement and Revision Joint Replacement at Hospital for Special Surgery (HSS), New York, a Cornell-affiliated medical centre, under Dr. Peter Sculco.',
+      'During this period, he gained exposure to modern robotic-assisted joint replacement techniques as well as the management of complex primary and revision hip and knee replacements.'
+    ],
     side: 'left'
+  },
+  {
+    type: 'HARVARD-AFFILIATED FELLOWSHIP',
+    badgeClass: 'badge-harvard',
+    location: 'Boston, USA',
+    title: 'Advanced Shoulder Training — Harvard-Affiliated MGH',
+    institution: 'Massachusetts General Hospital (MGH), Boston • Dr. Bassem Elhassan',
+    paragraphs: [
+      'He further trained in the Shoulder Service at Massachusetts General Hospital (MGH), a Harvard-affiliated teaching hospital, under Dr. Bassem Elhassan.',
+      'This fellowship provided advanced experience in shoulder surgery, reconstruction and the management of complex shoulder conditions.'
+    ],
+    side: 'right'
   }
+];
+
+const expertiseList = [
+  'Joint Replacement Surgery',
+  'Robotic Joint Replacement',
+  'Revision Hip & Knee Replacement',
+  'Sports Injury Management',
+  'Arthroscopy',
+  'Shoulder Surgery',
+  'Shoulder Replacement',
+  'Complex Joint Reconstruction'
 ];
 
 const jointsData = [
@@ -318,12 +365,15 @@ export default function AboutPage() {
       </section>
 
       {/* Experience & Advanced Training Timeline */}
-      <section className="about-timeline-section">
+      <section className="about-timeline-section" id="experience-training">
         <div className="shell">
           <div className="about-timeline-header">
-            <h2 className="about-timeline-title">Experience &amp; advanced training</h2>
+            <div className="eyebrow">
+              <span></span> Experience &amp; Training
+            </div>
+            <h2 className="about-timeline-title">Experience &amp; Training</h2>
             <p className="about-timeline-subtitle">
-              Professional experience plus advanced training with specialists in joint replacement and arthroscopy.
+              Dr. Harshil Shah’s journey in orthopaedics has been shaped by years of hands-on clinical training in India and the United States. From his early medical education to advanced fellowships in joint replacement, sports injuries and shoulder surgery, each stage of his training has added to the way he approaches patient care today.
             </p>
           </div>
 
@@ -350,11 +400,21 @@ export default function AboutPage() {
                   >
                     {/* Content Card */}
                     <div className="about-timeline-card">
-                      <span className={`about-timeline-badge ${item.badgeClass}`}>
-                        {item.type}
-                      </span>
+                      <div className="about-timeline-card-header">
+                        <span className={`about-timeline-badge ${item.badgeClass}`}>
+                          {item.type}
+                        </span>
+                        <span className="about-timeline-location">📍 {item.location}</span>
+                      </div>
                       <h3 className="about-timeline-heading">{item.title}</h3>
-                      <p className="about-timeline-desc">{item.desc}</p>
+                      {item.institution && (
+                        <div className="about-timeline-institution">{item.institution}</div>
+                      )}
+                      <div className="about-timeline-body">
+                        {item.paragraphs.map((p, pIdx) => (
+                          <p key={pIdx} className="about-timeline-desc">{p}</p>
+                        ))}
+                      </div>
                     </div>
 
                     {/* Center Node */}
@@ -367,6 +427,57 @@ export default function AboutPage() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* A Well-Rounded Orthopaedic Journey Section */}
+      <section className="about-journey-section" aria-label="A Well-Rounded Orthopaedic Journey">
+        <div className="shell">
+          <div className="about-journey-box">
+            <div className="about-journey-header">
+              <div className="eyebrow eyebrow-light">
+                <span></span> Clinical Breadth &amp; Philosophy
+              </div>
+              <h2 className="about-journey-title">A Well-Rounded Orthopaedic Journey</h2>
+              <p className="about-journey-lead">
+                Training across institutions in <strong>Ahmedabad, Mumbai, Pune and the United States</strong> has given Dr. Harshil Shah a broad perspective on orthopaedic care.
+              </p>
+            </div>
+
+            <div className="about-journey-specialties-wrap">
+              <span className="about-journey-list-title">His experience includes:</span>
+              <div className="about-journey-grid">
+                {expertiseList.map((item, idx) => (
+                  <div key={idx} className="about-journey-item">
+                    <div className="about-journey-icon">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                    <span className="about-journey-item-text">{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="about-journey-philosophy-card">
+              <div className="about-journey-quote-icon">“</div>
+              <p className="about-journey-philosophy-text">
+                Today, he brings this experience together with a simple goal: <strong>to understand each patient’s problem clearly, explain the available treatment options and help them return to movement and daily life with confidence.</strong>
+              </p>
+              <div className="about-journey-cta-row">
+                <Link to="/appointment" className="button button-white">
+                  <span>Book a Consultation</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </Link>
+                <Link to="/treatments" className="button button-outline-white">
+                  <span>Explore Treatments</span>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -7,16 +7,12 @@ export default function Footer() {
       <div className="shell footer-grid">
         {/* Brand Col */}
         <div className="footer-brand">
-          <Link to="/" className="brand brand-footer" aria-label="Dr Harshil Shah home">
-            <svg aria-hidden="true" viewBox="0 0 40 40" className="brand-mark">
-              <rect x="15" y="3" width="10" height="34" rx="3" fill="currentColor" />
-              <rect x="3" y="15" width="34" height="10" rx="3" fill="currentColor" />
-              <circle cx="20" cy="20" r="5" fill="#fff" />
-            </svg>
-            <span className="brand-copy">
-              <strong>Dr. Harshil Shah</strong>
-              <small>Orthopaedic Surgeon</small>
-            </span>
+          <Link to="/" className="brand brand-footer" aria-label="Dr. Harshil Shah - Home">
+            <img
+              src="/logo.png"
+              alt="Dr. Harshil Shah - M.S Orthopaedic, FIJR, FIAS"
+              className="brand-logo-img footer-logo-img"
+            />
           </Link>
           <p className="footer-brand-text">
             Patient-first orthopaedic care for knee, hip and shoulder conditions, based in Gujarat, India.

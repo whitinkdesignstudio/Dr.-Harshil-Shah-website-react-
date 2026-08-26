@@ -36,4 +36,7 @@ public/hip-bone-3d-scan/source/hip-bone-fast.glb
 public/hip-bone-3d-scan/source/hip-bone-web.glb
 public/hip-bone-3d-scan/source/hip-bone-weld.glb
 
+# Large video assets (>100MB)
+public/galleri/opreation/IMG_9364.MP4
+
 .system_generated/

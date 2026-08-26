@@ -497,16 +497,14 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
     camera.position.set(0, 0.2, 5.8);
     cameraRef.current = camera;
 
-    // Safe WebGL initialization
+    // Safe WebGL initialization with universal device compatibility
     let renderer;
     try {
-      const testCanvas = document.createElement('canvas');
-      const gl = testCanvas.getContext('webgl') || testCanvas.getContext('experimental-webgl');
-      if (!gl) {
-        setHasWebGLError(true);
-        return;
-      }
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'default'
+      });
       renderer.setSize(width, height);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
       renderer.shadowMap.enabled = true;
@@ -514,8 +512,9 @@ export default function Interactive3DViewer({ initialJoint = 'knee', onSelectTre
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.2;
       rendererRef.current = renderer;
+      setHasWebGLError(false);
     } catch (err) {
-      console.warn('WebGL initialization failed:', err);
+      console.warn('WebGL initialization failed, using fallback:', err);
       setHasWebGLError(true);
       return;
     }

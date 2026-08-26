@@ -1,5 +1,5 @@
 // FAQ Data — Dr. Harshil Shah, Orthopaedic Surgeon
-// Structured for search, filtering and JSON-LD schema
+// Medically audited and structured for web accordions, search intent, and JSON-LD schema (British/Indian English)
 
 export const FAQ_CATEGORIES = [
   'All Questions',
@@ -15,423 +15,617 @@ export const FAQ_CATEGORIES = [
 ];
 
 export const faqData = [
-  // ─── APPOINTMENTS ────────────────────────────────────────────────────────────
-  {
-    id: 'appt-needed',
-    category: 'Appointments',
-    question: 'Do I need an appointment before visiting the clinic?',
-    answer:
-      'Booking an appointment in advance is recommended so the clinic team can reserve an appropriate consultation slot and ensure the doctor has adequate time for your visit. For scheduling queries, please contact the clinic directly.',
-    keywords: ['appointment', 'booking', 'walk-in', 'visit', 'schedule', 'reservation'],
-    featured: true,
-  },
+  // ─── 1. APPOINTMENTS ─────────────────────────────────────────────────────────
   {
     id: 'appt-how-book',
     category: 'Appointments',
-    question: 'How can I book an appointment?',
+    question: 'How do I book an appointment with Dr. Harshil Shah?',
     answer:
-      'You can request an appointment through the online appointment form on this website or contact the clinic directly by phone or WhatsApp. After your request is received, the clinic team will help confirm availability.',
-    keywords: ['book', 'appointment', 'online', 'form', 'WhatsApp', 'phone', 'request'],
+      'You can schedule a consultation by completing the online appointment form on this website or by contacting the clinic via phone or WhatsApp at +91 93167 53985. The reception team will assist you in confirming a suitable date and consultation slot.',
+    keywords: ['book appointment', 'online consultation', 'WhatsApp booking', 'Dr Harshil Shah appointment', 'Ahmedabad clinic'],
+    featured: true,
   },
   {
-    id: 'appt-reschedule',
+    id: 'appt-walkin-vs-scheduled',
     category: 'Appointments',
-    question: 'Can I reschedule or cancel my appointment?',
+    question: 'Can I visit the clinic without a prior appointment?',
     answer:
-      'If you need to reschedule or cancel, please contact the clinic as early as possible so the slot can be offered to another patient. The clinic team will help arrange a suitable alternative time.',
-    keywords: ['reschedule', 'cancel', 'change', 'postpone', 'appointment'],
+      'Booking in advance is strongly recommended to reduce waiting times and ensure sufficient time is allocated for your consultation. While walk-in patients are accommodated when clinic schedules permit, booked appointments receive priority.',
+    keywords: ['walk-in appointment', 'prior booking', 'clinic timing', 'consultation slot'],
   },
   {
-    id: 'appt-family-member',
+    id: 'appt-family-booking',
     category: 'Appointments',
-    question: 'Can I book an appointment for a family member?',
+    question: 'Can I book an appointment on behalf of an elderly parent or family member?',
     answer:
-      'Yes. You can request an appointment on behalf of a family member. Please provide their name, contact details and a brief description of their concern when making the request.',
-    keywords: ['family', 'relative', 'book', 'appointment', 'someone else'],
+      'Yes, you can schedule an appointment for a family member. Please share their name, age, primary joint concern, and any mobility considerations when requesting the slot so appropriate clinic arrangements can be made.',
+    keywords: ['book for parents', 'elderly care', 'family appointment', 'knee pain booking'],
   },
   {
-    id: 'appt-arrive-early',
+    id: 'appt-reschedule-cancel',
     category: 'Appointments',
-    question: 'How early should I arrive before my consultation?',
+    question: 'What should I do if I need to reschedule or cancel my appointment?',
     answer:
-      'Arriving 10–15 minutes before your scheduled time allows adequate time for registration and clinic formalities, ensuring the consultation can begin as planned.',
-    keywords: ['arrive', 'early', 'time', 'registration', 'clinic', 'punctual'],
+      'If you need to change your consultation time, please inform the clinic at least 24 hours in advance by phone or WhatsApp message. This helps our team offer the slot to another patient and arrange a convenient alternate time for you.',
+    keywords: ['reschedule appointment', 'cancel consultation', 'change booking timing'],
   },
   {
-    id: 'appt-urgent',
+    id: 'appt-joint-symptoms-booking',
     category: 'Appointments',
-    question: 'Can I request an urgent consultation?',
+    question: 'I have persistent knee, hip or shoulder pain. When is the right time to book a consultation?',
     answer:
-      'If your condition requires prompt attention, please contact the clinic directly by phone or WhatsApp and explain your situation. The team will do their best to accommodate urgent requests based on availability.',
-    keywords: ['urgent', 'emergency', 'same day', 'fast', 'quick', 'immediate'],
+      'Consider scheduling an evaluation if joint pain persists, progressively worsens, disturbs sleep, or interferes with daily walking or stairs. Early assessment can help identify the cause of symptoms and guide appropriate treatment before pain, instability or functional limitations worsen.',
+    keywords: ['knee pain consultation', 'hip pain doctor', 'shoulder pain specialist', 'joint stiffness'],
+    featured: true,
+  },
+  {
+    id: 'appt-sports-injury-timing',
+    category: 'Appointments',
+    question: 'Can I consult Dr. Harshil Shah for an acute sports injury or a long-standing old injury?',
+    answer:
+      'Consultations are available for fresh sports injuries, such as sudden ligament tears or shoulder dislocations, as well as chronic or poorly healed joint problems. A clinical evaluation helps establish an accurate diagnosis and appropriate recovery plan.',
+    keywords: ['sports injury consultation', 'old joint injury', 'ACL tear specialist', 'rotator cuff doctor'],
+  },
+  {
+    id: 'appt-urgent-attention',
+    category: 'Appointments',
+    question: 'What should I do if my joint pain or injury requires urgent attention?',
+    answer:
+      'For acute, severe pain or sudden injuries, contact the clinic line at +91 93167 53985 to check for an expedited consultation slot. If you experience major trauma, visible deformity, numbness, weakness, loss of sensation, a cold or pale limb, or breathing difficulty, proceed directly to the nearest hospital emergency department.',
+    keywords: ['urgent orthopaedic appointment', 'acute joint pain', 'emergency bone injury'],
+  },
+  {
+    id: 'appt-outstation-patients',
+    category: 'Appointments',
+    question: 'How should outstation patients plan their visit to Ahmedabad for consultation?',
+    answer:
+      'Patients traveling from outside Ahmedabad are encouraged to contact the clinic beforehand. Sharing previous reports and scan summaries in advance allows our team to coordinate consultation timing and any necessary on-day evaluations efficiently.',
+    keywords: ['outstation patient appointment', 'Ahmedabad orthopaedic visit', 'travel consultation planning'],
   },
 
-  // ─── FIRST CONSULTATION ──────────────────────────────────────────────────────
+  // ─── 2. FIRST CONSULTATION ───────────────────────────────────────────────────
+  {
+    id: 'first-expect',
+    category: 'First Consultation',
+    question: 'What should I expect during my first consultation with Dr. Harshil Shah?',
+    answer:
+      'Your initial visit involves a discussion of your symptoms, medical history, and daily physical demands, followed by a focused examination of joint movement, strength, stability, and function. Dr. Shah will discuss the findings in clear terms and explain appropriate next steps.',
+    keywords: ['first orthopaedic visit', 'consultation process', 'joint examination', 'clinical assessment'],
+    featured: true,
+  },
   {
     id: 'first-bring',
     category: 'First Consultation',
-    question: 'What should I bring to my first orthopaedic consultation?',
+    question: 'What medical reports or previous scans should I bring to my first appointment?',
     answer:
-      'Bring any relevant X-rays, MRI scans, CT scan reports or discharge summaries you already have, along with a list of your current medications. A brief note of when your symptoms started, what makes them better or worse, and any specific questions you have in mind can also be very helpful.',
-    keywords: ['bring', 'first visit', 'documents', 'reports', 'medication', 'consultation', 'what to carry'],
+      'Please bring existing X-ray films, MRI or CT scan discs/films, written radiology reports, relevant blood tests, your current medication list, and any previous surgical summaries. Bringing previous reports and scans may help avoid unnecessary repeat investigations and gives the doctor a clearer understanding of your previous treatment.',
+    keywords: ['documents to carry', 'medical records', 'MRI disc', 'previous prescriptions'],
+  },
+  {
+    id: 'first-scan-needed',
+    category: 'First Consultation',
+    question: 'Should I get an X-ray or MRI done before my first visit?',
+    answer:
+      'Getting new scans before your visit is not mandatory. If you have previous imaging, bring it with you. If updated or specific X-ray views are needed, Dr. Shah will recommend them after completing your clinical examination.',
+    keywords: ['scans before appointment', 'need MRI first', 'pre-consultation X-ray'],
+  },
+  {
+    id: 'first-explain-symptoms',
+    category: 'First Consultation',
+    question: 'How can I best describe my joint pain and symptoms during the visit?',
+    answer:
+      'Describe when the pain began, its specific location, whether it occurs during rest or activity, and what triggers or eases it. Mentioning associated symptoms such as stiffness, swelling, clicking, or giving way helps provide an accurate clinical picture.',
+    keywords: ['describing joint pain', 'symptom history', 'joint stiffness explanation'],
+  },
+  {
+    id: 'first-tests-after',
+    category: 'First Consultation',
+    question: 'Will I need further diagnostic tests after the initial consultation?',
+    answer:
+      'Targeted tests may be suggested depending on examination findings. These can include weight-bearing X-rays to assess joint alignment, an MRI to examine soft tissues such as ligaments or cartilage, or blood tests if inflammatory joint conditions are being evaluated.',
+    keywords: ['tests after consultation', 'weight-bearing X-ray', 'MRI joint evaluation'],
+  },
+  {
+    id: 'first-treatment-start',
+    category: 'First Consultation',
+    question: 'Will treatment begin during my first visit?',
+    answer:
+      'Initial guidance frequently begins during the first consultation. This may involve pain relief medications, activity modification, supportive bracing, or home care advice. If further diagnostic imaging is required, a definitive plan is established once those results are reviewed.',
+    keywords: ['start treatment day one', 'initial pain relief', 'orthopaedic prescription'],
+  },
+  {
+    id: 'first-non-surgical-options',
+    category: 'First Consultation',
+    question: 'Can I discuss non-surgical treatment options before considering surgery?',
+    answer:
+      'Non-operative management—such as physiotherapy, targeted strengthening, lifestyle modifications, medications, and selective joint injections—is carefully evaluated and prioritised whenever clinically appropriate for your condition.',
+    keywords: ['non-surgical options', 'conservative treatment', 'avoid surgery', 'physiotherapy first'],
     featured: true,
   },
   {
-    id: 'first-what-happens',
+    id: 'first-family-member',
     category: 'First Consultation',
-    question: 'What happens during the first consultation?',
+    question: 'Can a family member or caregiver accompany me into the consultation room?',
     answer:
-      'During the first consultation, the doctor will typically review your symptoms, medical history and any available reports, carry out an appropriate clinical assessment, and discuss possible next steps based on the findings. This may include further investigations, non-surgical management or surgical options where relevant.',
-    keywords: ['first visit', 'consultation', 'process', 'examination', 'what happens', 'clinical assessment'],
-    featured: true,
-  },
-  {
-    id: 'first-duration',
-    category: 'First Consultation',
-    question: 'How long does an orthopaedic consultation usually take?',
-    answer:
-      'Consultation duration can vary depending on the complexity of your condition. A first visit is typically longer than a follow-up, allowing adequate time for history, examination and discussion. Please allow sufficient time when planning your schedule.',
-    keywords: ['how long', 'duration', 'time', 'consultation', 'appointment length'],
-  },
-  {
-    id: 'first-medications',
-    category: 'First Consultation',
-    question: 'Should I bring a list of my current medications?',
-    answer:
-      'Yes. Knowing your current medications, including supplements and over-the-counter drugs, helps ensure safe and accurate clinical assessment. You can write them down or bring the packaging.',
-    keywords: ['medications', 'medicines', 'drugs', 'supplements', 'list', 'bring'],
-  },
-  {
-    id: 'first-family-accompany',
-    category: 'First Consultation',
-    question: 'Can a family member accompany me to the consultation?',
-    answer:
-      'Yes. A family member or trusted companion is welcome to attend the consultation. Having someone to help recall details of the discussion can be useful, particularly for complex treatment decisions.',
-    keywords: ['family', 'companion', 'accompany', 'attend', 'someone with me'],
-  },
-  {
-    id: 'first-prepare-questions',
-    category: 'First Consultation',
-    question: 'Should I prepare questions before my consultation?',
-    answer:
-      'It is helpful to note down your main concerns and any questions you would like to discuss before the appointment. This allows you to make the most of your consultation time and ensures nothing important is overlooked.',
-    keywords: ['questions', 'prepare', 'list', 'concerns', 'consultation'],
+      'You are welcome to bring a family member or companion. Having someone with you can provide support, help remember medical details, and participate in discussions about your treatment choices.',
+    keywords: ['family member consultation', 'attendant in clinic', 'caregiver support'],
   },
 
-  // ─── CONDITIONS & TREATMENTS ─────────────────────────────────────────────────
+  // ─── 3. CONDITIONS & TREATMENTS ──────────────────────────────────────────────
   {
     id: 'treatment-conditions',
     category: 'Conditions & Treatments',
-    question: 'What orthopaedic conditions are treated?',
+    question: 'What orthopaedic conditions does Dr. Harshil Shah treat?',
     answer:
-      'The practice focuses on conditions of the knee, hip and shoulder including arthritis, ligament injuries, sports injuries, fractures, cartilage problems, rotator cuff tears, and joint degeneration. Treatment is tailored to each patient\'s specific diagnosis and needs.',
-    keywords: ['conditions', 'treated', 'knee', 'hip', 'shoulder', 'arthritis', 'ligament', 'sports injury', 'fracture'],
+      'Dr. Harshil Shah focuses on joint preservation, arthroscopy, and joint reconstruction for conditions of the knee, hip, and shoulder. This includes osteoarthritis, ligament sprains and tears, meniscus injuries, rotator cuff problems, shoulder instability, frozen shoulder, and sports-related joint injuries.',
+    keywords: ['orthopaedic conditions treated', 'knee specialist Ahmedabad', 'hip doctor', 'shoulder surgeon'],
+    featured: true,
   },
   {
     id: 'treatment-no-surgery',
     category: 'Conditions & Treatments',
-    question: 'Does every orthopaedic condition require surgery?',
+    question: 'Which knee, hip and shoulder problems can be managed without surgery?',
     answer:
-      'No. Many orthopaedic conditions may be managed effectively with non-surgical approaches such as physiotherapy, activity modification, medications or injections. Surgery is considered only when clinically appropriate after thorough evaluation.',
-    keywords: ['surgery', 'not always', 'non-surgical', 'conservative', 'physiotherapy', 'injection'],
+      'Many joint conditions—including early-to-moderate osteoarthritis, mild rotator cuff irritation, frozen shoulder, bursitis, partial ligament sprains, and minor meniscus tears—can often be managed effectively with physiotherapy, strengthening, activity changes, medications, or selected injections.',
+    keywords: ['treat joint pain without surgery', 'knee arthritis non-surgical', 'frozen shoulder treatment'],
     featured: true,
   },
   {
-    id: 'treatment-non-surgical',
+    id: 'treatment-joint-replacement-indication',
     category: 'Conditions & Treatments',
-    question: 'What non-surgical treatment options may be considered?',
+    question: 'When is joint replacement surgery typically considered?',
     answer:
-      'Non-surgical options may include physiotherapy and rehabilitation exercises, activity and lifestyle modifications, medications for pain and inflammation, and image-guided injections where appropriate. The right approach depends on your diagnosis and individual circumstances.',
-    keywords: ['physiotherapy', 'rehabilitation', 'injection', 'medication', 'conservative', 'non-surgical', 'treatment'],
+      'Joint replacement may be considered for appropriately selected patients with advanced joint damage when pain, stiffness, and reduced mobility significantly affect everyday life and appropriate non-surgical treatment is no longer providing adequate relief.',
+    keywords: ['when is knee replacement needed', 'hip replacement indication', 'advanced arthritis surgery'],
   },
   {
-    id: 'treatment-plan-decided',
+    id: 'treatment-arthritis-options',
     category: 'Conditions & Treatments',
-    question: 'How is a treatment plan decided?',
+    question: 'What treatment options are available for arthritis and chronic joint pain?',
     answer:
-      'Treatment recommendations are based on your symptoms, clinical examination, available imaging and medical history. Where appropriate, non-surgical options are considered first. Surgical options are discussed when they may offer meaningful benefit given your diagnosis and circumstances.',
-    keywords: ['treatment plan', 'decided', 'how', 'recommendation', 'diagnosis', 'evaluation'],
+      'Treatment depends on arthritis severity. Early stages focus on weight management, low-impact exercise, and medications. Moderate symptoms may benefit from structured physiotherapy or selected joint injections. Advanced joint wear may be addressed with partial or total joint replacement when conservative care is no longer sufficient.',
+    keywords: ['arthritis treatment options', 'knee arthritis relief', 'joint preservation'],
   },
   {
-    id: 'treatment-physio',
+    id: 'treatment-sports-ligament-care',
     category: 'Conditions & Treatments',
-    question: 'Is physiotherapy part of orthopaedic treatment?',
+    question: 'How are sports injuries and ligament tears evaluated and treated?',
     answer:
-      'Physiotherapy is often an important part of both non-surgical management and post-operative recovery. Specific physiotherapy guidance may be recommended depending on your condition and treatment plan.',
-    keywords: ['physiotherapy', 'rehab', 'exercise', 'recovery', 'treatment', 'post-op'],
+      'Management depends on the specific injury, joint stability, patient age, activity goals, and examination findings. Some injuries respond well to structured rehabilitation, while selected injuries that cause significant instability or loss of function may benefit from arthroscopic repair or reconstruction.',
+    keywords: ['sports injury treatment', 'ACL tear repair', 'rotator cuff surgery', 'arthroscopic surgery'],
+  },
+  {
+    id: 'treatment-shoulder-problems',
+    category: 'Conditions & Treatments',
+    question: 'What treatments are available for shoulder pain, stiffness or recurrent dislocations?',
+    answer:
+      'Treatment depends on the underlying cause. Options include targeted physiotherapy for tendon inflammation, hydrodilatation for frozen shoulder, or arthroscopic procedures such as rotator cuff repair or Bankart repair for structural instability.',
+    keywords: ['shoulder pain treatment', 'frozen shoulder care', 'shoulder dislocation repair', 'Bankart repair'],
+  },
+  {
+    id: 'treatment-surgery-vs-physio',
+    category: 'Conditions & Treatments',
+    question: 'How is it determined whether I need surgery or physiotherapy?',
+    answer:
+      'The decision is guided by clinical examination, symptom severity, functional limitation, and imaging findings. When joint mechanics and stability are preserved, physiotherapy is typically the initial choice. Surgery is discussed when structural correction is required or when non-surgical therapy is inadequate.',
+    keywords: ['physiotherapy vs surgery', 'surgery decision making', 'conservative care vs operation'],
+  },
+  {
+    id: 'treatment-personalized-plans',
+    category: 'Conditions & Treatments',
+    question: 'How are treatment plans customised for individual patients?',
+    answer:
+      'Every treatment plan is tailored to your specific diagnosis, age, physical demands, occupational requirements, and general health. This ensures recommendations are practical, safe, and aligned with your individual recovery goals.',
+    keywords: ['personalised orthopaedic care', 'custom treatment plan', 'patient-centered joint care'],
   },
 
-  // ─── SURGERY ─────────────────────────────────────────────────────────────────
+  // ─── 4. SURGERY ──────────────────────────────────────────────────────────────
   {
-    id: 'surgery-when-needed',
+    id: 'surgery-when-indicated',
     category: 'Surgery',
-    question: 'How do I know whether surgery may be required?',
+    question: 'How do I know if surgery is the right option for my condition?',
     answer:
-      'Surgery is considered when conservative treatment has not achieved adequate improvement, when the nature of the injury or condition typically benefits from surgical correction, or when delaying surgery may cause further harm. This decision is made together with you after a thorough assessment and discussion.',
-    keywords: ['surgery needed', 'when surgery', 'surgical', 'indication', 'required', 'operation'],
+      'Surgery is considered when non-operative treatments fail to provide adequate relief, when structural instability impairs function, or when an injury requires repair of the damaged structure. Dr. Shah will review expected benefits, potential limitations, and alternatives to help you make an informed decision.',
+    keywords: ['is surgery right for me', 'orthopaedic surgery decision', 'surgical options discussion'],
     featured: true,
   },
   {
-    id: 'surgery-what-before',
+    id: 'surgery-preparation-guide',
     category: 'Surgery',
-    question: 'What happens before surgery is planned?',
+    question: 'What should I do to prepare before undergoing orthopaedic surgery?',
     answer:
-      'Before surgery is planned, a comprehensive evaluation is completed including clinical assessment, relevant imaging and sometimes pre-operative tests such as blood work and anaesthetic review. The surgical procedure, expected outcomes and risks are explained and consent is obtained.',
-    keywords: ['before surgery', 'pre-operative', 'pre-op', 'tests', 'planning', 'consent'],
+      'Preparation involves optimising general health, managing blood sugar and blood pressure, attending a pre-anaesthetic evaluation, and performing pre-operative exercises where recommended. You will also receive guidance regarding medication adjustments, home safety preparations, and fasting instructions.',
+    keywords: ['surgery preparation', 'pre-op instructions', 'prehabilitation', 'pre-surgery checklist'],
   },
   {
-    id: 'surgery-what-bring',
+    id: 'surgery-preop-tests',
     category: 'Surgery',
-    question: 'What should I bring on the day of surgery?',
+    question: 'What medical evaluations and laboratory tests are required prior to surgery?',
     answer:
-      'You will typically be given specific instructions before the day of surgery. Generally, bring a government-issued identification document, any pre-operative reports or imaging as directed, prescribed medications and comfortable clothing. Follow any fasting instructions given by the medical team.',
-    keywords: ['surgery day', 'bring', 'what to carry', 'admission', 'hospital', 'documents'],
+      'Pre-operative investigations vary according to your age, medical history, planned procedure, anaesthesia requirements, and existing health conditions. Common tests may include blood counts, blood sugar/HbA1c, kidney and liver function tests, a coagulation profile, an ECG, chest imaging, and a pre-anaesthetic checkup.',
+    keywords: ['pre-operative tests', 'PAC clearance', 'surgical fitness test', 'blood tests before surgery'],
+  },
+  {
+    id: 'surgery-procedure-duration',
+    category: 'Surgery',
+    question: 'How long does joint replacement or arthroscopic surgery usually take?',
+    answer:
+      'As a general range, many arthroscopic procedures take approximately 45 to 90 minutes, while primary joint replacements commonly take 60 to 90 minutes. Operating time varies depending on procedure complexity, anatomy, and individual surgical requirements, alongside time spent in preparation and recovery monitoring.',
+    keywords: ['surgery duration', 'how long knee replacement takes', 'arthroscopy surgery time'],
   },
   {
     id: 'surgery-hospital-stay',
     category: 'Surgery',
-    question: 'How long will I need to stay in hospital?',
+    question: 'How long will I need to stay in the hospital after surgery?',
     answer:
-      'The expected hospital stay varies depending on the procedure performed, your overall health and your early recovery progress. This will be discussed with you specifically in the context of your planned procedure.',
-    keywords: ['hospital stay', 'overnight', 'admission', 'discharge', 'how many days', 'stay'],
+      'Hospital stay depends on the procedure, medical condition, mobility, pain control, and recovery progress. Many arthroscopic procedures are performed on a day-care basis or with an overnight stay, whereas joint replacement patients commonly stay 2 to 3 days until discharge criteria are comfortably met.',
+    keywords: ['hospital stay duration', 'discharge after knee replacement', 'daycare arthroscopy'],
   },
   {
-    id: 'surgery-questions-consent',
+    id: 'surgery-early-mobility',
     category: 'Surgery',
-    question: 'Can I ask questions before giving consent for surgery?',
+    question: 'When can I start standing or walking after joint surgery?',
     answer:
-      'Yes. You are encouraged to ask any questions you may have about the surgical procedure, its purpose, alternatives, expected outcomes and possible risks before consenting. Informed decision-making is an important part of the process.',
-    keywords: ['consent', 'questions', 'before surgery', 'right to ask', 'informed', 'decision'],
+      'Many patients are encouraged to begin supported movement relatively early after surgery when medically appropriate, under guidance from the surgical and physiotherapy team. For joint replacement, guided standing or walking with a supportive aid often begins within 24 hours based on individual assessment.',
+    keywords: ['walking after joint surgery', 'early mobilization', 'ERAS protocol walking'],
+  },
+  {
+    id: 'surgery-risks-safety',
+    category: 'Surgery',
+    question: 'What are the potential risks and safety precautions associated with orthopaedic surgery?',
+    answer:
+      'Orthopaedic procedures are commonly performed using established safety protocols, but every surgical procedure carries potential risks. These may include infection, blood clots, stiffness, nerve irritation, or implant wear over time. Standard preventive measures, medications, and early rehabilitation are used to minimise these risks.',
+    keywords: ['surgery risks', 'orthopaedic complications', 'surgical safety protocols'],
+  },
+  {
+    id: 'surgery-recovery-overview',
+    category: 'Surgery',
+    question: 'How long does overall recovery usually take after orthopaedic surgery?',
+    answer:
+      'Initial wound healing typically occurs within 2 to 3 weeks. Basic daily independence is often achieved in 4 to 6 weeks, while joint strength, flexibility, and endurance continue to develop over several months. Recovery varies according to the procedure, individual health, and rehabilitation progress.',
+    keywords: ['overall recovery timeline', 'healing time after surgery', 'long-term recovery'],
   },
 
-  // ─── RECOVERY ────────────────────────────────────────────────────────────────
+  // ─── 5. RECOVERY ─────────────────────────────────────────────────────────────
   {
-    id: 'recovery-duration',
+    id: 'recovery-timeline-general',
     category: 'Recovery',
-    question: 'How long does recovery usually take?',
+    question: 'How long does recovery usually take after orthopaedic surgery?',
     answer:
-      'Recovery time varies between patients and depends on the condition treated, the procedure performed, your overall health and how well rehabilitation progresses. Your expected recovery timeline will be discussed in the context of your specific situation.',
-    keywords: ['recovery time', 'how long', 'duration', 'heal', 'weeks', 'months', 'rehabilitation'],
+      'Recovery timelines vary according to the procedure, overall health, and rehabilitation progress. Broadly, early supported mobility begins in weeks 1–2, light daily activities are commonly resumed around weeks 4–6, and strength continues to improve over 3 to 6 months.',
+    keywords: ['recovery time orthopaedic surgery', 'healing milestones', 'rehabilitation timeline'],
     featured: true,
   },
   {
-    id: 'recovery-daily-activities',
+    id: 'recovery-walking-progression',
     category: 'Recovery',
-    question: 'When can I return to normal daily activities?',
+    question: 'When can I start walking independently after surgery?',
     answer:
-      'The timing for returning to daily activities depends on your procedure, recovery progress and individual health factors. Guidance on activity restrictions and gradual return to normal function will be provided as part of your recovery plan.',
-    keywords: ['daily activities', 'return', 'normal', 'walking', 'driving', 'routine', 'independence'],
+      'Supported walking with a walker or elbow crutches typically begins shortly after surgery under physiotherapy supervision. Progressing to a walking stick and eventually unassisted walking commonly occurs over 2 to 6 weeks, depending on joint stability, muscle strength, and clinical assessment.',
+    keywords: ['walking unassisted after surgery', 'walker to stick transition', 'post-op walking steps'],
   },
   {
-    id: 'recovery-physio-needed',
+    id: 'recovery-return-to-work',
     category: 'Recovery',
-    question: 'Will I need physiotherapy after surgery?',
+    question: 'How soon can I return to work and normal household activities?',
     answer:
-      'Physiotherapy and rehabilitation are often an important part of recovery following orthopaedic surgery. A rehabilitation plan tailored to your procedure and progress will typically be recommended.',
-    keywords: ['physiotherapy', 'rehab', 'after surgery', 'exercises', 'post-op', 'recovery'],
+      'Patients with desk-based occupations often resume work within 2 to 4 weeks. Those with physically demanding jobs or prolonged standing requirements may require 8 to 12 weeks or longer, guided by functional recovery and clinical review.',
+    keywords: ['return to work after surgery', 'resuming office work', 'daily household activities post-op'],
   },
   {
-    id: 'recovery-return-work',
+    id: 'recovery-physiotherapy-importance',
     category: 'Recovery',
-    question: 'When can I return to work?',
+    question: 'Will I need physiotherapy during my recovery?',
     answer:
-      'Return-to-work timing depends on your procedure, recovery progress and the nature of your work. Desk-based roles may permit an earlier return than physically demanding occupations. A specific estimate can be discussed once your procedure and individual circumstances are known.',
-    keywords: ['return to work', 'office', 'job', 'work', 'back', 'when'],
+      'Physiotherapy is commonly an important part of recovery, although the type, timing, and intensity of rehabilitation depend on the procedure and individual progress. It aids in improving movement, restoring muscle strength, improving walking mechanics, and supporting a safe return to daily activities.',
+    keywords: ['physiotherapy after surgery', 'rehabilitation exercises', 'post-op physical therapy'],
   },
   {
-    id: 'recovery-exercise',
+    id: 'recovery-pain-swelling-control',
     category: 'Recovery',
-    question: 'When can I resume exercise or sport?',
+    question: 'How can I manage pain and swelling at home after surgery?',
     answer:
-      'Returning to exercise and sport is typically a gradual process guided by recovery progress and clinical assessment. Specific timelines depend on the procedure and your individual healing. This will be discussed as part of your recovery guidance.',
-    keywords: ['exercise', 'sport', 'gym', 'running', 'fitness', 'return', 'activity', 'athletics'],
+      'Pain and swelling are typically managed using prescribed medications, intermittent cold therapy (15–20 minutes at a time), elevating the limb above heart level during rest, and performing gentle circulatory exercises such as ankle pumps as instructed by your treating team.',
+    keywords: ['manage pain at home', 'swelling control after surgery', 'ice therapy post-op'],
   },
   {
-    id: 'recovery-concerns',
+    id: 'recovery-precautions-dos-donts',
     category: 'Recovery',
-    question: 'What should I do if I have concerns during recovery?',
+    question: 'What movements or activities should I avoid during early recovery?',
     answer:
-      'If you experience unexpected symptoms, worsening pain or any signs of complication during your recovery, please contact the clinic promptly. Do not wait for a scheduled follow-up if you are concerned about your recovery progress.',
-    keywords: ['concerns', 'problems', 'complications', 'during recovery', 'pain', 'worry', 'contact'],
+      'Avoid high-impact activities, sudden twisting movements, heavy lifting, and low floor seating unless specifically cleared. Keep the surgical dressing clean and dry until wound healing is confirmed by your clinical team.',
+    keywords: ['activities to avoid after surgery', 'post-surgery precautions', 'joint movement restrictions'],
+  },
+  {
+    id: 'recovery-driving-sports-timeline',
+    category: 'Recovery',
+    question: 'When is it safe to resume driving, exercise, or sports?',
+    answer:
+      'Driving is generally resumed when you have regained adequate leg strength, emergency braking reflexes, and are no longer taking sedating medications, commonly around 4 to 6 weeks. Low-impact exercise begins earlier, while sports participation requires tailored clinical clearance.',
+    keywords: ['driving after knee surgery', 'return to sports timeline', 'exercise after joint replacement'],
+  },
+  {
+    id: 'recovery-warning-signs-contact',
+    category: 'Recovery',
+    question: 'What warning signs should prompt me to contact the doctor during recovery?',
+    answer:
+      'Contact the clinic promptly if you notice persistent high fever, severe pain not relieved by medication, spreading redness or continuous drainage from the surgical site, sudden calf pain or swelling, or unexpected breathing difficulty.',
+    keywords: ['post-surgery warning signs', 'complications after surgery', 'when to call doctor'],
   },
 
-  // ─── SECOND OPINION ──────────────────────────────────────────────────────────
+  // ─── 6. SECOND OPINION ───────────────────────────────────────────────────────
   {
-    id: 'second-opinion',
+    id: 'second-opinion-when',
     category: 'Second Opinion',
-    question: 'Can I request a second opinion?',
+    question: 'When should I consider seeking a second orthopaedic opinion?',
     answer:
-      'Yes. You can arrange a consultation to discuss an existing diagnosis, treatment recommendation or surgical plan. Bringing your previous reports, imaging and any relevant documentation can provide useful clinical context for the discussion.',
-    keywords: ['second opinion', 'review', 'another doctor', 'diagnosis', 'existing plan', 'confirm'],
+      'A second opinion can be helpful when surgery has been advised, if your diagnosis remains unclear, when current treatments have not provided relief, or when you wish to explore whether non-surgical options remain suitable for your joint condition.',
+    keywords: ['second opinion orthopaedics', 'confirm surgery need', 'second opinion doctor Ahmedabad'],
     featured: true,
   },
   {
-    id: 'second-opinion-documents',
+    id: 'second-opinion-surgery-decision',
     category: 'Second Opinion',
-    question: 'What documents are useful for a second opinion?',
+    question: 'Can I seek a second opinion before deciding on joint surgery?',
     answer:
-      'Useful documents include your previous medical reports, imaging such as X-rays, MRI or CT scans on disc or film, discharge summaries, operation notes if applicable, and any existing treatment plans or referral letters.',
-    keywords: ['documents', 'second opinion', 'reports', 'bring', 'papers', 'records', 'MRI'],
+      'A second opinion can provide another specialist perspective on your diagnosis, available treatment options, and whether surgery may be appropriate, helping you make a well-informed decision with confidence.',
+    keywords: ['second opinion before surgery', 'elective joint surgery review', 'confirming diagnosis'],
   },
   {
-    id: 'second-opinion-before-surgery',
+    id: 'second-opinion-records-needed',
     category: 'Second Opinion',
-    question: 'Can I seek a second opinion before deciding on surgery?',
+    question: 'What documents, scans, and records should I bring for a second opinion consultation?',
     answer:
-      'Yes. Seeking a second opinion before committing to any surgical procedure is entirely reasonable. Bringing your existing reports and imaging is helpful so the available information can be reviewed carefully.',
-    keywords: ['second opinion', 'before surgery', 'deciding', 'confirm', 'surgical plan'],
+      'Bring your available X-rays, MRI or CT scans with discs and reports, previous prescription notes, and any discharge summaries or operative notes from previous procedures to facilitate a comprehensive review.',
+    keywords: ['documents for second opinion', 'bring MRI scans', 'medical records review'],
   },
   {
-    id: 'second-opinion-repeat-tests',
+    id: 'second-opinion-review-external-advice',
     category: 'Second Opinion',
-    question: 'Do I need to repeat all investigations for a second opinion?',
+    question: 'Can Dr. Harshil Shah review a surgical recommendation given by another doctor?',
     answer:
-      'Not necessarily. Bringing your existing X-rays, MRI scans, CT scans and reports can reduce the need for repeat investigations. The doctor will advise if any additional imaging or tests are needed based on what is already available and the nature of your condition.',
-    keywords: ['repeat tests', 'second opinion', 'investigations', 'imaging', 'avoid', 'unnecessary'],
+      'Dr. Shah regularly provides objective clinical reviews of previous treatment recommendations, evaluating your current symptoms, physical examination findings, and diagnostic imaging.',
+    keywords: ['review doctor recommendation', 'independent surgical opinion', 'unbiased second opinion'],
+  },
+  {
+    id: 'second-opinion-explore-conservative',
+    category: 'Second Opinion',
+    question: 'Can a second opinion help me understand non-surgical alternatives?',
+    answer:
+      'A second opinion can help clarify whether non-operative management—such as structured physiotherapy, lifestyle changes, or targeted joint injections—remains a viable initial approach before proceeding with surgery.',
+    keywords: ['explore non-surgical options', 'avoid unnecessary surgery', 'conservative alternatives'],
+  },
+  {
+    id: 'second-opinion-different-advice',
+    category: 'Second Opinion',
+    question: 'What should I do if the second opinion differs from my previous doctor’s advice?',
+    answer:
+      'If recommendations differ, Dr. Shah can explain the reasoning behind his assessment, discussing the advantages, limitations, and evidence for each approach so you can better understand the available choices.',
+    keywords: ['differing medical opinions', 'choosing treatment path', 'medical reasoning explanation'],
+  },
+  {
+    id: 'second-opinion-post-surgery-issues',
+    category: 'Second Opinion',
+    question: 'Can I get a second opinion for persistent pain or stiffness following a previous surgery?',
+    answer:
+      'Patients experiencing ongoing discomfort, stiffness, or functional limitations after previous orthopaedic procedures can arrange an evaluation to investigate possible causes and discuss appropriate rehabilitation or corrective management.',
+    keywords: ['pain after previous surgery', 'stiffness after knee surgery', 'revision consultation'],
+  },
+  {
+    id: 'second-opinion-repeat-scans-needed',
+    category: 'Second Opinion',
+    question: 'Will I need to repeat all my X-rays, MRI scans, or blood tests for a second opinion?',
+    answer:
+      'Not necessarily. If existing scans are clear and recent, they can generally be used. Repeat or additional tests are only recommended if previous imaging is inconclusive or if your symptoms have significantly changed.',
+    keywords: ['repeat tests second opinion', 'avoid duplicate scans', 'using existing MRI'],
   },
 
-  // ─── REPORTS & SCANS ─────────────────────────────────────────────────────────
+  // ─── 7. REPORTS & SCANS ──────────────────────────────────────────────────────
   {
-    id: 'reports-xray',
+    id: 'reports-checklist-to-bring',
     category: 'Reports & Scans',
-    question: 'Should I bring my previous X-rays to the consultation?',
+    question: 'Which reports and scans should I bring to my orthopaedic consultation?',
     answer:
-      'If you have previous X-rays relevant to your condition, bringing them can provide useful background information for your consultation. Both the physical films and any written reports are helpful.',
-    keywords: ['X-ray', 'xray', 'bring', 'reports', 'consultation', 'imaging'],
+      'Bring all available original X-ray films, MRI or CT scan discs and films, written radiology reports, relevant blood investigation results, and past doctor prescriptions or medical summaries.',
+    keywords: ['reports checklist', 'what scans to bring', 'MRI CD', 'radiology reports'],
   },
   {
-    id: 'reports-mri',
+    id: 'reports-fresh-scans-requirement',
     category: 'Reports & Scans',
-    question: 'Should I bring my MRI or CT scan reports?',
+    question: 'Do I need a new X-ray, MRI, or CT scan before attending my appointment?',
     answer:
-      'If you already have relevant MRI scans, CT scans or reports, bringing them can provide useful background for your consultation. The doctor can advise whether any additional imaging is needed after reviewing your symptoms, examination and existing reports.',
-    keywords: ['MRI', 'CT scan', 'reports', 'scan', 'imaging', 'bring', 'investigation'],
+      'You do not need to arrange new scans prior to your appointment. Bring your existing reports; if updated or specific X-ray views are needed, Dr. Shah will advise the specific views required after your clinical examination.',
+    keywords: ['fresh scans before appointment', 'do I need new MRI', 'pre-visit imaging'],
+  },
+  {
+    id: 'reports-external-imaging-review',
+    category: 'Reports & Scans',
+    question: 'Can Dr. Harshil Shah review imaging and scan reports done at another hospital or diagnostic centre?',
+    answer:
+      'Diagnostic imaging, digital X-rays, and MRI or CT scans performed at any accredited hospital or diagnostic centre can be reviewed during your consultation.',
+    keywords: ['review external scans', 'scans from another hospital', 'diagnostic centre MRI'],
+  },
+  {
+    id: 'reports-xray-mri-ct-differences',
+    category: 'Reports & Scans',
+    question: 'What is the difference between an X-ray, MRI, and CT scan for joint problems?',
+    answer:
+      'An X-ray shows bones, joint alignment, fractures, and many arthritis-related changes. An MRI provides detailed information about soft tissues including ligaments, tendons, menisci, and cartilage. A CT scan provides detailed cross-sectional bone imaging and may help with complex fractures, deformities, or surgical planning.',
+    keywords: ['difference between X-ray and MRI', 'CT scan vs MRI joint', 'imaging modalities explained'],
+  },
+  {
+    id: 'reports-scan-validity-timeline',
+    category: 'Reports & Scans',
+    question: 'How recent should my X-rays or MRI scans be to remain clinically useful?',
+    answer:
+      'How recent an X-ray, MRI, or CT scan needs to be depends on the condition being assessed, whether your symptoms have changed, the quality of the existing images, and whether there has been a new injury. If symptoms are stable, previous imaging may still be useful. Updated imaging may be advised when symptoms have significantly changed or when existing scans do not provide sufficient information.',
+    keywords: ['how old can MRI be', 'validity of X-ray', 'recent scan requirement'],
+  },
+  {
+    id: 'reports-treatment-planning-from-scans',
+    category: 'Reports & Scans',
+    question: 'Can a treatment plan be determined solely based on scan reports?',
+    answer:
+      'Treatment decisions should not be based on imaging alone; symptoms, examination findings, and functional limitations are considered together to determine the most suitable care plan.',
+    keywords: ['treating patient not scan', 'clinical correlation', 'physical exam vs MRI'],
+  },
+  {
+    id: 'reports-inconclusive-scans-approach',
+    category: 'Reports & Scans',
+    question: 'What happens if my MRI or X-ray report does not clearly explain my symptoms?',
+    answer:
+      'When scan findings do not clearly match symptoms, clinical joint examination remains central to decision-making. Dr. Shah may perform specialised physical tests, evaluate how the joint moves and functions, or recommend targeted views to pinpoint the source of pain.',
+    keywords: ['unclear MRI report', 'normal scan but pain', 'clinical joint diagnosis'],
+  },
+  {
+    id: 'reports-images-and-written-report-together',
+    category: 'Reports & Scans',
+    question: 'Should I bring both the scan images (films/CD) and the written radiology report?',
+    answer:
+      'Bringing both is helpful. The written report provides the radiologist’s interpretation, while an orthopaedic surgeon routinely reviews the actual image slices directly to correlate specific anatomical findings with your physical examination and surgical planning.',
+    keywords: ['bring films and report', 'DICOM CD review', 'radiology report with images'],
     featured: true,
   },
+
+  // ─── 8. FOLLOW-UP CARE ───────────────────────────────────────────────────────
   {
-    id: 'reports-from-another-hospital',
-    category: 'Reports & Scans',
-    question: 'Can I bring scans done at another hospital?',
+    id: 'followup-first-visit-timing',
+    category: 'Follow-up Care',
+    question: 'When should I schedule my first follow-up appointment after surgery or treatment?',
     answer:
-      'Yes. Scans and reports from any hospital or imaging centre are relevant and can be brought for review. Bringing the actual disc or film along with the written report is recommended.',
-    keywords: ['another hospital', 'external', 'different', 'scans', 'transfer', 'reports'],
+      'After surgery, the first review is commonly planned around 10 to 14 days for wound inspection and dressing or suture review. For non-surgical treatments, a follow-up at 2 to 4 weeks is typical to evaluate symptom response and adjust physiotherapy.',
+    keywords: ['first follow-up after surgery', 'suture removal timing', 'post-op wound check'],
   },
   {
-    id: 'reports-send-before',
-    category: 'Reports & Scans',
-    question: 'Can I send reports before my appointment?',
+    id: 'followup-checklist-to-bring',
+    category: 'Follow-up Care',
+    question: 'What should I bring to my follow-up consultation?',
     answer:
-      'To enquire about sharing reports before your appointment, please contact the clinic directly. The team can advise on the best way to provide previous reports or imaging prior to your consultation.',
-    keywords: ['send', 'reports', 'before', 'appointment', 'email', 'WhatsApp', 'share'],
+      'Please bring your hospital discharge summary, current medication list, any recent check X-rays or test reports, and a brief note of your rehabilitation progress or questions.',
+    keywords: ['what to carry for follow-up', 'discharge summary review', 'follow-up checklist'],
   },
   {
-    id: 'reports-no-reports',
-    category: 'Reports & Scans',
-    question: 'What if I do not have any previous reports?',
+    id: 'followup-frequency-schedule',
+    category: 'Follow-up Care',
+    question: 'How often will I need follow-up visits during my recovery?',
     answer:
-      'A consultation can proceed without previous reports. The doctor will assess your symptoms and examination findings and advise on any investigations that may be appropriate based on the clinical picture.',
-    keywords: ['no reports', 'without', 'missing', 'lost', 'unavailable', 'investigation'],
+      'Follow-up schedules vary according to the procedure and individual recovery. Your treating team will advise when reviews are required, with common milestones after joint surgery including visits around 2 weeks, 6 weeks, 3 months, and periodically thereafter as needed.',
+    keywords: ['follow-up visit schedule', 'post-op review frequency', 'recovery checkups'],
   },
   {
-    id: 'reports-how-recent',
-    category: 'Reports & Scans',
-    question: 'How recent should my scans be?',
+    id: 'followup-repeat-xrays-scans',
+    category: 'Follow-up Care',
+    question: 'Will I need repeat X-rays or scans during my follow-up visits?',
     answer:
-      'The clinical relevance of existing scans depends on your condition and how much may have changed since they were taken. Bring whatever you have available and the doctor can advise whether updated imaging is necessary.',
-    keywords: ['how recent', 'old', 'expired', 'scans', 'valid', 'date', 'current'],
+      'Check X-rays may be advised at specific recovery stages to evaluate bone healing, implant alignment, or tissue integration. Additional imaging is only recommended if new or unexpected symptoms occur.',
+    keywords: ['check X-rays after surgery', 'implant monitoring X-ray', 'bone healing review'],
+  },
+  {
+    id: 'followup-progress-assessment-methods',
+    category: 'Follow-up Care',
+    question: 'How will my recovery progress be assessed during follow-up visits?',
+    answer:
+      'Assessment involves examining wound healing, joint range of motion, muscle strength, walking stability, and reduction in pain compared to pre-treatment levels.',
+    keywords: ['assessing recovery progress', 'joint range of motion test', 'post-op evaluation'],
+  },
+  {
+    id: 'followup-adjusting-meds-physio',
+    category: 'Follow-up Care',
+    question: 'Can my medications or physiotherapy plan be adjusted during follow-up?',
+    answer:
+      'Follow-up visits allow your doctor to taper pain medications as healing progresses, adjust therapeutic exercises, and advance your rehabilitation program toward higher activity levels.',
+    keywords: ['tapering pain medicines', 'adjusting physiotherapy exercises', 'rehab progression'],
+  },
+  {
+    id: 'followup-symptoms-to-report-early',
+    category: 'Follow-up Care',
+    question: 'What symptoms should I report to the clinic before my next scheduled follow-up?',
+    answer:
+      'Contact the clinic promptly between scheduled appointments if you experience escalating pain, persistent fever, unexpected wound discharge or redness, new calf swelling, or sudden loss of joint mobility.',
+    keywords: ['early symptom reporting', 'post-op concerns', 'contact clinic between visits'],
+  },
+  {
+    id: 'followup-activity-clearance-assessment',
+    category: 'Follow-up Care',
+    question: 'When can I receive clearance to return to driving, work, or sports?',
+    answer:
+      'Clearances for driving, work resumption, swimming, gym, and sports are determined during follow-up reviews based on clinical assessments of muscle strength, joint mobility, reaction time, and stability.',
+    keywords: ['activity clearance', 'driving clearance', 'return to work approval', 'sports clearance'],
   },
 
-  // ─── FOLLOW-UP CARE ──────────────────────────────────────────────────────────
+  // ─── 9. GENERAL ─────────────────────────────────────────────────────────────
   {
-    id: 'followup-book',
-    category: 'Follow-up Care',
-    question: 'How do I book a post-surgery follow-up appointment?',
-    answer:
-      'Follow-up appointments can be arranged through the clinic. The team will usually advise on the timing and scheduling of your next visit before or shortly after your discharge.',
-    keywords: ['follow-up', 'post surgery', 'book', 'appointment', 'next visit', 'review'],
-  },
-  {
-    id: 'followup-bring',
-    category: 'Follow-up Care',
-    question: 'What should I bring to a follow-up appointment?',
-    answer:
-      'Bring any new reports or imaging obtained since your last visit, a list of current medications if they have changed, and a note of any symptoms or concerns you would like to discuss.',
-    keywords: ['follow-up', 'bring', 'reports', 'appointment', 'documents', 'medications'],
-  },
-  {
-    id: 'followup-what-happens',
-    category: 'Follow-up Care',
-    question: 'What happens during a follow-up visit?',
-    answer:
-      'A follow-up visit typically involves reviewing your recovery progress, assessing healing and function, discussing any concerns you have, and advising on the next steps in your rehabilitation or ongoing care.',
-    keywords: ['follow-up', 'what happens', 'review', 'progress', 'recovery', 'assessment'],
-  },
-  {
-    id: 'followup-how-often',
-    category: 'Follow-up Care',
-    question: 'How often are follow-up appointments required?',
-    answer:
-      'The frequency of follow-up appointments depends on your condition, procedure and recovery progress. The clinic team will advise on a suitable schedule as part of your ongoing care plan.',
-    keywords: ['how often', 'follow-up', 'frequency', 'schedule', 'appointment', 'regular'],
-  },
-  {
-    id: 'followup-questions',
-    category: 'Follow-up Care',
-    question: 'Who should I contact if I have appointment-related questions after my visit?',
-    answer:
-      'For appointment coordination, scheduling or general follow-up queries, please contact the clinic directly by phone or WhatsApp. Questions requiring clinical assessment may need a formal follow-up consultation.',
-    keywords: ['contact', 'questions', 'after visit', 'follow-up', 'clinic', 'phone', 'WhatsApp'],
-  },
-
-  // ─── GENERAL ─────────────────────────────────────────────────────────────────
-  {
-    id: 'general-contact',
+    id: 'general-specialty-scope',
     category: 'General',
-    question: 'How can I contact the clinic?',
+    question: 'What types of orthopaedic problems does Dr. Harshil Shah specialise in?',
     answer:
-      'You can reach the clinic by phone at +91 93167 53985, via WhatsApp at the same number, or through the contact form on the website. For appointment requests, the online appointment form is also available.',
-    keywords: ['contact', 'phone', 'WhatsApp', 'email', 'reach', 'clinic', 'number'],
+      'Dr. Harshil Shah specialises in joint preservation, arthroscopy, and joint reconstruction of the knee, hip, and shoulder. His practice includes arthritis management, joint replacement, sports ligament injuries, rotator cuff disorders, and joint trauma care.',
+    keywords: ['Dr Harshil Shah specialty', 'joint replacement Ahmedabad', 'arthroscopy specialist'],
   },
   {
-    id: 'general-location',
+    id: 'general-when-to-see-specialist',
     category: 'General',
-    question: 'Where is the clinic located?',
+    question: 'When should I consult an orthopaedic specialist rather than managing pain at home?',
     answer:
-      'For current clinic location details and directions, please refer to the Contact page on this website or contact the clinic directly for the most up-to-date information.',
-    keywords: ['location', 'address', 'directions', 'where', 'clinic', 'find', 'map'],
+      'Consider an orthopaedic assessment when joint pain persists, progressively worsens, affects sleep or daily activity, or is accompanied by swelling, instability, locking, or difficulty bearing weight.',
+    keywords: ['when to see orthopaedic doctor', 'chronic joint pain specialist', 'joint swelling advice'],
   },
   {
-    id: 'general-whatsapp',
+    id: 'general-conservative-success',
     category: 'General',
-    question: 'Can I use WhatsApp for appointment coordination?',
+    question: 'Can most joint problems be managed effectively without surgery?',
     answer:
-      'Yes. WhatsApp can be used to contact the clinic for appointment coordination queries. The clinic WhatsApp number is +91 93167 53985.',
-    keywords: ['WhatsApp', 'appointment', 'contact', 'message', 'chat'],
+      'Many orthopaedic conditions respond well to non-surgical treatments—including structured physiotherapy, muscle strengthening, weight management, medications, and targeted injections—reserving surgery for specific structural or advanced conditions.',
+    keywords: ['managing joint pain without surgery', 'conservative orthopaedic care', 'avoiding surgery'],
   },
   {
-    id: 'general-disclaimer',
+    id: 'general-age-factor-treatment',
     category: 'General',
-    question: 'Is the information on this website medical advice?',
+    question: 'Does patient age affect orthopaedic treatment options?',
     answer:
-      'No. The information on this website is intended for general guidance only and does not replace a personal medical consultation. For advice specific to your condition, please arrange a consultation.',
-    keywords: ['medical advice', 'disclaimer', 'diagnosis', 'website information', 'general'],
+      'Treatment decisions are based on the diagnosis, overall health, bone and joint condition, activity level, symptoms, functional needs, and personal goals rather than age alone. Age is one factor considered as part of the overall clinical assessment.',
+    keywords: ['age factor in orthopaedics', 'joint replacement age limits', 'young patient joint care'],
   },
   {
-    id: 'general-emergency',
+    id: 'general-lifestyle-joint-health',
     category: 'General',
-    question: 'Can I use this page for urgent medical advice?',
+    question: 'Can lifestyle modifications and exercise help reduce joint pain?',
     answer:
-      'No. This page provides general information and is not intended for urgent medical assessment. If you believe you are experiencing a medical emergency, please contact local emergency services or visit the nearest appropriate hospital immediately.',
-    keywords: ['emergency', 'urgent', 'medical advice', 'critical', 'immediate help'],
+      'Maintaining a healthy body weight reduces mechanical stress on weight-bearing joints like the knees and hips. Low-impact activities such as swimming, cycling, and walking help maintain joint flexibility and strengthen supporting muscles.',
+    keywords: ['lifestyle for joint health', 'weight loss for knee pain', 'exercise for arthritis'],
+  },
+  {
+    id: 'general-preventing-injuries',
+    category: 'General',
+    question: 'How can I prevent joint and sports-related injuries during daily activities or exercise?',
+    answer:
+      'Injury prevention includes proper warm-ups, progressive exercise conditioning, strengthening core and joint stabilizer muscles, using supportive footwear, and avoiding sudden, unaccustomed spikes in physical training.',
+    keywords: ['prevent sports injury', 'joint protection tips', 'safe exercise habits'],
+  },
+  {
+    id: 'general-serious-pain-indicators',
+    category: 'General',
+    question: 'How do I know if my joint pain indicates a serious underlying problem?',
+    answer:
+      'Joint pain is more concerning if accompanied by joint deformity, inability to bear weight, significant swelling, fever, localised warmth, or a sensation of the joint locking or giving way. These signs warrant timely medical evaluation.',
+    keywords: ['serious joint pain signs', 'joint locking', 'cannot walk knee pain'],
+  },
+  {
+    id: 'general-sudden-symptom-worsening',
+    category: 'General',
+    question: 'What should I do if my joint symptoms suddenly become noticeably worse?',
+    answer:
+      'Rest the joint, apply cold packs, elevate the limb, and contact the clinic for advice. If accompanied by severe trauma, inability to bear weight, or visible deformity, seek urgent emergency medical attention.',
+    keywords: ['sudden joint pain worsening', 'acute knee flareup', 'emergency joint care'],
   },
 ];
 
 // Featured questions shown in the "Most Asked" section
 export const featuredFaqIds = [
-  'appt-needed',
-  'first-bring',
-  'reports-mri',
+  'appt-how-book',
+  'first-expect',
+  'treatment-conditions',
   'treatment-no-surgery',
-  'surgery-when-needed',
-  'second-opinion',
+  'surgery-when-indicated',
+  'second-opinion-when',
 ];

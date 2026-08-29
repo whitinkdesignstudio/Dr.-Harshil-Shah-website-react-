@@ -6,12 +6,16 @@ export default function ContactPage() {
     <div>
       {/* Visual Contact Full-Width Hero Banner */}
       <section className="contact-photo-hero">
-        <div className="contact-photo-hero-bg-wrap">
-          <img
-            src="/ChatGPT Image Aug 22, 2026, 01_05_41 PM.png"
-            alt="Dr. Harshil Shah - Orthopaedic Surgeon Consultation"
-            className="contact-photo-hero-img"
-          />
+        <div className="contact-photo-hero-bg-wrap" aria-hidden="true">
+          <picture className="contact-photo-hero-picture">
+            <source srcSet="/contact-hero-doctor.webp" type="image/webp" />
+            <img
+              src="/contact-hero-doctor.png"
+              alt="Dr. Harshil Shah - Orthopaedic Surgeon Consultation"
+              className="contact-photo-hero-img"
+              loading="eager"
+            />
+          </picture>
           <div className="contact-photo-hero-overlay" />
         </div>
 

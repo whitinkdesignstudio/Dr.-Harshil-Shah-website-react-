@@ -243,12 +243,10 @@ export default function Header() {
                     <span>Patient Information &amp; Brochures</span>
                   </div>
                   <a
-                    href="#download-knee"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert('Downloading Knee Replacement & Joint Preservation Brochure (PDF)...');
-                      setBrochureDropdownOpen(false);
-                    }}
+                    href="/galleri/brochure/01_Knee_Replacement_Updated_Brochure.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setBrochureDropdownOpen(false)}
                     className="nav-dropdown-link"
                   >
                     <div className="dropdown-link-icon">
@@ -261,18 +259,16 @@ export default function Header() {
                       </svg>
                     </div>
                     <div>
-                      <strong>Knee Care &amp; Robotic Surgery</strong>
-                      <small>Comprehensive Patient Guide</small>
+                      <strong>Knee Replacement Guide</strong>
+                      <small>Robotic &amp; Joint Arthroplasty</small>
                     </div>
                     <span className="dropdown-dl-tag">PDF</span>
                   </a>
                   <a
-                    href="#download-hip"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert('Downloading Hip & Shoulder Specialist Care Booklet (PDF)...');
-                      setBrochureDropdownOpen(false);
-                    }}
+                    href="/galleri/brochure/02_Hip_Replacement_Updated_Brochure.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setBrochureDropdownOpen(false)}
                     className="nav-dropdown-link"
                   >
                     <div className="dropdown-link-icon">
@@ -282,18 +278,16 @@ export default function Header() {
                       </svg>
                     </div>
                     <div>
-                      <strong>Hip &amp; Shoulder Specialist Care</strong>
-                      <small>Surgical &amp; Non-Surgical Booklet</small>
+                      <strong>Hip Replacement Guide</strong>
+                      <small>Total Hip Care &amp; Longevity</small>
                     </div>
                     <span className="dropdown-dl-tag">PDF</span>
                   </a>
                   <a
-                    href="#download-eras"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert('Downloading ERAS Rapid Recovery Care Protocol (PDF)...');
-                      setBrochureDropdownOpen(false);
-                    }}
+                    href="/galleri/brochure/03_Knee_Sports_Injury_Updated_Brochure.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setBrochureDropdownOpen(false)}
                     className="nav-dropdown-link"
                   >
                     <div className="dropdown-link-icon">
@@ -302,30 +296,27 @@ export default function Header() {
                       </svg>
                     </div>
                     <div>
-                      <strong>ERAS Recovery Pathway Protocol</strong>
-                      <small>Milestone Checklist &amp; Prehab</small>
+                      <strong>Knee Sports Injury Guide</strong>
+                      <small>ACL, Ligaments &amp; Meniscus</small>
                     </div>
                     <span className="dropdown-dl-tag">PDF</span>
                   </a>
                   <a
-                    href="#download-clinic"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      alert('Downloading Dr. Harshil Shah Profile & Clinic Guide (PDF)...');
-                      setBrochureDropdownOpen(false);
-                    }}
+                    href="/galleri/brochure/04_Shoulder_Arthroscopy_Updated_Brochure.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setBrochureDropdownOpen(false)}
                     className="nav-dropdown-link"
                   >
                     <div className="dropdown-link-icon">
                       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
-                        <path d="M9 9h6M12 6v6" />
-                        <path d="M10 16h4" />
+                        <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+                        <path d="M12 6v6l4 2" />
                       </svg>
                     </div>
                     <div>
-                      <strong>Clinic Profile &amp; Doctor Overview</strong>
-                      <small>Credentials &amp; Consultation Info</small>
+                      <strong>Shoulder Arthroscopy Guide</strong>
+                      <small>Rotator Cuff &amp; Dislocation Care</small>
                     </div>
                     <span className="dropdown-dl-tag">PDF</span>
                   </a>
@@ -497,59 +488,50 @@ export default function Header() {
             {mobileBrochureOpen && (
               <div className="mobile-nav-sublinks">
                 <a
-                  href="#download-knee"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Downloading Knee Care & Robotic Surgery Guide (PDF)...');
-                    setMobileMenuOpen(false);
-                  }}
+                  href="/galleri/brochure/01_Knee_Replacement_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
                     <polyline points="14 2 14 8 20 8" />
                   </svg>
-                  Knee Care &amp; Robotics <span className="mobile-pdf-pill">PDF</span>
+                  Knee Replacement Guide <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
-                  href="#download-hip"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Downloading Hip & Shoulder Specialist Care Booklet (PDF)...');
-                    setMobileMenuOpen(false);
-                  }}
+                  href="/galleri/brochure/02_Hip_Replacement_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
                     <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
                     <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
                   </svg>
-                  Hip &amp; Shoulder Care <span className="mobile-pdf-pill">PDF</span>
+                  Hip Replacement Guide <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
-                  href="#download-eras"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Downloading ERAS Rapid Recovery Care Protocol (PDF)...');
-                    setMobileMenuOpen(false);
-                  }}
+                  href="/galleri/brochure/03_Knee_Sports_Injury_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
                     <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
                   </svg>
-                  ERAS Recovery Protocol <span className="mobile-pdf-pill">PDF</span>
+                  Knee Sports Injury Guide <span className="mobile-pdf-pill">PDF</span>
                 </a>
                 <a
-                  href="#download-clinic"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    alert('Downloading Dr. Harshil Shah Profile & Clinic Guide (PDF)...');
-                    setMobileMenuOpen(false);
-                  }}
+                  href="/galleri/brochure/04_Shoulder_Arthroscopy_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#0284c7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '6px' }}>
-                    <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" />
-                    <path d="M9 9h6M12 6v6" />
+                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
                   </svg>
-                  Clinic Profile &amp; Info <span className="mobile-pdf-pill">PDF</span>
+                  Shoulder Arthroscopy Guide <span className="mobile-pdf-pill">PDF</span>
                 </a>
               </div>
             )}

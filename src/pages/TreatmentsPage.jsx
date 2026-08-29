@@ -247,12 +247,27 @@ export default function TreatmentsPage() {
                   </svg>
                 </Link>
               </div>
-              <Link className="button button-outline" to="/appointment">
-                Discuss your symptoms{' '}
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
-                  <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+              <div className="treatment-action-group" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link className="button button-outline" to="/appointment">
+                  Discuss your symptoms{' '}
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
+                    <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <a
+                  href="/galleri/brochure/01_Knee_Replacement_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="treatment-brochure-quicklink"
+                  title="Download Knee Replacement Patient Guide (PDF)"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                  </svg>
+                  <span>Knee Guide (PDF)</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -312,12 +327,27 @@ export default function TreatmentsPage() {
                   </svg>
                 </Link>
               </div>
-              <Link className="button button-outline" to="/appointment">
-                Discuss your symptoms{' '}
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
-                  <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+              <div className="treatment-action-group" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link className="button button-outline" to="/appointment">
+                  Discuss your symptoms{' '}
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
+                    <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <a
+                  href="/galleri/brochure/02_Hip_Replacement_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="treatment-brochure-quicklink"
+                  title="Download Hip Replacement Patient Guide (PDF)"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                  </svg>
+                  <span>Hip Guide (PDF)</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -377,12 +407,26 @@ export default function TreatmentsPage() {
                   </svg>
                 </Link>
               </div>
-              <Link className="button button-outline" to="/appointment">
-                Discuss your symptoms{' '}
-                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
-                  <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </Link>
+              <div className="treatment-action-group" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+                <Link className="button button-outline" to="/appointment">
+                  Discuss your symptoms{' '}
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" className="icon">
+                    <path d="M5 12h14M14 7l5 5-5 5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </Link>
+                <a
+                  href="/galleri/brochure/04_Shoulder_Arthroscopy_Updated_Brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="treatment-brochure-quicklink"
+                  title="Download Shoulder Arthroscopy Patient Guide (PDF)"
+                >
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z" />
+                  </svg>
+                  <span>Shoulder Guide (PDF)</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>

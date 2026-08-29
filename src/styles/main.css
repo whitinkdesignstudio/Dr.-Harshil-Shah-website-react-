@@ -25443,3 +25443,265 @@ button {
     font-size: 13px;
   }
 }
+
+/* ==========================================================================
+   Patient Brochures Section & Download Cards
+   ========================================================================== */
+.patient-brochures-section {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0fdf4 50%, #f8fafc 100%);
+  padding: 80px 0;
+  position: relative;
+}
+
+.brochures-section-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 48px;
+}
+
+.brochures-section-header h2 {
+  font-size: clamp(28px, 3.2vw, 40px);
+  color: var(--navy);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.brochures-section-header h2 em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+.brochures-lead {
+  font-size: 15.5px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.patient-brochures-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+@media (max-width: 860px) {
+  .patient-brochures-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+.patient-brochure-card {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-brochure-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+.brochure-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.brochure-icon-wrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brochure-meta-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brochure-badge {
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: #ffffff;
+}
+
+.brochure-num-pill {
+  font-size: 11px;
+  font-weight: 800;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.brochure-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.brochure-title {
+  font-size: 20px;
+  font-weight: 750;
+  color: var(--navy);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+
+.brochure-subtitle {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #0284c7;
+  margin-bottom: 12px;
+}
+
+.brochure-desc {
+  font-size: 13.5px;
+  color: #475569;
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.brochure-topics-box {
+  background: #f8fafc;
+  border-radius: 12px;
+  padding: 12px 14px;
+  margin-bottom: 20px;
+  border: 1px solid #f1f5f9;
+}
+
+.brochure-topics-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+
+.brochure-topics-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 12px;
+}
+
+@media (max-width: 500px) {
+  .brochure-topics-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.brochure-topics-list li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 550;
+  color: #334155;
+}
+
+.brochure-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  flex-wrap: wrap;
+}
+
+.brochure-file-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #64748b;
+}
+
+.brochure-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brochure-view-btn {
+  font-size: 12px !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+}
+
+.brochure-dl-btn {
+  font-size: 12px !important;
+  padding: 6px 14px !important;
+  border-radius: 8px !important;
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
+  color: #ffffff !important;
+}
+
+.brochure-dl-btn:hover {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+}
+
+/* Treatment Page Quicklink Button */
+.treatment-brochure-quicklink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #e0f2fe;
+  color: #0284c7;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-decoration: none;
+  border: 1px solid rgba(2, 132, 199, 0.2);
+  transition: all 0.25s ease;
+}
+
+.treatment-brochure-quicklink:hover {
+  background: #0284c7;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.guides-hero-brochure-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.guides-hero-brochure-btn:hover {
+  background: #ffffff !important;
+  color: var(--navy) !important;
+  border-color: #ffffff !important;
+}
